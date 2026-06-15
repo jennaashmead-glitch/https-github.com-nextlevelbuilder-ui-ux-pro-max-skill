@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Work | Print Lab Wraps</title>
+  <meta name="description" content="Browse the Print Lab Wraps portfolio — commercial fleet wraps, custom vehicle graphics, signage, and building wraps. The work speaks for itself." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="../css/global.css" />
+  <style>
+    /* ── Page-specific ── */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .portfolio-item {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+    .portfolio-item-bg {
+      width: 100%; height: 100%;
+      transition: transform var(--t-slow);
+    }
+    .portfolio-item:hover .portfolio-item-bg { transform: scale(1.05); }
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.25rem;
+      opacity: 0;
+      transition: opacity var(--t-base);
+    }
+    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+    .portfolio-tag {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-red);
+      margin-bottom: 0.3rem;
+    }
+    .portfolio-name {
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      color: var(--clr-white);
+    }
+
+    /* Filter JS hiding */
+    .portfolio-item[hidden] { display: none; }
+
+    /* Before/After section */
+    .ba-section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .ba-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+    .ba-label-text {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-gray-400);
+    }
+    .ba-label-text span { color: var(--clr-red); }
+    .ba-hint {
+      font-size: var(--fs-xs);
+      color: var(--clr-gray-600);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .ba-hint svg { width: 14px; height: 14px; color: var(--clr-gray-600); }
+
+    @media (max-width: 900px) {
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .ba-section-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 540px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="page-wrapper">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container-large">
+      <div class="header-inner">
+        <a href="../index.html" class="header-logo" aria-label="Print Lab Wraps Home">
+          <div class="header-logo-text">
+            <span class="logo-top">PrintLab</span>
+            <span class="logo-bottom">Wraps ★</span>
+          </div>
+        </a>
+        <nav class="header-nav" aria-label="Main navigation">
+          <a href="services.html"  class="nav-link">Services</a>
+          <a href="about.html"     class="nav-link">About</a>
+          <a href="careers.html"   class="nav-link">Careers</a>
+          <a href="contact.html"   class="nav-link">Contact</a>
+          <a href="our-work.html"  class="nav-link active">Our Work</a>
+        </nav>
+        <div class="header-ctas">
+          <a href="tel:+15559999999" class="btn btn-outline btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z"/></svg>
+            Call Us
+          </a>
+          <a href="contact.html" class="btn btn-primary">Get Estimate</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-menu">
+    <a href="services.html"  class="mobile-nav-link">Services</a>
+    <a href="about.html"     class="mobile-nav-link">About</a>
+    <a href="careers.html"   class="mobile-nav-link">Careers</a>
+    <a href="contact.html"   class="mobile-nav-link">Contact</a>
+    <a href="our-work.html"  class="mobile-nav-link">Our Work</a>
+    <div class="mobile-ctas">
+      <a href="tel:+15559999999" class="btn btn-outline">Call Us Now</a>
+      <a href="contact.html" class="btn btn-primary">Get Free Estimate</a>
+    </div>
+  </nav>
+
+  <main class="main-wrapper">
+
+    <!-- HERO -->
+    <section class="section-dark page-hero-spacer padding-section-large" aria-labelledby="work-heading">
+      <div class="container-large">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Our Work</span>
+        </div>
+        <div style="text-align:center;max-width:780px;margin:0 auto">
+          <p class="text-label reveal" data-delay="0">Portfolio</p>
+          <h1 class="heading-1 reveal" data-delay="80" id="work-heading" style="margin:1rem 0">
+            The Work <span class="text-red">Speaks for Itself</span>
+          </h1>
+          <p class="text-body reveal" data-delay="160" style="color:var(--clr-gray-400);margin:0 auto;text-align:center">
+            2,500+ projects across commercial fleets, personal vehicles, architectural installations, and everything in between. Here's a look at what we've built.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO FILTER + GRID -->
+    <section class="section-dark-2 padding-section-large" aria-labelledby="portfolio-heading">
+      <div class="container-large">
+
+        <!-- Filter Bar -->
+        <div style="margin-bottom:var(--sp-2xl)">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:var(--sp-lg)">
+            <div>
+              <p class="text-label reveal" data-delay="0">Filter by Category</p>
+              <h2 class="heading-2 reveal" data-delay="80" id="portfolio-heading" style="margin-top:0.75rem">
+                Browse <span class="text-red">Projects</span>
+              </h2>
+            </div>
+            <p class="reveal" data-delay="80" style="font-size:var(--fs-sm);color:var(--clr-gray-400)" id="portfolio-count">Showing 12 projects</p>
+          </div>
+          <div class="filter-bar reveal" data-delay="120" role="group" aria-label="Portfolio filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="commercial-wraps">Commercial Wraps</button>
+            <button class="filter-btn" data-filter="vehicle-wraps">Vehicle Wraps</button>
+            <button class="filter-btn" data-filter="signage">Signage</button>
+            <button class="filter-btn" data-filter="buildings">Buildings</button>
+          </div>
+        </div>
+
+        <!-- Portfolio Grid -->
+        <div class="portfolio-grid" id="portfolio-grid" aria-label="Portfolio projects">
+
+          <!-- 1 -->
+          <div class="portfolio-item reveal" data-category="commercial-wraps" data-delay="0">
+            <div class="portfolio-item-bg img-placeholder" style="background:linear-gradient(135deg,#1a0505,#2d0808);width:100%;height:100%">
+              <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Project Image</span>
+            </div>
+            <div class="portfolio-overlay">
+              <p class="portfolio-tag">Commercial Wraps</p>
+              <p class="portfolio-name">Apex Logistics — 48-Truck Fleet</p>
+            </div>
+          </div>
+
+          <!-- 2 -->
+          <div class="portfolio-item reveal" data-category="vehicle-wraps" data-delay="60">
+            <div class="portfolio-item-bg img-placeholder" style="background:linear-gradient(135deg,#050a1a,#0a1030);width:100%;height:100%">
+              <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Project Image</span>
+            </div>
+            <div class="portfolio-overlay">
+              <p class="portfolio-tag">Vehicle Wraps</p>
+              <p class="portfolio-name">Midnight Chrome Color Change — Porsche 911</p>
+            </div>
+          </div>
+
+          <!-- 3 -->
+          <div class="portfolio-item reveal" data-category="signage" data-delay="120">
+            <div class="portfolio-item-bg img-placeholder" style="background:linear-gradient(135deg,#0a1a05,#102d0a);width:100%;height:100%">
+              <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Project Image</span>
+            </div>
+            <div class="portfolio-overlay">
+              <p class="portfolio-tag">Signage</p>
+              <p class="portfolio-name">TechNova Trade Show Display — 20×10ft</p>
+            </div>
+          </div>
+
+          <!-- 4 -->
+          <div class="portfolio-item reveal" data-category="buildings" data-delay="0">
+            <div class="portfolio-item-bg img-placeholder" style="background:linear-gradient(135deg,#1a0a05,#2d1a0a);width:100%;height:100%">
+              <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Project Image</span>
+            </div>
+            <div class="portfolio-overlay">
+              <p class="portfolio-tag">Buildings</p>
+              <p class="portfolio-name">Downtown Fitness — Full Exterior Building Wrap</p>
+            </div>
+          </div>
+
+          <!-- 5 -->
+          <div class="portfolio-item reveal" data-category="commercial-wraps" data-delay="60">
+            <div class="portfolio-item-bg img-placeholder" style="background:linear-gradient(135deg,#0a051a,#1a0a2d);width:100%;height:100%">
+              <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Project Image</span>
+            </div>
+            <div class="portfolio-overlay">
+              <p class="portfolio-tag">Commercial Wraps</p>
+              <p class="portfolio-name">ClearFlow Plumbing — 12-Van Fleet</p>
+            </div>
+          </div>
+
+          <!-- 6 -->
+          <div class="portfolio-item reveal" data-category="vehicle-wraps" data-delay="120">
+            <div class="portfolio-item-bg img-placeholder" style="background:linear-gradient(135deg,#1a1a05,#2d2d0a);width:100%;height:100%">
+              <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Project Image</span>
+            </div>
+            <div class="portfolio-overlay">
+              <p class="portfolio-tag">Vehicle Wraps</p>
+              <p class="portfolio-name">Brushed Satin Gold Partial Wrap — Escalade</p>
+            </div>
+          </div>
+
+          <!-- 7 -->
+          <div class="portfolio-item reveal" data-category="signage" data-delay="0">
+            <div class="portfolio-item-bg img-placeholder" style="background:linear-gradient(135deg,#1a0510,#2d0a20);width:100%;height:100%">
+              <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Project Image</span>
+            </div>
+            <div class="portfolio-overlay">
+              <p class="portfolio-tag">Signage</p>
+              <p class="portfolio-name">Riverfront Restaurant — Window Graphics & Menu Wall</p>
+            </div>
+          </div>
+
+          <!-- 8 -->
+          <div class="portfolio-item reveal" data-category="commercial-wraps" data-delay="60">
+            <div class="portfolio-item-bg img-placeholder" style="background:linear-gradient(135deg,#051a1a,#0a2d2d);width:100%;height:100%">
+              <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Project Image</span>
+            </div>
+            <div class="portfolio-overlay">
+              <p class="portfolio-tag">Commercial Wraps</p>
+              <p class="portfolio-name">FrostBite HVAC — Box Truck Full Wrap</p>
+            </div>
+          </div>
+
+          <!-- 9 -->
+          <div class="portfolio-item reveal" data-category="buildings" data-delay="120">
+            <div class="portfolio-item-bg img-placeholder" style="background:linear-gradient(135deg,#1a1a1a,#2d0505);width:100%;height:100%">
+              <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Project Image</span>
+            </div>
+            <div class="portfolio-overlay">
+              <p class="portfolio-tag">Buildings</p>
+              <p class="portfolio-name">Harbor Tech HQ — Lobby Feature Wall & Wayfinding</p>
+            </div>
+          </div>
+
+          <!-- 10 -->
+          <div class="portfolio-item reveal" data-category="vehicle-wraps" data-delay="0">
+            <div class="portfolio-item-bg img-placeholder" style="background:linear-gradient(135deg,#0a0a0a,#1a051a);width:100%;height:100%">
+              <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Project Image</span>
+            </div>
+            <div class="portfolio-overlay">
+              <p class="portfolio-tag">Vehicle Wraps</p>
+              <p class="portfolio-name">Matte Army Green — Toyota Tacoma</p>
+            </div>
+          </div>
+
+          <!-- 11 -->
+          <div class="portfolio-item reveal" data-category="signage" data-delay="60">
+            <div class="portfolio-item-bg img-placeholder" style="background:linear-gradient(135deg,#05101a,#0a2030);width:100%;height:100%">
+              <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Project Image</span>
+            </div>
+            <div class="portfolio-overlay">
+              <p class="portfolio-tag">Signage</p>
+              <p class="portfolio-name">Blue Peak Realty — Yard Signs & A-Frames (200 units)</p>
+            </div>
+          </div>
+
+          <!-- 12 -->
+          <div class="portfolio-item reveal" data-category="commercial-wraps" data-delay="120">
+            <div class="portfolio-item-bg img-placeholder" style="background:linear-gradient(135deg,#1a0a1a,#2d1030);width:100%;height:100%">
+              <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Project Image</span>
+            </div>
+            <div class="portfolio-overlay">
+              <p class="portfolio-tag">Commercial Wraps</p>
+              <p class="portfolio-name">PureSpring Water — Full Semi-Trailer Wrap</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BEFORE / AFTER -->
+    <section class="section-dark padding-section-large" aria-labelledby="ba-heading">
+      <div class="container-large">
+        <div style="text-align:center;margin-bottom:var(--sp-2xl)">
+          <p class="text-label reveal" data-delay="0">See the Transformation</p>
+          <h2 class="heading-2 reveal" data-delay="80" id="ba-heading" style="margin:0.75rem 0">
+            Before <span class="text-red">&amp;</span> After
+          </h2>
+          <p class="text-body reveal" data-delay="160" style="color:var(--clr-gray-400);margin:0 auto;text-align:center">
+            Drag the handle left and right to reveal the transformation. The difference is always dramatic.
+          </p>
+        </div>
+        <div class="ba-section-grid">
+
+          <!-- Before/After 1 -->
+          <div class="reveal" data-delay="0">
+            <div class="ba-label">
+              <p class="ba-label-text"><span>Before</span> / After</p>
+              <p class="ba-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                Drag
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </p>
+            </div>
+            <div class="ba-wrapper" role="img" aria-label="Before and after comparison: commercial van wrap transformation">
+              <div class="ba-before img-placeholder" style="background:linear-gradient(135deg,#1a1a1a,#2a2a2a)" aria-hidden="true">
+                <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Before</span>
+              </div>
+              <div class="ba-after img-placeholder" style="background:linear-gradient(135deg,#1a0505,#3d0a0a)" aria-hidden="true">
+                <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">After</span>
+              </div>
+              <div class="ba-handle" aria-hidden="true"></div>
+            </div>
+            <p style="margin-top:0.75rem;font-size:var(--fs-xs);color:var(--clr-gray-400)">Cargo Van — Plain White to Branded Fleet Wrap</p>
+          </div>
+
+          <!-- Before/After 2 -->
+          <div class="reveal" data-delay="100">
+            <div class="ba-label">
+              <p class="ba-label-text"><span>Before</span> / After</p>
+              <p class="ba-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                Drag
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </p>
+            </div>
+            <div class="ba-wrapper" role="img" aria-label="Before and after comparison: building exterior wrap transformation">
+              <div class="ba-before img-placeholder" style="background:linear-gradient(135deg,#111,#222)" aria-hidden="true">
+                <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">Before</span>
+              </div>
+              <div class="ba-after img-placeholder" style="background:linear-gradient(135deg,#050a1a,#0a1a3d)" aria-hidden="true">
+                <span style="color:rgba(255,255,255,0.06);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em">After</span>
+              </div>
+              <div class="ba-handle" aria-hidden="true"></div>
+            </div>
+            <p style="margin-top:0.75rem;font-size:var(--fs-xs);color:var(--clr-gray-400)">Storefront — Blank Glass to Full Window Graphics Suite</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section-dark-2 padding-section-large">
+      <div class="container-medium">
+        <div class="banner-cta reveal">
+          <div class="banner-cta-overlay" aria-hidden="true"></div>
+          <div class="banner-cta-content">
+            <p class="text-label" style="margin-bottom:1rem">Your Project Next</p>
+            <h2 class="heading-2" style="margin-bottom:0.75rem">
+              Ready to Make Your <span class="text-red">Mark?</span>
+            </h2>
+            <p class="text-body" style="color:rgba(255,255,255,0.7);margin:0 auto 2rem;text-align:center">
+              Join 2,500+ businesses who trust Print Lab Wraps to make their brand impossible to ignore. Get your free estimate today.
+            </p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+              <a href="contact.html" class="btn btn-primary btn-lg">Get Free Estimate</a>
+              <a href="tel:+15559999999" class="btn btn-outline btn-lg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="width:18px;height:18px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z"/></svg>
+                Call Us Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container-large">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-logo-text"><div class="logo-top">PrintLab</div><div class="logo-bottom">Wraps ★</div></div>
+          <p class="footer-tagline">Premium vehicle wraps, signage, and branding solutions. Your brand — everywhere.</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Browse</h4><div class="footer-links"><a href="../index.html" class="footer-link">Home</a><a href="about.html" class="footer-link">About</a><a href="contact.html" class="footer-link">Contact</a><a href="our-work.html" class="footer-link">Our Work</a></div></div>
+        <div class="footer-col"><h4>Services</h4><div class="footer-links"><a href="commercial-vehicle-wraps.html" class="footer-link">Commercial Wraps</a><a href="vehicle-wraps.html" class="footer-link">Vehicle Wraps</a><a href="signage-prints.html" class="footer-link">Signage & Prints</a><a href="buildings-facilities.html" class="footer-link">Buildings</a></div></div>
+        <div class="footer-col"><h4>Resources</h4><div class="footer-links"><a href="faq.html" class="footer-link">FAQs</a><a href="careers.html" class="footer-link">Careers</a></div></div>
+        <div class="footer-col"><h4>Contact</h4>
+          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z"/></svg><a href="tel:+15559999999">(555) PLW-WRAP</a></div>
+          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:info@printlabwraps.com">info@printlabwraps.com</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Print Lab Wraps. All rights reserved.</p>
+        <div class="footer-legal"><a href="#">Terms</a><a href="#">Privacy</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    /* ── Portfolio Filter ── */
+    (function () {
+      const btns = document.querySelectorAll('.filter-btn');
+      const items = document.querySelectorAll('.portfolio-item');
+      const countEl = document.getElementById('portfolio-count');
+
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          btns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+
+          var filter = btn.dataset.filter;
+          var visible = 0;
+
+          items.forEach(function (item) {
+            var match = filter === 'all' || item.dataset.category === filter;
+            item.hidden = !match;
+            if (match) visible++;
+          });
+
+          countEl.textContent = 'Showing ' + visible + ' project' + (visible !== 1 ? 's' : '');
+        });
+      });
+    }());
+  </script>
+</body>
+</html>

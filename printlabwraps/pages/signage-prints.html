@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signage & Prints | Print Lab Wraps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <style>
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--clr-dark-3);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.75rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: border-color var(--t-fast), transform var(--t-fast);
+      cursor: default;
+    }
+    .service-card:hover {
+      border-color: rgba(227,24,55,0.3);
+      transform: translateY(-4px);
+    }
+    .service-card-icon {
+      width: 52px; height: 52px;
+      background: rgba(227,24,55,0.1);
+      border: 1px solid rgba(227,24,55,0.2);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--clr-red);
+      margin-bottom: 1.25rem;
+    }
+    .service-card-icon svg { width: 24px; height: 24px; }
+    .split-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+    .split-img { position: relative; border-radius: var(--radius-md); overflow: hidden; }
+    .split-img-inner { aspect-ratio: 4/3; }
+    .split-img-accent {
+      position: absolute; bottom: -1rem; right: -1rem;
+      width: 120px; height: 120px;
+      background: var(--clr-red); opacity: 0.12;
+      border-radius: 50%; z-index: -1;
+    }
+    .faq-banner {
+      position: relative; overflow: hidden;
+      background: var(--clr-dark-3);
+      border-radius: var(--radius-md);
+      padding: var(--pad-section-md); text-align: center;
+    }
+    .faq-banner-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(227,24,55,0.08), rgba(0,0,0,0.9));
+    }
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .split-content { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Page-specific extras */
+    .mini-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .mini-card {
+      background: var(--clr-dark-3);
+      border-left: 3px solid var(--clr-red);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1rem 1.25rem;
+    }
+    .mini-card-title {
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      color: var(--clr-white);
+      margin-bottom: 0.25rem;
+    }
+    .mini-card-sub {
+      font-size: var(--fs-xs, 0.75rem);
+      color: var(--clr-gray-400);
+      line-height: 1.4;
+    }
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: var(--fs-sm);
+      color: var(--clr-gray-400);
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .breadcrumb a { color: var(--clr-gray-400); text-decoration: none; transition: color var(--t-fast); }
+    .breadcrumb a:hover { color: var(--clr-red); }
+    .breadcrumb-sep { color: var(--clr-gray-600, #444); }
+    .breadcrumb-current { color: var(--clr-white); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container-large">
+      <div class="header-inner">
+        <a href="../index.html" class="header-logo" aria-label="Print Lab Wraps Home">
+          <div class="header-logo-text">
+            <span class="logo-top">PrintLab</span>
+            <span class="logo-bottom">Wraps ★</span>
+          </div>
+        </a>
+        <nav class="header-nav" aria-label="Main navigation">
+          <a href="services.html"  class="nav-link active">Services</a>
+          <a href="about.html"     class="nav-link">About</a>
+          <a href="careers.html"   class="nav-link">Careers</a>
+          <a href="contact.html"   class="nav-link">Contact</a>
+          <a href="our-work.html"  class="nav-link">Our Work</a>
+        </nav>
+        <div class="header-ctas">
+          <a href="tel:+15559999999" class="btn btn-outline btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z"/></svg>
+            Call Us
+          </a>
+          <a href="contact.html" class="btn btn-primary">Get Estimate</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-menu">
+    <a href="services.html"  class="mobile-nav-link">Services</a>
+    <a href="about.html"     class="mobile-nav-link">About</a>
+    <a href="careers.html"   class="mobile-nav-link">Careers</a>
+    <a href="contact.html"   class="mobile-nav-link">Contact</a>
+    <a href="our-work.html"  class="mobile-nav-link">Our Work</a>
+    <div class="mobile-ctas">
+      <a href="tel:+15559999999" class="btn btn-outline">Call Us Now</a>
+      <a href="contact.html" class="btn btn-primary">Get Free Estimate</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- BLOCK 1: HERO -->
+    <section class="section-dark page-hero-spacer padding-section-large">
+      <div class="container-large">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="breadcrumb-sep" aria-hidden="true">›</span>
+          <a href="services.html">Services</a>
+          <span class="breadcrumb-sep" aria-hidden="true">›</span>
+          <span class="breadcrumb-current">Signage &amp; Prints</span>
+        </nav>
+        <p class="text-label reveal" data-delay="0">Large-Format Printing</p>
+        <h1 class="heading-1 reveal" data-delay="80" style="margin: 0.75rem 0 1.25rem">
+          Signage &amp; Large-Format Printing
+        </h1>
+        <p class="text-body reveal" data-delay="160" style="max-width: 600px; color: var(--clr-gray-300);">
+          Banners, Window Graphics, Trade Show Displays &amp; More — Printed to Impress
+        </p>
+        <div class="btn-group reveal" data-delay="240" style="margin-top: 2rem;">
+          <a href="contact.html" class="btn btn-primary btn-lg">Request a Print Quote</a>
+          <a href="tel:+15559999999" class="btn btn-outline btn-lg">Call Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 2: SERVICES GRID -->
+    <section class="section-dark-2 padding-section-large">
+      <div class="container-large">
+        <div style="text-align:center; margin-bottom: var(--sp-2xl);">
+          <p class="text-label reveal" data-delay="0">What We Print</p>
+          <h2 class="heading-2 reveal" data-delay="80" style="margin: 0.75rem 0;">
+            Our Signage <span class="text-red">Services</span>
+          </h2>
+        </div>
+        <div class="services-grid" data-stagger>
+          <!-- Card 1 -->
+          <div class="service-card reveal">
+            <div class="service-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3 class="heading-4" style="margin-bottom: 0.75rem;">Banners &amp; Displays</h3>
+            <p class="text-sm" style="color: var(--clr-gray-400);">Vibrant vinyl banners in any size — retractable banner stands, step-and-repeat backdrops, mesh banners for outdoor events, and custom display systems.</p>
+          </div>
+          <!-- Card 2 -->
+          <div class="service-card reveal">
+            <div class="service-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="2"/>
+                <path d="M2 12h20M12 2v20"/>
+              </svg>
+            </div>
+            <h3 class="heading-4" style="margin-bottom: 0.75rem;">Window Graphics</h3>
+            <p class="text-sm" style="color: var(--clr-gray-400);">Perforated window vinyl, full window wraps, frosted privacy film, and promotional window decals — perfect for retail, restaurants, and office storefronts.</p>
+          </div>
+          <!-- Card 3 -->
+          <div class="service-card reveal">
+            <div class="service-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+            <h3 class="heading-4" style="margin-bottom: 0.75rem;">Yard Signs &amp; A-Frames</h3>
+            <p class="text-sm" style="color: var(--clr-gray-400);">Corrugated plastic yard signs, aluminum A-frame signs, real estate signs, event directionals, and political/campaign signage printed fast.</p>
+          </div>
+          <!-- Card 4 -->
+          <div class="service-card reveal">
+            <div class="service-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+              </svg>
+            </div>
+            <h3 class="heading-4" style="margin-bottom: 0.75rem;">Trade Show Displays</h3>
+            <p class="text-sm" style="color: var(--clr-gray-400);">Complete trade show kits: pop-up displays, tension fabric frames, table covers, retractable banners, and custom booth graphics — all print-ready.</p>
+          </div>
+          <!-- Card 5 -->
+          <div class="service-card reveal">
+            <div class="service-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18M9 21V9"/>
+              </svg>
+            </div>
+            <h3 class="heading-4" style="margin-bottom: 0.75rem;">Wall Graphics &amp; Murals</h3>
+            <p class="text-sm" style="color: var(--clr-gray-400);">Large-scale wall murals, office branding graphics, retail wall wraps, and inspirational wall quotes — printed at any size on premium wall vinyl.</p>
+          </div>
+          <!-- Card 6 -->
+          <div class="service-card reveal">
+            <div class="service-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="2"/>
+                <path d="M2 8h20M2 14h20"/>
+              </svg>
+            </div>
+            <h3 class="heading-4" style="margin-bottom: 0.75rem;">Floor Graphics</h3>
+            <p class="text-sm" style="color: var(--clr-gray-400);">Slip-resistant floor decals for retail wayfinding, promotional floor graphics, safety marking, and branded floor installations in high-traffic spaces.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 3: SPLIT CONTENT -->
+    <section class="section-dark padding-section-large">
+      <div class="container-large">
+        <div class="split-content">
+          <!-- Image Left -->
+          <div class="split-img reveal-left">
+            <div class="split-img-inner img-placeholder" style="background: linear-gradient(135deg,#1a0505,#2d1010); border-radius: var(--radius-md);" role="img" aria-label="Large-format print materials close-up">
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(227,24,55,0.3)" stroke-width="1" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18M9 21V9"/>
+              </svg>
+            </div>
+            <div class="split-img-accent" aria-hidden="true"></div>
+          </div>
+          <!-- Content Right -->
+          <div class="reveal-right">
+            <p class="text-label" style="margin-bottom: 0.75rem;">Materials &amp; Durability</p>
+            <h2 class="heading-2" style="margin-bottom: 1.25rem;">
+              Built to Last <span class="text-red">Inside &amp; Out</span>
+            </h2>
+            <p class="text-body" style="color: var(--clr-gray-300); margin-bottom: 1.5rem;">
+              We don't cut corners on materials. Every print job runs on professional-grade wide-format printers using UV-resistant inks, and we select the right substrate for your specific application — whether it's a short-run event banner or a permanent outdoor installation that needs to survive years of sun and weather.
+            </p>
+            <div class="mini-cards-grid">
+              <div class="mini-card">
+                <div class="mini-card-title">UV-Resistant Inks</div>
+                <div class="mini-card-sub">Colors that stay vibrant longer</div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-card-title">Outdoor-Rated</div>
+                <div class="mini-card-sub">Substrates tested for weather exposure</div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-card-title">Any Size</div>
+                <div class="mini-card-sub">Up to 10ft wide, unlimited length</div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-card-title">Fast Turnaround</div>
+                <div class="mini-card-sub">Most orders ready in 3–5 business days</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 4: PROCESS -->
+    <section class="section-dark padding-section-large">
+      <div class="container-large">
+        <div style="text-align:center;margin-bottom:var(--sp-2xl)">
+          <p class="text-label reveal" data-delay="0">Our Process</p>
+          <h2 class="heading-2 reveal" data-delay="80" style="margin:0.75rem 0">
+            We Make This <span class="text-red">Easy.</span>
+          </h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative" data-stagger>
+          <div style="padding:0 var(--sp-lg) var(--sp-xl)" class="reveal">
+            <div style="width:56px;height:56px;background:var(--clr-red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-md);font-weight:900;margin-bottom:1.5rem;box-shadow:0 0 0 6px rgba(227,24,55,0.15)">01</div>
+            <h3 class="heading-4" style="margin-bottom:0.5rem">Consultation</h3>
+            <p class="text-sm" style="color:var(--clr-gray-400)">Tell us what you need — quantity, size, location, and deadline. We'll recommend the right material and format.</p>
+          </div>
+          <div style="padding:0 var(--sp-lg) var(--sp-xl)" class="reveal">
+            <div style="width:56px;height:56px;background:var(--clr-red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-md);font-weight:900;margin-bottom:1.5rem;box-shadow:0 0 0 6px rgba(227,24,55,0.15)">02</div>
+            <h3 class="heading-4" style="margin-bottom:0.5rem">Design</h3>
+            <p class="text-sm" style="color:var(--clr-gray-400)">Submit your artwork or work with our design team to create print-ready files at the correct resolution and bleed.</p>
+          </div>
+          <div style="padding:0 var(--sp-lg) var(--sp-xl)" class="reveal">
+            <div style="width:56px;height:56px;background:var(--clr-red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-md);font-weight:900;margin-bottom:1.5rem;box-shadow:0 0 0 6px rgba(227,24,55,0.15)">03</div>
+            <h3 class="heading-4" style="margin-bottom:0.5rem">Production</h3>
+            <p class="text-sm" style="color:var(--clr-gray-400)">We print on professional wide-format equipment with UV-resistant inks, then laminate and finish to spec.</p>
+          </div>
+          <div style="padding:0 var(--sp-lg) var(--sp-xl)" class="reveal">
+            <div style="width:56px;height:56px;background:var(--clr-red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-md);font-weight:900;margin-bottom:1.5rem;box-shadow:0 0 0 6px rgba(227,24,55,0.15)">04</div>
+            <h3 class="heading-4" style="margin-bottom:0.5rem">Delivery</h3>
+            <p class="text-sm" style="color:var(--clr-gray-400)">Orders are available for pickup, local delivery, or shipping. Installation services available for wall and floor graphics.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 5: FAQ CTA -->
+    <section class="section-dark-2 padding-section-large">
+      <div class="container-medium">
+        <div class="faq-banner">
+          <div class="faq-banner-bg" aria-hidden="true"></div>
+          <div style="position: relative; z-index: 1;">
+            <h2 class="heading-2 reveal" style="margin-bottom: 1rem;">Need Signage Fast?</h2>
+            <p class="text-body reveal" style="color: var(--clr-gray-300); margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto;">
+              Get a quote within 24 hours. Rush orders available on most standard print products.
+            </p>
+            <div class="btn-group reveal" style="justify-content: center;">
+              <a href="contact.html" class="btn btn-primary btn-lg">Get a Print Quote</a>
+              <a href="tel:+15559999999" class="btn btn-outline btn-lg">Call Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container-large">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-logo-text"><div class="logo-top">PrintLab</div><div class="logo-bottom">Wraps ★</div></div>
+          <p class="footer-tagline">Premium vehicle wraps, signage, and branding solutions. Your brand — everywhere.</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Browse</h4><div class="footer-links"><a href="../index.html" class="footer-link">Home</a><a href="about.html" class="footer-link">About</a><a href="contact.html" class="footer-link">Contact</a><a href="our-work.html" class="footer-link">Our Work</a></div></div>
+        <div class="footer-col"><h4>Services</h4><div class="footer-links"><a href="commercial-vehicle-wraps.html" class="footer-link">Commercial Wraps</a><a href="vehicle-wraps.html" class="footer-link">Vehicle Wraps</a><a href="signage-prints.html" class="footer-link">Signage & Prints</a><a href="buildings-facilities.html" class="footer-link">Buildings</a></div></div>
+        <div class="footer-col"><h4>Resources</h4><div class="footer-links"><a href="faq.html" class="footer-link">FAQs</a><a href="careers.html" class="footer-link">Careers</a></div></div>
+        <div class="footer-col"><h4>Contact</h4>
+          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z"/></svg><a href="tel:+15559999999">(555) PLW-WRAP</a></div>
+          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:info@printlabwraps.com">info@printlabwraps.com</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Print Lab Wraps. All rights reserved.</p>
+        <div class="footer-legal"><a href="#">Terms</a><a href="#">Privacy</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

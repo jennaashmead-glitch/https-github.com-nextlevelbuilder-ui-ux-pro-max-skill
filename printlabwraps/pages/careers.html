@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers | Print Lab Wraps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <style>
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .benefit-card {
+      background: var(--clr-dark-3);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      transition: border-color var(--t-fast), transform var(--t-fast);
+    }
+    .benefit-card:hover {
+      border-color: rgba(227,24,55,0.3);
+      transform: translateY(-4px);
+    }
+    .benefit-icon {
+      width: 56px; height: 56px;
+      background: rgba(227,24,55,0.1);
+      border: 1px solid rgba(227,24,55,0.2);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+      color: var(--clr-red);
+    }
+    .benefit-icon svg { width: 26px; height: 26px; }
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .job-card {
+      background: var(--clr-dark-3);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: border-color var(--t-fast);
+    }
+    .job-card:hover { border-color: rgba(227,24,55,0.3); }
+    .job-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(227,24,55,0.1);
+      color: var(--clr-red);
+      border: 1px solid rgba(227,24,55,0.2);
+      width: fit-content;
+    }
+    .job-location {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: var(--fs-sm);
+      color: var(--clr-gray-400);
+    }
+    .job-location svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .culture-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+      .jobs-grid { grid-template-columns: 1fr; }
+      .culture-split { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+    }
+    /* Value pills */
+    .value-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.75rem;
+    }
+    .value-pill {
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      background: rgba(227,24,55,0.08);
+      color: var(--clr-red);
+      border: 1px solid rgba(227,24,55,0.2);
+    }
+    /* Job requirements list */
+    .job-requirements {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .job-requirements li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: var(--fs-sm);
+      color: var(--clr-gray-400);
+      line-height: 1.5;
+    }
+    .job-requirements li::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      min-width: 6px;
+      border-radius: 50%;
+      background: var(--clr-red);
+      margin-top: 0.45em;
+    }
+    .job-card-title {
+      font-size: var(--fs-lg);
+      font-weight: 700;
+      color: var(--clr-white);
+      line-height: 1.3;
+    }
+    .job-card-desc {
+      font-size: var(--fs-sm);
+      color: var(--clr-gray-400);
+      line-height: 1.6;
+    }
+    .job-card-footer {
+      margin-top: auto;
+    }
+    /* Form file input */
+    input[type="file"].form-input {
+      padding: 0.625rem 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container-large">
+      <div class="header-inner">
+        <a href="../index.html" class="header-logo" aria-label="Print Lab Wraps Home">
+          <div class="header-logo-text">
+            <span class="logo-top">PrintLab</span>
+            <span class="logo-bottom">Wraps ★</span>
+          </div>
+        </a>
+        <nav class="header-nav" aria-label="Main navigation">
+          <a href="services.html"  class="nav-link">Services</a>
+          <a href="about.html"     class="nav-link">About</a>
+          <a href="careers.html"   class="nav-link">Careers</a>
+          <a href="contact.html"   class="nav-link">Contact</a>
+          <a href="our-work.html"  class="nav-link">Our Work</a>
+        </nav>
+        <div class="header-ctas">
+          <a href="tel:+15559999999" class="btn btn-outline btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z"/></svg>
+            Call Us
+          </a>
+          <a href="contact.html" class="btn btn-primary">Get Estimate</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-menu">
+    <a href="services.html"  class="mobile-nav-link">Services</a>
+    <a href="about.html"     class="mobile-nav-link">About</a>
+    <a href="careers.html"   class="mobile-nav-link">Careers</a>
+    <a href="contact.html"   class="mobile-nav-link">Contact</a>
+    <a href="our-work.html"  class="mobile-nav-link">Our Work</a>
+    <div class="mobile-ctas">
+      <a href="tel:+15559999999" class="btn btn-outline">Call Us Now</a>
+      <a href="contact.html" class="btn btn-primary">Get Free Estimate</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="section-dark page-hero-spacer padding-section-large">
+      <div class="container-large">
+        <nav aria-label="Breadcrumb" style="margin-bottom:1.5rem;">
+          <ol style="display:flex;align-items:center;gap:0.5rem;list-style:none;padding:0;margin:0;font-size:var(--fs-sm);color:var(--clr-gray-400);">
+            <li><a href="../index.html" style="color:var(--clr-gray-400);text-decoration:none;transition:color var(--t-fast);" onmouseover="this.style.color='var(--clr-white)'" onmouseout="this.style.color='var(--clr-gray-400)'">Home</a></li>
+            <li aria-hidden="true" style="color:var(--clr-gray-600);">/</li>
+            <li style="color:var(--clr-white);font-weight:500;" aria-current="page">Careers</li>
+          </ol>
+        </nav>
+        <div class="reveal" style="max-width:680px;">
+          <span class="text-label">We're Hiring</span>
+          <h1 class="heading-1" style="margin-top:1rem;margin-bottom:1.25rem;">Join the Print Lab Team</h1>
+          <p style="font-size:var(--fs-lg);color:var(--clr-gray-400);margin-bottom:2.5rem;">We build more than wraps — we build careers. If you're passionate about precision, creativity, and craft, we want to hear from you.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:1rem;">
+            <a href="#open-positions" class="btn btn-primary btn-lg">View Open Positions</a>
+            <a href="mailto:careers@printlabwraps.com" class="btn btn-outline btn-lg">Send Your Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CULTURE -->
+    <section class="section-dark-2 padding-section-large">
+      <div class="container-large">
+        <div class="culture-split">
+          <!-- Left -->
+          <div class="reveal-left">
+            <span class="text-label">Our Culture</span>
+            <h2 class="heading-2" style="margin-top:1rem;margin-bottom:1.5rem;">More Than a Job.<br><span class="text-red">A Craft.</span></h2>
+            <p style="color:var(--clr-gray-400);line-height:1.75;margin-bottom:1.25rem;">At Print Lab Wraps, we believe the best work comes from people who take pride in what they do. Our shop floor is a place of precision and creativity — every wrap installer, every designer, every estimator plays a critical role in delivering results that our clients are proud to drive.</p>
+            <p style="color:var(--clr-gray-400);line-height:1.75;">We're a tight-knit team that values accountability, continuous learning, and a good sense of humor. We invest in our people through training, fair wages, and a work environment that respects your time and your skills.</p>
+            <div class="value-pills">
+              <span class="value-pill">Precision Work</span>
+              <span class="value-pill">Team First</span>
+              <span class="value-pill">Continuous Growth</span>
+            </div>
+          </div>
+          <!-- Right -->
+          <div class="reveal-right">
+            <div class="img-placeholder" style="aspect-ratio:4/3;background:linear-gradient(135deg,#1a0505,#2d1010);border-radius:var(--radius-md);" role="img" aria-label="Print Lab Wraps team at work"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="section-dark padding-section-large">
+      <div class="container-large">
+        <div class="reveal" style="text-align:center;margin-bottom:var(--sp-2xl);">
+          <span class="text-label">Why Work With Us</span>
+          <h2 class="heading-2" style="margin-top:1rem;">Benefits &amp; <span class="text-red">Perks</span></h2>
+        </div>
+        <div class="benefits-grid">
+          <!-- Card 1: Competitive Pay -->
+          <div class="benefit-card reveal">
+            <div class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <h3 class="heading-4" style="margin-bottom:0.75rem;">Competitive Pay</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-gray-400);line-height:1.6;">We pay above-market rates because we want to attract and keep the best. Wages reviewed annually.</p>
+          </div>
+          <!-- Card 2: Health Benefits -->
+          <div class="benefit-card reveal">
+            <div class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </div>
+            <h3 class="heading-4" style="margin-bottom:0.75rem;">Health Benefits</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-gray-400);line-height:1.6;">Medical coverage options available for full-time employees, because your health matters to us.</p>
+          </div>
+          <!-- Card 3: Growth Opportunities -->
+          <div class="benefit-card reveal">
+            <div class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <h3 class="heading-4" style="margin-bottom:0.75rem;">Growth Opportunities</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-gray-400);line-height:1.6;">Clear advancement paths from installer to lead to shop supervisor. We promote from within.</p>
+          </div>
+          <!-- Card 4: Team Culture -->
+          <div class="benefit-card reveal">
+            <div class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h3 class="heading-4" style="margin-bottom:0.75rem;">Team Culture</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-gray-400);line-height:1.6;">Team lunches, shop events, and a crew that has each other's backs. Work hard, celebrate together.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPEN POSITIONS -->
+    <section class="section-dark-2 padding-section-large" id="open-positions">
+      <div class="container-large">
+        <div class="reveal" style="text-align:center;margin-bottom:var(--sp-2xl);">
+          <span class="text-label">Open Positions</span>
+          <h2 class="heading-2" style="margin-top:1rem;">We're Looking For <span class="text-red">You</span></h2>
+        </div>
+        <div class="jobs-grid">
+
+          <!-- Job 1: Lead Vehicle Wrap Installer -->
+          <div class="job-card reveal">
+            <div>
+              <span class="job-type">Full Time</span>
+            </div>
+            <div class="job-location">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              On-Site | Charlotte, NC
+            </div>
+            <h3 class="job-card-title">Lead Vehicle Wrap Installer</h3>
+            <p class="job-card-desc">We're looking for an experienced lead installer to join our production team. You'll oversee day-to-day wrap installations, mentor junior installers, and ensure every vehicle leaving our shop meets our quality standards.</p>
+            <ul class="job-requirements" aria-label="Requirements">
+              <li>3+ years vehicle wrap installation experience</li>
+              <li>Proficiency with 3M and Avery Dennison cast vinyl</li>
+              <li>Ability to manage a team and prioritize workflow</li>
+              <li>Certification (3M or PDAA) preferred but not required</li>
+            </ul>
+            <div class="job-card-footer">
+              <a href="mailto:careers@printlabwraps.com?subject=Application: Lead Vehicle Wrap Installer" class="btn btn-primary" style="width:100%;text-align:center;">Apply Now</a>
+            </div>
+          </div>
+
+          <!-- Job 2: Graphic Designer / Wrap Designer -->
+          <div class="job-card reveal">
+            <div>
+              <span class="job-type">Full Time</span>
+            </div>
+            <div class="job-location">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Hybrid | Charlotte, NC
+            </div>
+            <h3 class="job-card-title">Graphic Designer / Wrap Designer</h3>
+            <p class="job-card-desc">We need a creative designer who understands how graphics translate onto curved, real-world surfaces. You'll work closely with clients and installers to create designs that are both visually striking and technically installable.</p>
+            <ul class="job-requirements" aria-label="Requirements">
+              <li>Proficiency in Adobe Illustrator and Photoshop</li>
+              <li>Experience with vehicle templates and die-line setup</li>
+              <li>Ability to translate client briefs into print-ready files</li>
+              <li>Portfolio of vehicle or large-format design work required</li>
+            </ul>
+            <div class="job-card-footer">
+              <a href="mailto:careers@printlabwraps.com?subject=Application: Graphic Designer" class="btn btn-primary" style="width:100%;text-align:center;">Apply Now</a>
+            </div>
+          </div>
+
+          <!-- Job 3: Customer Service & Estimator -->
+          <div class="job-card reveal">
+            <div>
+              <span class="job-type">Full Time</span>
+            </div>
+            <div class="job-location">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              On-Site | Charlotte, NC
+            </div>
+            <h3 class="job-card-title">Customer Service &amp; Estimator</h3>
+            <p class="job-card-desc">The front line of our client experience. You'll handle inbound inquiries, develop accurate project estimates, and guide clients from first contact through to completed project. A passion for customer service and an eye for detail are essential.</p>
+            <ul class="job-requirements" aria-label="Requirements">
+              <li>Excellent communication skills — phone, email, in-person</li>
+              <li>Experience in estimating, sales, or customer service (print/signage industry a plus)</li>
+              <li>Ability to learn pricing structures and product knowledge quickly</li>
+              <li>CRM experience preferred</li>
+            </ul>
+            <div class="job-card-footer">
+              <a href="mailto:careers@printlabwraps.com?subject=Application: Customer Service Estimator" class="btn btn-primary" style="width:100%;text-align:center;">Apply Now</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- APPLICATION FORM -->
+    <section class="section-dark padding-section-large">
+      <div class="container-large">
+        <div class="reveal" style="text-align:center;margin-bottom:var(--sp-2xl);">
+          <span class="text-label">Apply Today</span>
+          <h2 class="heading-2" style="margin-top:1rem;">Send Us Your <span class="text-red">Application</span></h2>
+          <p style="color:var(--clr-gray-400);font-size:var(--fs-lg);margin-top:1rem;max-width:520px;margin-left:auto;margin-right:auto;">Don't see the right fit above? We're always open to hearing from talented people.</p>
+        </div>
+
+        <form action="#" method="POST" style="max-width:680px;margin:0 auto;" class="reveal" novalidate>
+
+          <div class="form-group">
+            <label class="form-label" for="app-name">Full Name <span style="color:var(--clr-red);" aria-hidden="true">*</span></label>
+            <input class="form-input" type="text" name="name" id="app-name" required placeholder="Your full name" autocomplete="name">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="app-email">Email Address <span style="color:var(--clr-red);" aria-hidden="true">*</span></label>
+            <input class="form-input" type="email" name="email" id="app-email" required placeholder="your@email.com" autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="app-phone">Phone Number</label>
+            <input class="form-input" type="tel" name="phone" id="app-phone" placeholder="(555) 000-0000" autocomplete="tel">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="app-position">Position of Interest</label>
+            <select class="form-select" name="position" id="app-position">
+              <option value="" disabled selected>Select a position...</option>
+              <option value="lead-installer">Lead Vehicle Wrap Installer</option>
+              <option value="graphic-designer">Graphic Designer / Wrap Designer</option>
+              <option value="customer-service">Customer Service &amp; Estimator</option>
+              <option value="general">Other / General Application</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="app-resume">Resume / CV</label>
+            <input class="form-input" type="file" name="resume" id="app-resume" accept=".pdf,.doc,.docx" aria-describedby="resume-hint">
+            <span id="resume-hint" style="font-size:var(--fs-xs);color:var(--clr-gray-400);margin-top:0.4rem;display:block;">Accepted formats: PDF, DOC, DOCX</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="app-message">Tell Us About Yourself</label>
+            <textarea class="form-textarea" name="message" id="app-message" rows="5" placeholder="Tell us about yourself, your experience, and why you'd be a great fit for Print Lab Wraps..."></textarea>
+          </div>
+
+          <div style="margin-top:2rem;">
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Submit Application</button>
+          </div>
+
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container-large">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-logo-text"><div class="logo-top">PrintLab</div><div class="logo-bottom">Wraps ★</div></div>
+          <p class="footer-tagline">Premium vehicle wraps, signage, and branding solutions. Your brand — everywhere.</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Browse</h4><div class="footer-links"><a href="../index.html" class="footer-link">Home</a><a href="about.html" class="footer-link">About</a><a href="contact.html" class="footer-link">Contact</a><a href="our-work.html" class="footer-link">Our Work</a></div></div>
+        <div class="footer-col"><h4>Services</h4><div class="footer-links"><a href="commercial-vehicle-wraps.html" class="footer-link">Commercial Wraps</a><a href="vehicle-wraps.html" class="footer-link">Vehicle Wraps</a><a href="signage-prints.html" class="footer-link">Signage &amp; Prints</a><a href="buildings-facilities.html" class="footer-link">Buildings</a></div></div>
+        <div class="footer-col"><h4>Resources</h4><div class="footer-links"><a href="faq.html" class="footer-link">FAQs</a><a href="careers.html" class="footer-link">Careers</a></div></div>
+        <div class="footer-col"><h4>Contact</h4>
+          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z"/></svg><a href="tel:+15559999999">(555) PLW-WRAP</a></div>
+          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:info@printlabwraps.com">info@printlabwraps.com</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Print Lab Wraps. All rights reserved.</p>
+        <div class="footer-legal"><a href="#">Terms</a><a href="#">Privacy</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
