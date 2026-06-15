@@ -3,1409 +3,1303 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Print Lab Wraps | Premium Vehicle Wraps, Signage & Branding</title>
-  <meta name="description" content="Print Lab Wraps delivers premium vehicle wraps, commercial signage, and building graphics. Certified installers. Get a free estimate today." />
-  <meta property="og:title" content="Print Lab Wraps | Premium Vehicle Wraps & Signage" />
-  <meta property="og:description" content="Premium vehicle wraps, commercial signage, and branding solutions." />
+  <title>Print Lab Wraps | Premium Vehicle Wraps & Signage</title>
+  <meta name="description" content="Print Lab Wraps — premium vehicle wraps, commercial signage, and branding. Certified installers. Get a free estimate." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/global.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet" />
 
   <style>
-    /* ══════════════════════════════════════════════════
-       HOMEPAGE — ELEVATED DESIGN LAYER
-       ══════════════════════════════════════════════════ */
+    /* ─────────────────────────────────────────────────────────────
+       RESET & TOKENS
+    ───────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red:      #E31837;
+      --black:    #000000;
+      --white:    #ffffff;
+      --gray-100: #f5f5f7;   /* Apple light bg */
+      --gray-200: #e8e8ed;
+      --gray-500: #86868b;   /* Apple muted */
+      --gray-700: #3d3d3f;
+      --gray-900: #1d1d1f;   /* Apple dark text */
+      --ff: 'Montserrat', -apple-system, sans-serif;
+      --nav-h: 56px;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff);
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img  { display: block; max-width: 100%; }
+    a    { text-decoration: none; color: inherit; }
+    ul   { list-style: none; }
+    button { font-family: inherit; border: none; background: none; cursor: pointer; }
 
-    /* ── Cursor ── */
-    * { cursor: none !important; }
-    .cursor {
+    /* ─────────────────────────────────────────────────────────────
+       NAV — glass, Apple-thin
+    ───────────────────────────────────────────────────────────── */
+    .nav {
       position: fixed;
-      width: 12px; height: 12px;
-      background: var(--clr-red);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      mix-blend-mode: difference;
-      transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease;
-      transform: translate(-50%, -50%);
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.4s ease;
     }
-    .cursor-follower {
+    .nav.light {
+      background: rgba(255,255,255,0.85);
+      border-color: rgba(0,0,0,0.08);
+      color: var(--gray-900);
+    }
+    .nav-logo {
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.1;
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-logo span { color: var(--red); font-style: italic; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-link {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.8);
+      transition: color 0.2s;
+    }
+    .nav.light .nav-link { color: var(--gray-700); }
+    .nav-link:hover { color: var(--white); }
+    .nav.light .nav-link:hover { color: var(--gray-900); }
+    .nav-cta {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      background: var(--red);
+      padding: 0.5rem 1.1rem;
+      border-radius: 980px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { background: #c0122d; transform: scale(1.02); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--white);
+      transition: transform 0.3s ease, opacity 0.2s;
+    }
+    .nav.light .hamburger span { background: var(--gray-900); }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-nav {
+      display: none;
       position: fixed;
-      width: 40px; height: 40px;
-      border: 1.5px solid rgba(227,24,55,0.5);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-                  width 0.4s ease, height 0.4s ease, border-color 0.3s ease;
-    }
-    body:has(a:hover) .cursor,
-    body:has(button:hover) .cursor { width: 20px; height: 20px; }
-    body:has(a:hover) .cursor-follower,
-    body:has(button:hover) .cursor-follower {
-      width: 60px; height: 60px;
-      border-color: var(--clr-red);
-    }
-
-    /* ── Noise overlay ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9990;
-      mix-blend-mode: overlay;
-    }
-
-    /* ── Header ── */
-    .site-header {
-      background: rgba(0,0,0,0);
-      border-bottom: 1px solid transparent;
-      transition: background 0.5s ease, border-color 0.5s ease, backdrop-filter 0.5s ease;
-    }
-    .site-header.scrolled {
-      background: rgba(0,0,0,0.88);
-      border-color: rgba(255,255,255,0.06);
+      inset: var(--nav-h) 0 0;
+      background: rgba(0,0,0,0.96);
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
     }
-    .header-inner { height: 80px; }
-    .header-logo-text .logo-top { font-size: 1.15rem; letter-spacing: 0.08em; }
-    .header-logo-text .logo-bottom { font-size: 0.95rem; letter-spacing: 0.05em; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-size: 2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--red); }
+    .mobile-nav .m-cta {
+      font-size: 1rem;
+      background: var(--red);
+      color: white;
+      padding: 0.85rem 2.5rem;
+      border-radius: 980px;
+      font-weight: 700;
+    }
 
-    /* ── HERO ── */
-    .section-hero {
-      min-height: 100svh;
-      display: grid;
-      place-items: center;
+    /* ─────────────────────────────────────────────────────────────
+       HERO — full-bleed, Tesla-style
+    ───────────────────────────────────────────────────────────── */
+    .hero {
       position: relative;
+      height: 100svh;
+      min-height: 600px;
       overflow: hidden;
-      padding-top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: clamp(3rem, 8vh, 6rem);
     }
-    .hero-video-bg {
+    .hero-img {
       position: absolute;
       inset: 0;
-      z-index: 0;
-    }
-    .hero-bg-photo {
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center;
-      transform: scale(1.06);
-      animation: heroZoom 12s ease-in-out infinite alternate;
+      object-position: center 40%;
+      transform: scale(1.04);
+      animation: slowZoom 14s ease-in-out infinite alternate;
     }
-    @keyframes heroZoom {
-      from { transform: scale(1.06); }
+    @keyframes slowZoom {
+      from { transform: scale(1.04); }
       to   { transform: scale(1.0); }
     }
-    .hero-overlay {
+    .hero-scrim {
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(to right, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.4) 100%),
-        linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.15) 0%,
+        rgba(0,0,0,0.1)  40%,
+        rgba(0,0,0,0.75) 80%,
+        rgba(0,0,0,0.9)  100%
+      );
     }
-    .hero-grid-lines {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(227,24,55,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(227,24,55,0.04) 1px, transparent 1px);
-      background-size: 80px 80px;
-      mask-image: radial-gradient(ellipse 60% 80% at 30% 50%, black 30%, transparent 80%);
-    }
-    .hero-left-bar {
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 5px;
-      background: linear-gradient(to bottom, transparent, var(--clr-red) 20%, var(--clr-red) 80%, transparent);
-      z-index: 2;
-      animation: barPulse 3s ease-in-out infinite;
-    }
-    @keyframes barPulse {
-      0%,100% { opacity: 0.7; }
-      50%      { opacity: 1; box-shadow: 0 0 20px var(--clr-red); }
-    }
-
-    .hero-content {
+    .hero-body {
       position: relative;
-      z-index: 2;
+      z-index: 1;
+      text-align: center;
       padding: 0 clamp(1.5rem, 5vw, 3rem);
-      max-width: 1400px;
-      width: 100%;
-      padding-top: 80px;
+      max-width: 900px;
     }
     .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .hero-eyebrow-line {
-      display: block;
-      width: 48px; height: 2px;
-      background: var(--clr-red);
-    }
-    .hero-eyebrow-text {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--clr-red);
-    }
-    .hero-headline {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: clamp(4rem, 9vw, 8.5rem);
-      line-height: 0.92;
-      letter-spacing: -0.025em;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-    }
-    .hero-line { display: block; overflow: hidden; }
-    .hero-line-inner {
-      display: block;
-      transform: translateY(110%);
-    }
-    .hero-line--white  .hero-line-inner { color: var(--clr-white); }
-    .hero-line--red    .hero-line-inner { color: var(--clr-red); }
-    .hero-line--stroke .hero-line-inner {
-      color: transparent;
-      -webkit-text-stroke: 2px rgba(255,255,255,0.35);
-    }
-    .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      font-weight: 400;
-      color: rgba(255,255,255,0.6);
-      max-width: 46ch;
-      line-height: 1.7;
-      margin-bottom: 3rem;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 4rem;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .btn-magnetic {
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .btn-magnetic::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .btn-magnetic:hover::after { opacity: 1; }
-    .btn-primary.btn-magnetic:hover {
-      box-shadow: 0 10px 40px rgba(227,24,55,0.45), 0 0 0 1px rgba(227,24,55,0.6);
-      transform: translateY(-3px);
-    }
-    .btn-outline.btn-magnetic:hover {
-      box-shadow: 0 10px 30px rgba(255,255,255,0.08);
-      transform: translateY(-3px);
-    }
-
-    /* Trust indicators */
-    .trust-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .trust-pill {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.45rem 1rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 999px;
       font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.65);
-      backdrop-filter: blur(8px);
-    }
-    .trust-pill svg { color: var(--clr-red); width: 14px; height: 14px; flex-shrink: 0; }
-
-    /* Scroll indicator */
-    .hero-scroll {
-      position: absolute;
-      bottom: 2.5rem;
-      left: clamp(1.5rem, 5vw, 3rem);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      z-index: 3;
-      opacity: 0;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, var(--clr-red), transparent);
-      animation: scrollDrop 2s ease-in-out infinite;
-    }
-    @keyframes scrollDrop {
-      0%   { transform: scaleY(0); transform-origin: top; }
-      50%  { transform: scaleY(1); transform-origin: top; }
-      51%  { transform: scaleY(1); transform-origin: bottom; }
-      100% { transform: scaleY(0); transform-origin: bottom; }
-    }
-    .scroll-text {
-      font-size: 0.65rem;
-      font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      writing-mode: vertical-rl;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.9s var(--ease) 0.3s forwards;
     }
-
-    /* Number ticker in hero */
-    .hero-counter-row {
-      position: absolute;
-      right: clamp(1.5rem, 5vw, 3rem);
-      bottom: 3rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      z-index: 3;
-    }
-    .hero-counter-item { text-align: right; }
-    .hero-counter-num {
-      font-size: 2.5rem;
+    .hero-title {
+      font-size: clamp(3rem, 7.5vw, 7rem);
       font-weight: 900;
       line-height: 1;
-      color: var(--clr-white);
       letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.9s var(--ease) 0.5s forwards;
     }
-    .hero-counter-label {
-      font-size: 0.65rem;
+    .hero-title em {
+      font-style: normal;
+      color: var(--red);
+    }
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+      max-width: 52ch;
+      margin: 0 auto 2.5rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.9s var(--ease) 0.7s forwards;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.9s var(--ease) 0.9s forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 980px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: all 0.22s ease;
+      min-height: 44px;
+    }
+    .btn-red   { background: var(--red); color: white; }
+    .btn-red:hover { background: #c0122d; transform: scale(1.03); }
+    .btn-ghost { background: rgba(255,255,255,0.12); color: white; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.2); transform: scale(1.03); }
+    .btn-dark  { background: var(--gray-900); color: white; }
+    .btn-dark:hover  { background: var(--gray-700); transform: scale(1.03); }
+    .btn-outline-dark { border: 1px solid var(--gray-700); color: var(--gray-900); background: transparent; }
+    .btn-outline-dark:hover { background: var(--gray-900); color: white; transform: scale(1.03); }
+
+    /* Scroll hint */
+    .hero-scroll {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.4s forwards;
+      z-index: 2;
+    }
+    .hero-scroll-dot {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--red), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       SHARED SECTION STYLES
+    ───────────────────────────────────────────────────────────── */
+    section { overflow: hidden; }
+    .s-dark  { background: var(--black); color: var(--white); }
+    .s-light { background: var(--gray-100); color: var(--gray-900); }
+    .s-white { background: var(--white); color: var(--gray-900); }
+    .s-charcoal { background: var(--gray-900); color: var(--white); }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 3rem);
+    }
+    .wrap-wide {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 3rem);
+    }
+    .pad-xl  { padding-top: clamp(5rem, 10vw, 9rem);  padding-bottom: clamp(5rem, 10vw, 9rem); }
+    .pad-lg  { padding-top: clamp(4rem, 8vw, 7rem);   padding-bottom: clamp(4rem, 8vw, 7rem); }
+    .pad-md  { padding-top: clamp(3rem, 6vw, 5rem);   padding-bottom: clamp(3rem, 6vw, 5rem); }
+
+    .eyebrow {
+      font-size: 0.72rem;
       font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.02;
+      text-transform: uppercase;
+    }
+    .section-sub {
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--gray-500);
+      max-width: 58ch;
+    }
+    .s-light .section-sub, .s-white .section-sub { color: var(--gray-700); }
+
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─────────────────────────────────────────────────────────────
+       STATS STRIP — below hero
+    ───────────────────────────────────────────────────────────── */
+    .stats-strip {
+      background: var(--gray-900);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .stats-strip-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      divide-x: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat-block {
+      padding: 2.5rem clamp(1rem, 3vw, 2.5rem);
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat-block:last-child { border-right: none; }
+    .stat-num {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .stat-num span { color: var(--red); }
+    .stat-lbl {
+      font-size: 0.7rem;
+      font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: var(--gray-500);
     }
-    .hero-counter-item .hero-counter-num span { color: var(--clr-red); }
 
-    /* ── Section: Wraps Focus ── */
-    .section-wraps { background: var(--clr-dark-2); position: relative; overflow: hidden; }
-    .section-wraps::before {
-      content: 'WRAPS';
-      position: absolute;
-      right: -2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: clamp(8rem, 15vw, 18rem);
-      font-weight: 900;
-      color: rgba(255,255,255,0.015);
-      letter-spacing: -0.05em;
-      pointer-events: none;
-      white-space: nowrap;
-      line-height: 1;
-    }
-    .wraps-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 5vw, 5rem);
-      align-items: center;
-    }
-    .wraps-image-stack {
+    /* ─────────────────────────────────────────────────────────────
+       FULL-BLEED IMAGE SECTION — Tesla-style
+    ───────────────────────────────────────────────────────────── */
+    .full-bleed {
       position: relative;
-    }
-    .wrap-img-main {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      border-radius: 12px;
-      display: block;
-    }
-    .wrap-img-accent {
-      position: absolute;
-      bottom: -1.5rem;
-      right: -1.5rem;
-      width: 55%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 4px solid var(--clr-dark-2);
-      box-shadow: -8px 8px 40px rgba(0,0,0,0.6);
-    }
-    .wrap-stat-badge {
-      position: absolute;
-      top: 1.5rem;
-      left: -1.5rem;
-      background: var(--clr-red);
-      padding: 1rem 1.25rem;
-      border-radius: 10px;
-      box-shadow: 0 8px 32px rgba(227,24,55,0.4);
-    }
-    .wrap-stat-badge .num { font-size: 2rem; font-weight: 900; line-height: 1; }
-    .wrap-stat-badge .lbl { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
-
-    .benefit-list { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0 2.5rem; }
-    .benefit-item {
+      height: 90vh;
+      min-height: 500px;
+      overflow: hidden;
       display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem 1.25rem;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 8px;
-      transition: background 0.25s, border-color 0.25s, transform 0.25s;
-      cursor: default;
+      align-items: flex-end;
+      justify-content: center;
     }
-    .benefit-item:hover {
-      background: rgba(227,24,55,0.06);
-      border-color: rgba(227,24,55,0.2);
-      transform: translateX(6px);
-    }
-    .benefit-icon {
-      width: 36px; height: 36px;
-      background: rgba(227,24,55,0.12);
-      border-radius: 6px;
-      display: grid; place-items: center;
-      color: var(--clr-red);
-      flex-shrink: 0;
-    }
-    .benefit-icon svg { width: 18px; height: 18px; }
-    .benefit-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.2rem; }
-    .benefit-desc  { font-size: 0.8rem; color: var(--clr-gray-400); line-height: 1.5; }
-
-    /* ── Section: Services ── */
-    .section-services { background: var(--clr-black); position: relative; }
-    .section-services::after {
-      content: '';
+    .full-bleed.center-text { align-items: center; }
+    .full-bleed img {
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(227,24,55,0.04) 0%, transparent 70%);
-      pointer-events: none;
+      width: 100%; height: 100%;
+      object-fit: cover;
     }
-    .services-grid-v2 {
+    .full-bleed .scrim-b {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.7) 100%);
+    }
+    .full-bleed .scrim-full {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+    }
+    .full-bleed-body {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 clamp(1.5rem, 5vw, 3rem);
+      padding-bottom: clamp(3rem, 6vw, 5rem);
+      max-width: 860px;
+    }
+    .full-bleed.center-text .full-bleed-body { padding-bottom: 0; }
+
+    /* ─────────────────────────────────────────────────────────────
+       SERVICES GRID — Apple-style cards
+    ───────────────────────────────────────────────────────────── */
+    .services-text { text-align: center; max-width: 680px; margin: 0 auto 4rem; }
+    .svc-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: 1.5px;
+      background: var(--gray-200);
+      border-radius: 20px;
       overflow: hidden;
     }
-    .svc-card {
-      background: var(--clr-dark-2);
-      padding: 2.5rem 1.75rem;
+    .s-dark .svc-grid { background: rgba(255,255,255,0.07); }
+    .svc-tile {
+      background: var(--white);
+      padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2rem);
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.35s ease;
+      gap: 0.75rem;
+      transition: background 0.25s;
       text-decoration: none;
       color: inherit;
     }
-    .svc-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--clr-red);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    .svc-card:hover { background: var(--clr-dark-3); }
-    .svc-card:hover::before { transform: scaleX(1); }
-    .svc-card:hover .svc-icon { background: rgba(227,24,55,0.18); border-color: rgba(227,24,55,0.4); }
-    .svc-card:hover .svc-arrow { transform: translate(4px, -4px); color: var(--clr-red); }
-    .svc-icon {
-      width: 52px; height: 52px;
-      background: rgba(227,24,55,0.08);
-      border: 1px solid rgba(227,24,55,0.18);
-      border-radius: 10px;
+    .s-dark .svc-tile { background: var(--gray-900); }
+    .svc-tile:hover { background: var(--gray-100); }
+    .s-dark .svc-tile:hover { background: rgba(255,255,255,0.06); }
+    .svc-tile-icon {
+      width: 44px; height: 44px;
       display: grid; place-items: center;
-      color: var(--clr-red);
-      transition: background 0.3s, border-color 0.3s;
+      color: var(--red);
+      margin-bottom: 0.5rem;
     }
-    .svc-icon svg { width: 26px; height: 26px; }
-    .svc-title { font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; line-height: 1.2; }
-    .svc-desc  { font-size: 0.8rem; color: var(--clr-gray-400); line-height: 1.6; flex: 1; }
-    .svc-arrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: var(--clr-gray-600); text-transform: uppercase; transition: transform 0.25s, color 0.25s; display: inline-block; }
-
-    /* ── Section: Stats ── */
-    .section-stats {
-      background: var(--clr-dark-2);
-      position: relative;
-      overflow: hidden;
+    .svc-tile-icon svg { width: 28px; height: 28px; }
+    .svc-tile-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
     }
-    .section-stats::before {
-      content: '';
-      position: absolute;
-      left: -20%;
-      top: -40%;
-      width: 60%;
-      aspect-ratio: 1;
-      background: radial-gradient(circle, rgba(227,24,55,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .stats-layout {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: clamp(2rem, 5vw, 6rem);
+    .svc-tile-desc { font-size: 0.82rem; line-height: 1.6; color: var(--gray-500); flex: 1; }
+    .s-dark .svc-tile-desc { color: rgba(255,255,255,0.45); }
+    .svc-tile-link {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.05em;
+      display: inline-flex;
       align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.5rem;
     }
-    .stats-left { }
-    .stats-grid-v2 {
+
+    /* ─────────────────────────────────────────────────────────────
+       SPLIT — alternating image + text
+    ───────────────────────────────────────────────────────────── */
+    .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.06);
+      gap: 0;
+      align-items: stretch;
     }
-    .stat-cell {
-      background: var(--clr-dark-3);
-      padding: 2rem;
+    .split.reverse { direction: rtl; }
+    .split.reverse > * { direction: ltr; }
+    .split-img {
       position: relative;
       overflow: hidden;
-      transition: background 0.25s;
+      min-height: 480px;
     }
-    .stat-cell:hover { background: rgba(227,24,55,0.06); }
-    .stat-cell-num {
-      font-size: clamp(2.5rem, 4vw, 3.5rem);
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: var(--clr-white);
-      margin-bottom: 0.4rem;
-    }
-    .stat-cell-num .accent { color: var(--clr-red); }
-    .stat-cell-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--clr-gray-400); }
-    .stat-cell-bg {
-      position: absolute;
-      right: -0.5rem; bottom: -1rem;
-      font-size: 5rem;
-      font-weight: 900;
-      color: rgba(255,255,255,0.02);
-      letter-spacing: -0.05em;
-      line-height: 1;
-      pointer-events: none;
-    }
-    .trust-points { display: flex; flex-direction: column; gap: 1.5rem; }
-    .trust-point {
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-      padding: 1.5rem;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 10px;
-      transition: border-color 0.25s, transform 0.25s;
-    }
-    .trust-point:hover { border-color: rgba(227,24,55,0.25); transform: translateX(4px); }
-    .trust-point-icon {
-      width: 48px; height: 48px;
-      background: rgba(227,24,55,0.1);
-      border-radius: 10px;
-      display: grid; place-items: center;
-      color: var(--clr-red);
-      flex-shrink: 0;
-    }
-    .trust-point-icon svg { width: 24px; height: 24px; }
-    .trust-point-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .trust-point-desc  { font-size: 0.82rem; color: var(--clr-gray-400); line-height: 1.6; }
-
-    /* ── Section: Portfolio ── */
-    .section-portfolio { background: var(--clr-black); }
-    .portfolio-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem; }
-    .portfolio-grid-v2 {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: 260px 260px;
-      gap: 0.5rem;
-    }
-    .port-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .port-item:first-child { grid-row: 1 / 3; }
-    .port-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    .port-item:hover img { transform: scale(1.07); }
-    .port-overlay {
+    .split-img img {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 55%);
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s var(--ease);
+    }
+    .split:hover .split-img img { transform: scale(1.04); }
+    .split-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 6vw, 6rem) clamp(2rem, 5vw, 5rem);
+    }
+    .split-copy .section-title { font-size: clamp(2rem, 3.5vw, 3.2rem); margin-bottom: 1.25rem; }
+    .split-copy .section-sub   { margin-bottom: 2rem; }
+    .split-copy .link-arrow {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--red);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: gap 0.2s;
+    }
+    .split-copy .link-arrow:hover { gap: 0.6rem; }
+
+    /* ─────────────────────────────────────────────────────────────
+       PROCESS — Apple-numbered rows
+    ───────────────────────────────────────────────────────────── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.5rem;
+    }
+    .process-item { display: flex; flex-direction: column; gap: 1rem; }
+    .process-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .process-num::after {
+      content: '';
+      display: block;
+      height: 1px;
+      flex: 1;
+      background: currentColor;
+      opacity: 0.3;
+    }
+    .process-item:last-child .process-num::after { display: none; }
+    .process-title { font-size: 1.15rem; font-weight: 800; text-transform: uppercase; letter-spacing: -0.01em; }
+    .process-desc  { font-size: 0.85rem; line-height: 1.7; color: var(--gray-500); }
+    .s-light .process-desc { color: var(--gray-700); }
+
+    /* ─────────────────────────────────────────────────────────────
+       PORTFOLIO — masonry-like grid
+    ───────────────────────────────────────────────────────────── */
+    .port-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 340px 340px;
+      gap: 4px;
+    }
+    .port-cell { position: relative; overflow: hidden; }
+    .port-cell img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease);
+    }
+    .port-cell:hover img { transform: scale(1.05); }
+    .port-cell .port-info {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
       opacity: 0;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.35s ease;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       padding: 1.5rem;
     }
-    .port-item:hover .port-overlay { opacity: 1; }
-    .port-cat { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--clr-red); margin-bottom: 0.3rem; }
-    .port-title { font-size: 1rem; font-weight: 700; }
+    .port-cell:hover .port-info { opacity: 1; }
+    .port-cat   { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 0.3rem; }
+    .port-label { font-size: 0.95rem; font-weight: 700; }
+    .port-cell:nth-child(1) { grid-column: 1 / 6;  grid-row: 1 / 3; }
+    .port-cell:nth-child(2) { grid-column: 6 / 9;  grid-row: 1 / 2; }
+    .port-cell:nth-child(3) { grid-column: 9 / 13; grid-row: 1 / 2; }
+    .port-cell:nth-child(4) { grid-column: 6 / 10; grid-row: 2 / 3; }
+    .port-cell:nth-child(5) { grid-column: 10 / 13;grid-row: 2 / 3; }
 
-    /* ── Section: Process ── */
-    .section-process { background: var(--clr-dark-2); position: relative; overflow: hidden; }
-    .section-process::before {
-      content: '';
-      position: absolute;
-      right: -10%;
-      top: -30%;
-      width: 55%;
-      aspect-ratio: 1;
-      background: radial-gradient(circle, rgba(227,24,55,0.05) 0%, transparent 70%);
-      pointer-events: none;
+    /* ─────────────────────────────────────────────────────────────
+       TESTIMONIAL / QUOTE — centered, dramatic
+    ───────────────────────────────────────────────────────────── */
+    .quote-block { text-align: center; max-width: 820px; margin: 0 auto; }
+    .quote-mark { font-size: 6rem; line-height: 0.6; color: var(--red); font-weight: 900; margin-bottom: 1rem; display: block; }
+    .quote-text {
+      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
     }
-    .process-track {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      position: relative;
-      gap: 0;
-    }
-    .process-track::before {
-      content: '';
-      position: absolute;
-      top: 36px;
-      left: calc(12.5% + 1rem);
-      right: calc(12.5% + 1rem);
-      height: 1px;
-      background: linear-gradient(90deg, var(--clr-red) 0%, rgba(227,24,55,0.15) 100%);
-      z-index: 0;
-    }
-    .process-step-v2 {
-      padding: 0 2rem 2rem;
-      position: relative;
-    }
-    .step-circle {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      border: 2px solid var(--clr-red);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; font-weight: 900;
-      color: var(--clr-white);
-      background: var(--clr-dark-2);
-      position: relative;
-      z-index: 1;
-      margin-bottom: 1.75rem;
-      transition: background 0.3s, box-shadow 0.3s;
-    }
-    .process-step-v2:hover .step-circle {
-      background: var(--clr-red);
-      box-shadow: 0 0 0 8px rgba(227,24,55,0.12);
-    }
-    .step-num-bg {
-      position: absolute;
-      top: -1rem;
-      left: 2rem;
-      font-size: 8rem;
-      font-weight: 900;
-      color: rgba(227,24,55,0.04);
-      letter-spacing: -0.05em;
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-    .step-title { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.6rem; }
-    .step-desc  { font-size: 0.82rem; color: var(--clr-gray-400); line-height: 1.7; }
+    .s-light .quote-text { color: var(--gray-900); }
+    .quote-author { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); }
 
-    /* ── Section: FAQ ── */
-    .section-faq { background: var(--clr-black); }
-    .faq-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
-    .accordion-item {
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .accordion-trigger {
+    /* ─────────────────────────────────────────────────────────────
+       FAQ
+    ───────────────────────────────────────────────────────────── */
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--gray-200); }
+    .s-dark .faq-item { border-color: rgba(255,255,255,0.08); }
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
       padding: 1.4rem 0;
       font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.2s;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      color: inherit;
     }
-    .accordion-content { padding-bottom: 1.25rem; font-size: 0.88rem; }
+    .faq-q:hover { color: var(--red); }
+    .faq-icon {
+      width: 22px; height: 22px; flex-shrink: 0;
+      transition: transform 0.3s var(--ease);
+      color: var(--red);
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      display: none;
+      padding-bottom: 1.25rem;
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--gray-500);
+    }
+    .s-light .faq-a { color: var(--gray-700); }
+    .faq-item.open .faq-a { display: block; }
 
-    /* ── Section: Final CTA ── */
-    .section-final-cta {
+    /* ─────────────────────────────────────────────────────────────
+       FINAL CTA — Tesla/Apple centered
+    ───────────────────────────────────────────────────────────── */
+    .cta-section {
       position: relative;
-      overflow: hidden;
-      background: var(--clr-black);
-    }
-    .cta-mesh {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 80% at 50% 50%, rgba(227,24,55,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 60% at 20% 80%, rgba(227,24,55,0.05) 0%, transparent 60%);
-      animation: meshShift 8s ease-in-out infinite alternate;
-    }
-    @keyframes meshShift {
-      from { transform: scale(1) translateX(0); }
-      to   { transform: scale(1.05) translateX(2%); }
-    }
-    .cta-lines {
-      position: absolute;
-      inset: 0;
-      background-image: repeating-linear-gradient(
-        -45deg,
-        transparent,
-        transparent 60px,
-        rgba(227,24,55,0.018) 60px,
-        rgba(227,24,55,0.018) 61px
-      );
-    }
-    .cta-content { position: relative; z-index: 1; text-align: center; }
-    .cta-heading {
-      font-size: clamp(3rem, 7vw, 6.5rem);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: -0.025em;
-      line-height: 0.95;
-      margin-bottom: 1.5rem;
-    }
-    .cta-heading span { color: var(--clr-red); }
-    .cta-sub { font-size: 1.05rem; color: rgba(255,255,255,0.55); max-width: 50ch; margin: 0 auto 3rem; line-height: 1.7; }
-    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .review-row {
+      min-height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 2.5rem;
-      flex-wrap: wrap;
-      margin-top: 4rem;
-      padding-top: 3rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .review-item { text-align: center; }
-    .review-num  { font-size: 2rem; font-weight: 900; color: var(--clr-red); line-height: 1; }
-    .review-lbl  { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--clr-gray-400); margin-top: 0.3rem; }
-    .stars-inline { display: flex; gap: 3px; justify-content: center; margin-bottom: 0.3rem; }
-    .stars-inline svg { width: 16px; height: 16px; fill: var(--clr-red); }
-
-    /* Marquee brand strip */
-    .brand-strip {
-      background: var(--clr-red);
-      padding: 1rem 0;
+      text-align: center;
       overflow: hidden;
     }
-    .brand-strip-track {
-      display: flex;
-      gap: 3rem;
-      width: max-content;
-      animation: marquee 20s linear infinite;
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
-    .brand-strip-item {
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.15em;
+    .cta-scrim {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.62);
+    }
+    .cta-body {
+      position: relative;
+      z-index: 1;
+      padding: clamp(3rem,8vw,6rem) clamp(1.5rem,5vw,3rem);
+      max-width: 720px;
+    }
+    .cta-title {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
       text-transform: uppercase;
-      white-space: nowrap;
+      margin-bottom: 1.25rem;
+    }
+    .cta-title em { font-style: normal; color: var(--red); }
+    .cta-sub { font-size: 1.05rem; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 2.5rem; max-width: 48ch; margin-left: auto; margin-right: auto; }
+    .cta-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ─────────────────────────────────────────────────────────────
+       MARQUEE STRIP
+    ───────────────────────────────────────────────────────────── */
+    .marquee { overflow: hidden; background: var(--red); padding: 0.9rem 0; }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    .marquee-item {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 0;
+      white-space: nowrap;
     }
-    .brand-strip-item::after {
-      content: '★';
-      font-size: 0.6rem;
+    .marquee-text {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0 2.5rem;
+    }
+    .marquee-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      flex-shrink: 0;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
 
-    /* ── Responsive ── */
-    @media (max-width: 1100px) {
-      .services-grid-v2 { grid-template-columns: repeat(3, 1fr); }
-      .stats-layout { grid-template-columns: 1fr; }
-      .portfolio-grid-v2 { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-      .portfolio-grid-v2 .port-item:first-child { grid-row: auto; }
-      .portfolio-grid-v2 .port-item { aspect-ratio: 4/3; }
-      .process-track { grid-template-columns: 1fr 1fr; }
-      .process-track::before { display: none; }
-      .faq-layout { grid-template-columns: 1fr; }
+    /* ─────────────────────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────────────────────── */
+    .footer { background: var(--gray-900); color: rgba(255,255,255,0.6); }
+    .footer-top {
+      padding: 4rem clamp(1.5rem,5vw,3rem) 3rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr repeat(4, 1fr);
+      gap: 2.5rem;
+    }
+    .footer-brand-name {
+      font-size: 1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .footer-brand-name span { color: var(--red); font-style: italic; }
+    .footer-brand-desc { font-size: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.4); max-width: 26ch; }
+    .footer-social { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+    .footer-social a {
+      width: 34px; height: 34px;
+      display: grid; place-items: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      color: rgba(255,255,255,0.4);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .footer-social a:hover { border-color: var(--red); color: var(--red); }
+    .footer-social svg { width: 16px; height: 16px; }
+    .footer-col h4 { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; margin-bottom: 1rem; }
+    .footer-col a  { display: block; font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-bottom: 0.55rem; transition: color 0.2s; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 1.25rem clamp(1.5rem,5vw,3rem);
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+    .footer-legal { display: flex; gap: 1.5rem; }
+    .footer-legal a { font-size: 0.72rem; color: rgba(255,255,255,0.25); transition: color 0.2s; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+    /* ─────────────────────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .split            { grid-template-columns: 1fr; }
+      .split.reverse    { direction: ltr; }
+      .split-img        { min-height: 360px; }
+      .port-grid { grid-template-rows: 260px 260px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .process-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
     }
     @media (max-width: 768px) {
-      .services-grid-v2 { grid-template-columns: 1fr 1fr; }
-      .wraps-split { grid-template-columns: 1fr; }
-      .wrap-img-accent { display: none; }
-      .portfolio-grid-v2 { grid-template-columns: 1fr; }
-      .hero-counter-row { display: none; }
-      * { cursor: auto !important; }
-      .cursor, .cursor-follower { display: none; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .port-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 200px 200px;
+      }
+      .port-cell:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
+      .port-cell:nth-child(2) { grid-column: 1 / 2; grid-row: 2 / 3; }
+      .port-cell:nth-child(3) { grid-column: 2 / 3; grid-row: 2 / 3; }
+      .port-cell:nth-child(4) { grid-column: 1 / 2; grid-row: 3 / 4; }
+      .port-cell:nth-child(5) { grid-column: 2 / 3; grid-row: 3 / 4; }
+      .stats-strip-inner { grid-template-columns: 1fr 1fr; }
+      .stat-block:nth-child(2) { border-right: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 540px) {
-      .services-grid-v2 { grid-template-columns: 1fr; }
-      .process-track { grid-template-columns: 1fr; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .stats-strip-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, .hero-img, .split-img img, .port-cell img { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
-<body class="page-wrapper">
+<body>
 
-  <!-- Custom Cursor -->
-  <div class="cursor"         id="cursor"         aria-hidden="true"></div>
-  <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
-
-  <!-- ══ HEADER ══ -->
-  <header class="site-header" role="banner">
-    <div class="container-large">
-      <div class="header-inner flex-between">
-        <a href="index.html" class="header-logo" aria-label="Print Lab Wraps — Home">
-          <div class="header-logo-text">
-            <span class="logo-top">PrintLab</span>
-            <span class="logo-bottom">Wraps ★</span>
-          </div>
-        </a>
-        <nav class="header-nav" aria-label="Main navigation">
-          <a href="pages/services.html"  class="nav-link">Services</a>
-          <a href="pages/about.html"     class="nav-link">About</a>
-          <a href="pages/careers.html"   class="nav-link">Careers</a>
-          <a href="pages/contact.html"   class="nav-link">Contact</a>
-          <a href="pages/our-work.html"  class="nav-link">Our Work</a>
-        </nav>
-        <div class="header-ctas">
-          <a href="tel:+15559999999" class="btn btn-outline btn-sm btn-icon btn-magnetic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z"/></svg>
-            Call Us
-          </a>
-          <a href="pages/contact.html" class="btn btn-primary btn-sm btn-magnetic">Get Estimate</a>
-        </div>
-        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+  <!-- ── NAV ── -->
+  <nav class="nav" id="site-nav" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Print Lab Wraps">
+      PrintLab
+      <span>Wraps ★</span>
+    </a>
+    <div class="nav-links" role="list">
+      <a href="pages/services.html"  class="nav-link" role="listitem">Services</a>
+      <a href="pages/about.html"     class="nav-link" role="listitem">About</a>
+      <a href="pages/careers.html"   class="nav-link" role="listitem">Careers</a>
+      <a href="pages/our-work.html"  class="nav-link" role="listitem">Our Work</a>
+      <a href="pages/contact.html"   class="nav-link" role="listitem">Contact</a>
     </div>
-  </header>
-
-  <!-- Mobile Menu -->
-  <nav class="mobile-menu" aria-label="Mobile navigation">
-    <a href="pages/services.html"  class="mobile-nav-link">Services</a>
-    <a href="pages/about.html"     class="mobile-nav-link">About</a>
-    <a href="pages/careers.html"   class="mobile-nav-link">Careers</a>
-    <a href="pages/contact.html"   class="mobile-nav-link">Contact</a>
-    <a href="pages/our-work.html"  class="mobile-nav-link">Our Work</a>
-    <div class="mobile-ctas">
-      <a href="tel:+15559999999" class="btn btn-outline">Call Us Now</a>
-      <a href="pages/contact.html" class="btn btn-primary">Get Free Estimate</a>
-    </div>
+    <a href="pages/contact.html" class="nav-cta">Get Estimate</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
-  <main class="main-wrapper">
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="pages/services.html">Services</a>
+    <a href="pages/about.html">About</a>
+    <a href="pages/careers.html">Careers</a>
+    <a href="pages/our-work.html">Our Work</a>
+    <a href="pages/contact.html">Contact</a>
+    <a href="pages/contact.html" class="m-cta">Get Estimate</a>
+    <a href="tel:+15559999999" style="font-size:1rem;color:rgba(255,255,255,0.4);">(555) PLW-WRAP</a>
+  </nav>
 
-    <!-- ══ HERO ══ -->
-    <section class="section-hero" aria-label="Homepage hero">
-      <div class="hero-video-bg" aria-hidden="true">
-        <img
-          class="hero-bg-photo"
-          src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1920&q=80&auto=format&fit=crop"
-          alt=""
-          loading="eager"
-          fetchpriority="high"
-        />
-        <div class="hero-overlay"></div>
-        <div class="hero-grid-lines"></div>
-      </div>
-      <div class="hero-left-bar" aria-hidden="true"></div>
-
-      <div class="hero-content">
-        <div class="hero-eyebrow" id="hero-eyebrow">
-          <span class="hero-eyebrow-line"></span>
-          <span class="hero-eyebrow-text">Premium Vehicle Wraps & Signage</span>
-        </div>
-        <h1 class="hero-headline" aria-label="Make Your Brand Move. Dominate Roads.">
-          <span class="hero-line hero-line--white"><span class="hero-line-inner" id="hl1">Make Your</span></span>
-          <span class="hero-line hero-line--red"><span class="hero-line-inner" id="hl2">Brand Move.</span></span>
-          <span class="hero-line hero-line--stroke"><span class="hero-line-inner" id="hl3">Dominate.</span></span>
-        </h1>
-        <p class="hero-sub" id="hero-sub">
-          Industry-leading vehicle wraps, commercial signage, and building graphics — installed by certified craftsmen who take pride in every single detail.
-        </p>
-        <div class="hero-cta-row" id="hero-ctas">
-          <a href="pages/contact.html" class="btn btn-primary btn-lg btn-magnetic btn-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Get Project Estimate
-          </a>
-          <a href="tel:+15559999999" class="btn btn-outline btn-lg btn-magnetic btn-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z"/></svg>
-            Call Us Today
-          </a>
-        </div>
-        <div class="trust-strip" id="trust-strip">
-          <div class="trust-pill">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            5-Star Rated
-          </div>
-          <div class="trust-pill">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Certified Installers
-          </div>
-          <div class="trust-pill">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Fast Turnaround
-          </div>
-          <div class="trust-pill">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            3M & Avery Certified
-          </div>
-        </div>
-      </div>
-
-      <!-- Counters bottom-right -->
-      <div class="hero-counter-row" aria-label="Key statistics">
-        <div class="hero-counter-item">
-          <div class="hero-counter-num"><span data-count="2500" data-suffix="+">2500+</span></div>
-          <div class="hero-counter-label">Projects Done</div>
-        </div>
-        <div class="hero-counter-item">
-          <div class="hero-counter-num"><span data-count="10" data-suffix="+">10+</span></div>
-          <div class="hero-counter-label">Years Experience</div>
-        </div>
-        <div class="hero-counter-item">
-          <div class="hero-counter-num"><span data-count="98" data-suffix="%">98%</span></div>
-          <div class="hero-counter-label">Satisfaction</div>
-        </div>
-      </div>
-
-      <!-- Scroll indicator -->
-      <div class="hero-scroll" id="hero-scroll" aria-hidden="true">
-        <div class="scroll-line"></div>
-        <span class="scroll-text">Scroll</span>
-      </div>
-    </section>
-
-    <!-- Brand strip -->
-    <div class="brand-strip" aria-hidden="true">
-      <div class="brand-strip-track">
-        <span class="brand-strip-item">Commercial Fleet Wraps</span>
-        <span class="brand-strip-item">Color Change Wraps</span>
-        <span class="brand-strip-item">Signage & Prints</span>
-        <span class="brand-strip-item">Building Graphics</span>
-        <span class="brand-strip-item">Certified Installers</span>
-        <span class="brand-strip-item">3M Preferred</span>
-        <span class="brand-strip-item">Avery Dennison Partner</span>
-        <span class="brand-strip-item">Commercial Fleet Wraps</span>
-        <span class="brand-strip-item">Color Change Wraps</span>
-        <span class="brand-strip-item">Signage & Prints</span>
-        <span class="brand-strip-item">Building Graphics</span>
-        <span class="brand-strip-item">Certified Installers</span>
-        <span class="brand-strip-item">3M Preferred</span>
-        <span class="brand-strip-item">Avery Dennison Partner</span>
+  <!-- ── HERO ── -->
+  <section class="hero" aria-label="Homepage hero">
+    <img
+      class="hero-img"
+      src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=2000&q=85&auto=format&fit=crop"
+      alt="Commercial fleet of wrapped vehicles on the road"
+      fetchpriority="high"
+      loading="eager"
+    />
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hero-body">
+      <span class="hero-eyebrow">Vehicle Wraps & Commercial Signage</span>
+      <h1 class="hero-title">
+        Make Your<br><em>Brand Move.</em>
+      </h1>
+      <p class="hero-sub">
+        Premium vehicle wraps, fleet branding, and commercial signage — installed by certified craftsmen with a decade of expertise.
+      </p>
+      <div class="hero-actions">
+        <a href="pages/contact.html" class="btn-pill btn-red">Get a Free Estimate</a>
+        <a href="tel:+15559999999"   class="btn-pill btn-ghost">Call (555) PLW-WRAP</a>
       </div>
     </div>
+    <div class="hero-scroll" aria-hidden="true"><div class="hero-scroll-dot"></div></div>
+  </section>
 
-    <!-- ══ WRAPS FOCUS ══ -->
-    <section class="section-wraps padding-section-large" aria-labelledby="wraps-h">
-      <div class="container-large">
-        <div class="wraps-split">
-          <!-- Image stack -->
-          <div class="wraps-image-stack reveal-left" data-delay="0">
-            <img
-              class="wrap-img-main"
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&auto=format&fit=crop"
-              alt="White commercial van vehicle wrap"
-              loading="lazy"
-            />
-            <img
-              class="wrap-img-accent"
-              src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80&auto=format&fit=crop"
-              alt="Fleet vehicles on city street"
-              loading="lazy"
-            />
-            <div class="wrap-stat-badge" aria-label="70,000 daily impressions">
-              <div class="num">70k+</div>
-              <div class="lbl">Daily Impressions</div>
-            </div>
+  <!-- ── STATS STRIP ── -->
+  <div class="stats-strip" aria-label="Key statistics">
+    <div class="stats-strip-inner wrap-wide">
+      <div class="stat-block reveal">
+        <div class="stat-num"><span data-count="10" data-suffix="+">10+</span></div>
+        <div class="stat-lbl">Years in Business</div>
+      </div>
+      <div class="stat-block reveal reveal-delay-1">
+        <div class="stat-num"><span data-count="2500" data-suffix="+">2,500+</span></div>
+        <div class="stat-lbl">Projects Completed</div>
+      </div>
+      <div class="stat-block reveal reveal-delay-2">
+        <div class="stat-num"><span data-count="98" data-suffix="%">98%</span></div>
+        <div class="stat-lbl">Customer Satisfaction</div>
+      </div>
+      <div class="stat-block reveal reveal-delay-3">
+        <div class="stat-num"><span data-count="15" data-suffix="+">15+</span></div>
+        <div class="stat-lbl">Certified Installers</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MARQUEE ── -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item"><span class="marquee-text">Commercial Fleet Wraps</span><span class="marquee-dot"></span></div>
+      <div class="marquee-item"><span class="marquee-text">Color Change Wraps</span><span class="marquee-dot"></span></div>
+      <div class="marquee-item"><span class="marquee-text">Signage & Large-Format Print</span><span class="marquee-dot"></span></div>
+      <div class="marquee-item"><span class="marquee-text">Building & Facility Graphics</span><span class="marquee-dot"></span></div>
+      <div class="marquee-item"><span class="marquee-text">3M Preferred Installer</span><span class="marquee-dot"></span></div>
+      <div class="marquee-item"><span class="marquee-text">Avery Dennison Certified</span><span class="marquee-dot"></span></div>
+      <div class="marquee-item"><span class="marquee-text">Commercial Fleet Wraps</span><span class="marquee-dot"></span></div>
+      <div class="marquee-item"><span class="marquee-text">Color Change Wraps</span><span class="marquee-dot"></span></div>
+      <div class="marquee-item"><span class="marquee-text">Signage & Large-Format Print</span><span class="marquee-dot"></span></div>
+      <div class="marquee-item"><span class="marquee-text">Building & Facility Graphics</span><span class="marquee-dot"></span></div>
+      <div class="marquee-item"><span class="marquee-text">3M Preferred Installer</span><span class="marquee-dot"></span></div>
+      <div class="marquee-item"><span class="marquee-text">Avery Dennison Certified</span><span class="marquee-dot"></span></div>
+    </div>
+  </div>
+
+  <!-- ── FULL-BLEED: COMMERCIAL WRAPS ── -->
+  <section class="full-bleed" aria-label="Commercial vehicle wraps">
+    <img
+      src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1800&q=80&auto=format&fit=crop"
+      alt="Branded commercial delivery van fleet"
+      loading="lazy"
+    />
+    <div class="scrim-b" aria-hidden="true"></div>
+    <div class="full-bleed-body reveal">
+      <span class="eyebrow">Commercial Fleet Wraps</span>
+      <h2 class="section-title" style="font-size:clamp(2.5rem,6vw,5.5rem);margin-bottom:1rem;">
+        Your Fleet.<br>Your Brand.<br><em style="color:var(--red);font-style:normal;">Everywhere.</em>
+      </h2>
+      <p style="font-size:1rem;color:rgba(255,255,255,0.6);max-width:50ch;margin:0 auto 2rem;line-height:1.65;">
+        Turn your vehicles into 24/7 mobile billboards generating over 70,000 impressions daily. From single vans to hundred-vehicle fleets.
+      </p>
+      <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+        <a href="pages/commercial-vehicle-wraps.html" class="btn-pill btn-red">Explore Commercial Wraps</a>
+        <a href="pages/contact.html" class="btn-pill btn-ghost">Get a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section class="s-light pad-xl" aria-labelledby="svc-heading">
+    <div class="wrap-wide">
+      <div class="services-text reveal">
+        <span class="eyebrow">What We Do</span>
+        <h2 class="section-title" id="svc-heading" style="color:var(--gray-900);margin-bottom:1rem;">
+          Every Surface.<br>Every Brand.
+        </h2>
+        <p class="section-sub" style="margin:0 auto;">
+          From fleet graphics to building wraps — we brand it all with precision and craft that represents your business the way it deserves.
+        </p>
+      </div>
+      <div class="svc-grid reveal reveal-delay-1">
+        <a href="pages/commercial-vehicle-wraps.html" class="svc-tile">
+          <div class="svc-tile-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           </div>
-          <!-- Content -->
-          <div class="reveal-right" data-delay="80">
-            <p class="text-label reveal" data-delay="0">Vehicle Wraps</p>
-            <h2 class="heading-2 reveal" data-delay="60" id="wraps-h" style="margin:1rem 0">
-              Turn Every Mile<br><span class="text-red">Into Marketing.</span>
-            </h2>
-            <p class="text-body reveal" data-delay="120" style="color:var(--clr-gray-400)">
-              From single vehicles to full commercial fleets — we transform your transportation into powerful moving billboards that generate thousands of impressions every single day.
-            </p>
-            <div class="benefit-list reveal" data-delay="160">
-              <div class="benefit-item">
-                <div class="benefit-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                </div>
-                <div>
-                  <div class="benefit-title">70,000+ Daily Impressions</div>
-                  <div class="benefit-desc">Most cost-effective advertising per dollar — your fleet works 24/7.</div>
-                </div>
-              </div>
-              <div class="benefit-item">
-                <div class="benefit-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <div>
-                  <div class="benefit-title">Paint Protection Included</div>
-                  <div class="benefit-desc">Premium cast vinyl protects factory paint from UV, chips & scratches.</div>
-                </div>
-              </div>
-              <div class="benefit-item">
-                <div class="benefit-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                </div>
-                <div>
-                  <div class="benefit-title">5–7 Year Lifespan</div>
-                  <div class="benefit-desc">UV-resistant laminate ensures lasting vibrancy through any weather.</div>
-                </div>
-              </div>
-            </div>
-            <div style="display:flex;gap:1rem;flex-wrap:wrap" class="reveal" data-delay="200">
-              <a href="pages/commercial-vehicle-wraps.html" class="btn btn-primary btn-magnetic">Commercial Wraps</a>
-              <a href="pages/services.html" class="btn btn-outline btn-magnetic">All Services</a>
-            </div>
+          <div class="svc-tile-name">Commercial Vehicle Wraps</div>
+          <div class="svc-tile-desc">Full fleet branding — vans, box trucks, semi-trailers, service vehicles and more.</div>
+          <span class="svc-tile-link">Learn more →</span>
+        </a>
+        <a href="pages/vehicle-wraps.html" class="svc-tile">
+          <div class="svc-tile-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3m3 0h2l3 4v3h-2m-6 2a2 2 0 11-4 0 2 2 0 014 0zm6 0a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
           </div>
+          <div class="svc-tile-name">Vehicle Wraps</div>
+          <div class="svc-tile-desc">Color changes, partial wraps, spot graphics for personal and specialty vehicles.</div>
+          <span class="svc-tile-link">Learn more →</span>
+        </a>
+        <a href="pages/signage-prints.html" class="svc-tile">
+          <div class="svc-tile-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          </div>
+          <div class="svc-tile-name">Signage & Prints</div>
+          <div class="svc-tile-desc">Banners, window graphics, trade show displays, yard signs, and large-format printing.</div>
+          <span class="svc-tile-link">Learn more →</span>
+        </a>
+        <a href="pages/buildings-facilities.html" class="svc-tile">
+          <div class="svc-tile-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/><line x1="15" y1="6" x2="19" y2="6"/><line x1="15" y1="10" x2="19" y2="10"/></svg>
+          </div>
+          <div class="svc-tile-name">Buildings & Facilities</div>
+          <div class="svc-tile-desc">Wall murals, floor graphics, architectural wraps, and wayfinding systems.</div>
+          <span class="svc-tile-link">Learn more →</span>
+        </a>
+        <a href="pages/other-offerings.html" class="svc-tile">
+          <div class="svc-tile-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </div>
+          <div class="svc-tile-name">Other Offerings</div>
+          <div class="svc-tile-desc">Boats, trailers, golf carts, ATVs, snowmobiles, and custom specialty projects.</div>
+          <span class="svc-tile-link">Learn more →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPLIT: Image Left ── -->
+  <section class="s-dark" aria-labelledby="split1-h">
+    <div class="split">
+      <div class="split-img">
+        <img
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&auto=format&fit=crop"
+          alt="Wrapped commercial van with bold brand graphics"
+          loading="lazy"
+        />
+      </div>
+      <div class="split-copy reveal">
+        <span class="eyebrow">The Print Lab Promise</span>
+        <h2 class="section-title" id="split1-h">
+          Craft That<br><span style="color:var(--red);">Lasts.</span>
+        </h2>
+        <p class="section-sub" style="margin:1.5rem 0;">
+          We use only 3M and Avery Dennison certified premium cast films — the same materials trusted by the world's leading automotive manufacturers. Every wrap is installed in our climate-controlled facility by certified technicians.
+        </p>
+        <a href="pages/about.html" class="link-arrow">
+          Our story →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPLIT: Image Right ── -->
+  <section class="s-white" aria-labelledby="split2-h">
+    <div class="split reverse">
+      <div class="split-img">
+        <img
+          src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=900&q=80&auto=format&fit=crop"
+          alt="Fleet vehicles on city highway"
+          loading="lazy"
+        />
+      </div>
+      <div class="split-copy reveal">
+        <span class="eyebrow">70,000+ Daily Impressions</span>
+        <h2 class="section-title" id="split2-h" style="color:var(--gray-900);">
+          Advertising<br>That <span style="color:var(--red);">Never Stops.</span>
+        </h2>
+        <p class="section-sub" style="margin:1.5rem 0;color:var(--gray-700);">
+          A wrapped vehicle works around the clock — generating more impressions per dollar than any other form of advertising. No recurring costs. No expiry date. Just your brand on every road, every day.
+        </p>
+        <a href="pages/contact.html" class="link-arrow" style="color:var(--red);">
+          Get a free estimate →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PORTFOLIO ── -->
+  <section class="s-dark pad-xl" aria-labelledby="port-h">
+    <div class="wrap-wide">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.5rem">
+        <div class="reveal">
+          <span class="eyebrow">Portfolio</span>
+          <h2 class="section-title" id="port-h">Our Work.</h2>
+        </div>
+        <a href="pages/our-work.html" class="reveal" style="font-size:0.82rem;font-weight:700;color:var(--red);letter-spacing:0.05em;display:inline-flex;align-items:center;gap:0.3rem;transition:gap 0.2s">View all →</a>
+      </div>
+      <div class="port-grid reveal reveal-delay-1">
+        <div class="port-cell">
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=75&auto=format&fit=crop" alt="Commercial fleet wrap" loading="lazy" />
+          <div class="port-info"><span class="port-cat">Commercial Wraps</span><span class="port-label">Multi-Vehicle Fleet Program</span></div>
+        </div>
+        <div class="port-cell">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=75&auto=format&fit=crop" alt="Sports car color change wrap" loading="lazy" />
+          <div class="port-info"><span class="port-cat">Vehicle Wraps</span><span class="port-label">Full Color Change</span></div>
+        </div>
+        <div class="port-cell">
+          <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=75&auto=format&fit=crop" alt="Dark luxury car wrap" loading="lazy" />
+          <div class="port-info"><span class="port-cat">Vehicle Wraps</span><span class="port-label">Matte Black & Chrome Delete</span></div>
+        </div>
+        <div class="port-cell">
+          <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=700&q=75&auto=format&fit=crop" alt="City fleet branding" loading="lazy" />
+          <div class="port-info"><span class="port-cat">Commercial Wraps</span><span class="port-label">Delivery Fleet Branding</span></div>
+        </div>
+        <div class="port-cell">
+          <img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=600&q=75&auto=format&fit=crop" alt="Retail signage" loading="lazy" />
+          <div class="port-info"><span class="port-cat">Signage</span><span class="port-label">Retail Storefront Graphics</span></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ══ SERVICES ══ -->
-    <section class="section-services padding-section-large" aria-labelledby="svc-h">
-      <div class="container-large">
-        <div style="text-align:center;max-width:640px;margin:0 auto var(--sp-2xl)">
-          <p class="text-label reveal" data-delay="0">What We Do</p>
-          <h2 class="heading-2 reveal" data-delay="60" id="svc-h" style="margin:0.75rem 0">
-            Full-Service<br><span class="text-red">Visual Branding</span>
-          </h2>
-          <p class="text-body reveal" data-delay="120" style="color:var(--clr-gray-400);text-align:center">
-            From your fleet to your storefront — we bring your brand to life with precision on every surface.
-          </p>
+  <!-- ── PROCESS ── -->
+  <section class="s-light pad-xl" aria-labelledby="proc-h">
+    <div class="wrap">
+      <div style="text-align:center;max-width:580px;margin:0 auto 4rem" class="reveal">
+        <span class="eyebrow">How It Works</span>
+        <h2 class="section-title" id="proc-h" style="color:var(--gray-900);margin-bottom:1rem;">Simple. Fast. Done Right.</h2>
+        <p class="section-sub" style="margin:0 auto;text-align:center;">Four steps from concept to completion. No surprises, no hassle.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-item reveal">
+          <div class="process-num">01</div>
+          <div class="process-title" style="color:var(--gray-900);">Discovery</div>
+          <p class="process-desc">We consult to understand your brand, vehicles, goals, and timeline.</p>
         </div>
-        <div class="services-grid-v2 reveal" data-delay="160">
-          <a href="pages/commercial-vehicle-wraps.html" class="svc-card">
-            <div class="svc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            </div>
-            <h3 class="svc-title">Commercial Vehicle Wraps</h3>
-            <p class="svc-desc">Full fleet branding — vans, trucks, trailers & more.</p>
-            <span class="svc-arrow">Learn More →</span>
-          </a>
-          <a href="pages/vehicle-wraps.html" class="svc-card">
-            <div class="svc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3m3 0h2l3 4v3h-2m-6 2a2 2 0 11-4 0 2 2 0 014 0zm6 0a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-            </div>
-            <h3 class="svc-title">Vehicle Wraps</h3>
-            <p class="svc-desc">Personal cars, trucks, SUVs & specialty vehicles.</p>
-            <span class="svc-arrow">Learn More →</span>
-          </a>
-          <a href="pages/signage-prints.html" class="svc-card">
-            <div class="svc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-            </div>
-            <h3 class="svc-title">Signage & Prints</h3>
-            <p class="svc-desc">Banners, window graphics, large-format printing.</p>
-            <span class="svc-arrow">Learn More →</span>
-          </a>
-          <a href="pages/buildings-facilities.html" class="svc-card">
-            <div class="svc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/><line x1="15" y1="6" x2="19" y2="6"/><line x1="15" y1="10" x2="19" y2="10"/></svg>
-            </div>
-            <h3 class="svc-title">Buildings & Facilities</h3>
-            <p class="svc-desc">Wall murals, architectural wraps & wayfinding.</p>
-            <span class="svc-arrow">Learn More →</span>
-          </a>
-          <a href="pages/other-offerings.html" class="svc-card">
-            <div class="svc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            </div>
-            <h3 class="svc-title">Other Offerings</h3>
-            <p class="svc-desc">Boats, trailers, golf carts & specialty projects.</p>
-            <span class="svc-arrow">Learn More →</span>
-          </a>
+        <div class="process-item reveal reveal-delay-1">
+          <div class="process-num">02</div>
+          <div class="process-title" style="color:var(--gray-900);">Design</div>
+          <p class="process-desc">Our in-house team creates scaled vehicle mockups for your approval.</p>
+        </div>
+        <div class="process-item reveal reveal-delay-2">
+          <div class="process-num">03</div>
+          <div class="process-title" style="color:var(--gray-900);">Production</div>
+          <p class="process-desc">Printed on premium cast vinyl with UV-resistant laminate for lasting vibrancy.</p>
+        </div>
+        <div class="process-item reveal reveal-delay-3">
+          <div class="process-num">04</div>
+          <div class="process-title" style="color:var(--gray-900);">Installation</div>
+          <p class="process-desc">Certified installers apply every wrap in our climate-controlled facility.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ══ STATS / WHY US ══ -->
-    <section class="section-stats padding-section-large" aria-labelledby="stats-h">
-      <div class="container-large">
-        <div class="stats-layout">
-          <div>
-            <p class="text-label reveal" data-delay="0">Why Choose Us</p>
-            <h2 class="heading-2 reveal" data-delay="60" id="stats-h" style="margin:1rem 0 2.5rem">
-              The Print Lab<br><span class="text-red">Difference.</span>
-            </h2>
-            <div class="stats-grid-v2 reveal" data-delay="120">
-              <div class="stat-cell">
-                <div class="stat-cell-num"><span data-count="10" data-suffix="+">10+</span></div>
-                <div class="stat-cell-label">Years in Business</div>
-                <div class="stat-cell-bg" aria-hidden="true">10</div>
-              </div>
-              <div class="stat-cell">
-                <div class="stat-cell-num"><span data-count="2500" data-suffix="+">2,500+</span></div>
-                <div class="stat-cell-label">Projects Completed</div>
-                <div class="stat-cell-bg" aria-hidden="true">2.5k</div>
-              </div>
-              <div class="stat-cell">
-                <div class="stat-cell-num"><span data-count="98" data-suffix="%">98%</span></div>
-                <div class="stat-cell-label">Customer Satisfaction</div>
-                <div class="stat-cell-bg" aria-hidden="true">98</div>
-              </div>
-              <div class="stat-cell">
-                <div class="stat-cell-num"><span data-count="15" data-suffix="+">15+</span></div>
-                <div class="stat-cell-label">Certified Installers</div>
-                <div class="stat-cell-bg" aria-hidden="true">15</div>
-              </div>
-            </div>
-          </div>
-          <div class="trust-points">
-            <div class="trust-point reveal" data-delay="0">
-              <div class="trust-point-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              </div>
-              <div>
-                <p class="trust-point-title">3M & Avery Certified</p>
-                <p class="trust-point-desc">We use only manufacturer-certified premium cast films backed by multi-year material warranties on every project.</p>
-              </div>
-            </div>
-            <div class="trust-point reveal" data-delay="100">
-              <div class="trust-point-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-              </div>
-              <div>
-                <p class="trust-point-title">In-House Design Team</p>
-                <p class="trust-point-desc">Expert designers work directly with you to create graphics that stop traffic and drive measurable results for your brand.</p>
-              </div>
-            </div>
-            <div class="trust-point reveal" data-delay="200">
-              <div class="trust-point-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              </div>
-              <div>
-                <p class="trust-point-title">On-Time, Every Time</p>
-                <p class="trust-point-desc">We respect your schedule. Fleet downtime is minimized with our streamlined workflow and climate-controlled installation facility.</p>
-              </div>
-            </div>
-          </div>
+  <!-- ── TESTIMONIAL ── -->
+  <section class="s-dark pad-xl" aria-label="Customer testimonial">
+    <div class="wrap">
+      <div class="quote-block reveal">
+        <span class="quote-mark" aria-hidden="true">"</span>
+        <p class="quote-text">
+          Print Lab completely transformed how our brand looks on the road. Every vehicle in our fleet is now a rolling billboard — and the quality has held up perfectly after two years.
+        </p>
+        <p class="quote-author">— Marcus J., Operations Director · Regional Logistics Co.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="s-light pad-xl" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div style="text-align:center;max-width:560px;margin:0 auto 3.5rem" class="reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="section-title" id="faq-h" style="color:var(--gray-900);">Common Questions.</h2>
+      </div>
+      <div class="faq-list reveal reveal-delay-1">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            How long does a vehicle wrap last?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <p class="faq-a">A professionally installed vehicle wrap using premium cast vinyl typically lasts 5–7 years. UV-resistant laminate is applied to every wrap to ensure color vibrancy through all weather conditions.</p>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Will a wrap damage my vehicle's paint?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <p class="faq-a">No — vehicle wraps actually protect your factory paint from UV rays, minor abrasions, and the elements. When professionally removed, the original paint remains in the same condition as when the wrap was applied.</p>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            How long does installation take?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <p class="faq-a">Full vehicle wraps typically take 1–3 days depending on vehicle size and complexity. Partial wraps and spot graphics are often completed same-day or next-day. Fleet projects are scheduled in phases to minimize downtime.</p>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Do you provide design services?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <p class="faq-a">Absolutely. Our in-house design team creates custom vehicle graphics from scratch, or works from your existing brand assets. You'll receive detailed scaled mockups for review and approval before anything is printed.</p>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            What areas do you service?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <p class="faq-a">We serve clients regionally and can accommodate fleet projects across a wide service area. Contact us to discuss your location — large fleet programs may qualify for on-site installation services.</p>
         </div>
       </div>
-    </section>
+      <div style="text-align:center;margin-top:3rem" class="reveal">
+        <a href="pages/faq.html" style="font-size:0.82rem;font-weight:700;color:var(--red);letter-spacing:0.05em;">View all FAQs →</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- ══ PORTFOLIO ══ -->
-    <section class="section-portfolio padding-section-large" aria-labelledby="port-h">
-      <div class="container-large">
-        <div class="portfolio-header">
-          <div>
-            <p class="text-label reveal" data-delay="0">Portfolio</p>
-            <h2 class="heading-2 reveal" data-delay="60" id="port-h" style="margin-top:0.75rem">
-              Our Work <span class="text-red">Speaks.</span>
-            </h2>
-          </div>
-          <a href="pages/our-work.html" class="btn btn-outline btn-magnetic reveal" data-delay="60">View Full Portfolio →</a>
-        </div>
-        <div class="portfolio-grid-v2 reveal" data-delay="120">
-          <div class="port-item">
-            <img
-              src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=80&auto=format&fit=crop"
-              alt="Commercial fleet vehicle wraps"
-              loading="lazy"
-            />
-            <div class="port-overlay">
-              <p class="port-cat">Commercial Wraps</p>
-              <p class="port-title">Multi-Vehicle Fleet Program</p>
-            </div>
-          </div>
-          <div class="port-item">
-            <img
-              src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80&auto=format&fit=crop"
-              alt="Color change vehicle wrap sports car"
-              loading="lazy"
-            />
-            <div class="port-overlay">
-              <p class="port-cat">Vehicle Wraps</p>
-              <p class="port-title">Full Color Change — Matte Black</p>
-            </div>
-          </div>
-          <div class="port-item">
-            <img
-              src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80&auto=format&fit=crop"
-              alt="Dark luxury vehicle wrap"
-              loading="lazy"
-            />
-            <div class="port-overlay">
-              <p class="port-cat">Vehicle Wraps</p>
-              <p class="port-title">Partial Wrap & Chrome Delete</p>
-            </div>
-          </div>
-          <div class="port-item">
-            <img
-              src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80&auto=format&fit=crop"
-              alt="City fleet vehicles"
-              loading="lazy"
-            />
-            <div class="port-overlay">
-              <p class="port-cat">Commercial Wraps</p>
-              <p class="port-title">Delivery Fleet Branding</p>
-            </div>
-          </div>
-          <div class="port-item">
-            <img
-              src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=600&q=80&auto=format&fit=crop"
-              alt="Storefront signage display"
-              loading="lazy"
-            />
-            <div class="port-overlay">
-              <p class="port-cat">Signage</p>
-              <p class="port-title">Retail Storefront Vinyl</p>
-            </div>
-          </div>
+  <!-- ── FINAL CTA ── -->
+  <section class="cta-section" aria-labelledby="cta-h">
+    <img
+      class="cta-bg"
+      src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=2000&q=75&auto=format&fit=crop"
+      alt=""
+      loading="lazy"
+      aria-hidden="true"
+    />
+    <div class="cta-scrim" aria-hidden="true"></div>
+    <div class="cta-body reveal">
+      <span class="eyebrow">Ready to Start?</span>
+      <h2 class="cta-title" id="cta-h">
+        Let's Build<br>Something <em>Bold.</em>
+      </h2>
+      <p class="cta-sub">
+        Get your free project estimate today. Our team is ready to bring your brand to life — on every road, every day.
+      </p>
+      <div class="cta-actions">
+        <a href="pages/contact.html" class="btn-pill btn-red">Get a Free Estimate</a>
+        <a href="tel:+15559999999"   class="btn-pill btn-ghost">Call (555) PLW-WRAP</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-name">PrintLab<br><span>Wraps ★</span></div>
+        <p class="footer-brand-desc">Premium vehicle wraps, signage, and branding solutions. Your brand — everywhere.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
         </div>
       </div>
-    </section>
-
-    <!-- ══ PROCESS ══ -->
-    <section class="section-process padding-section-large" aria-labelledby="proc-h">
-      <div class="container-large">
-        <div style="text-align:center;max-width:620px;margin:0 auto var(--sp-2xl)">
-          <p class="text-label reveal" data-delay="0">How It Works</p>
-          <h2 class="heading-2 reveal" data-delay="60" id="proc-h" style="margin:0.75rem 0">
-            We Make This <span class="text-red">Easy.</span>
-          </h2>
-          <p class="text-body reveal" data-delay="120" style="color:var(--clr-gray-400);text-align:center">
-            Four clean steps from concept to completion. No surprises — just exceptional results.
-          </p>
-        </div>
-        <div class="process-track" data-stagger>
-          <div class="process-step-v2 reveal">
-            <div class="step-num-bg" aria-hidden="true">01</div>
-            <div class="step-circle">01</div>
-            <h3 class="step-title">Discovery</h3>
-            <p class="step-desc">We consult with you to understand your brand goals, vehicle types, fleet size, and project timeline.</p>
-          </div>
-          <div class="process-step-v2 reveal">
-            <div class="step-num-bg" aria-hidden="true">02</div>
-            <div class="step-circle">02</div>
-            <h3 class="step-title">Design</h3>
-            <p class="step-desc">Our designers create detailed, to-scale vehicle mockups for your review and approval before anything is printed.</p>
-          </div>
-          <div class="process-step-v2 reveal">
-            <div class="step-num-bg" aria-hidden="true">03</div>
-            <div class="step-circle">03</div>
-            <h3 class="step-title">Production</h3>
-            <p class="step-desc">Approved designs are printed on premium cast vinyl using large-format HP printers for vivid, lasting color.</p>
-          </div>
-          <div class="process-step-v2 reveal">
-            <div class="step-num-bg" aria-hidden="true">04</div>
-            <div class="step-circle">04</div>
-            <h3 class="step-title">Installation</h3>
-            <p class="step-desc">Certified installers apply every wrap in our climate-controlled facility for a flawless, bubble-free finish.</p>
-          </div>
-        </div>
+      <div class="footer-col">
+        <h4>Browse</h4>
+        <a href="index.html">Home</a>
+        <a href="pages/about.html">About</a>
+        <a href="pages/contact.html">Contact</a>
+        <a href="pages/our-work.html">Our Work</a>
+        <a href="pages/services.html">Services</a>
       </div>
-    </section>
-
-    <!-- ══ FAQ ══ -->
-    <section class="section-faq padding-section-large" aria-labelledby="faq-h">
-      <div class="container-large">
-        <div class="faq-layout">
-          <div>
-            <p class="text-label reveal" data-delay="0">FAQ</p>
-            <h2 class="heading-2 reveal" data-delay="60" id="faq-h" style="margin:0.75rem 0 1.5rem">
-              Common<br><span class="text-red">Questions.</span>
-            </h2>
-            <p class="text-body reveal" data-delay="120" style="color:var(--clr-gray-400);margin-bottom:2.5rem">
-              Can't find your answer here? Our team is happy to walk you through any questions about your project.
-            </p>
-            <a href="pages/faq.html" class="btn btn-primary btn-magnetic reveal" data-delay="180">View All FAQs</a>
-          </div>
-          <div data-accordion class="reveal" data-delay="80">
-            <div class="accordion-item">
-              <button class="accordion-trigger" aria-expanded="false">
-                How long does a vehicle wrap last?
-                <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              </button>
-              <div class="accordion-content">
-                A professionally installed vehicle wrap using premium cast vinyl typically lasts 5–7 years. Factors like sun exposure, washing frequency, and storage conditions can affect longevity. We use UV-resistant laminate on all wraps.
-              </div>
-            </div>
-            <div class="accordion-item">
-              <button class="accordion-trigger" aria-expanded="false">
-                Will a wrap damage my vehicle's paint?
-                <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              </button>
-              <div class="accordion-content">
-                No — quite the opposite. Premium vinyl wraps actually protect your vehicle's factory paint from UV rays, minor scratches, and environmental damage. When properly removed by a professional, the original paint remains intact.
-              </div>
-            </div>
-            <div class="accordion-item">
-              <button class="accordion-trigger" aria-expanded="false">
-                How long does installation take?
-                <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              </button>
-              <div class="accordion-content">
-                A full vehicle wrap typically takes 1–3 days depending on vehicle size and design complexity. Partial wraps and spot graphics can often be completed same-day. Fleet projects are scheduled to minimize your downtime.
-              </div>
-            </div>
-            <div class="accordion-item">
-              <button class="accordion-trigger" aria-expanded="false">
-                Do you offer design services?
-                <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              </button>
-              <div class="accordion-content">
-                Absolutely. Our in-house design team creates custom vehicle graphics from scratch, or we can work from your existing brand assets. All designs are provided as detailed vehicle mockups for review and approval before production begins.
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="pages/commercial-vehicle-wraps.html">Commercial Wraps</a>
+        <a href="pages/vehicle-wraps.html">Vehicle Wraps</a>
+        <a href="pages/signage-prints.html">Signage & Prints</a>
+        <a href="pages/buildings-facilities.html">Buildings & Facilities</a>
+        <a href="pages/other-offerings.html">Other Offerings</a>
       </div>
-    </section>
-
-    <!-- ══ FINAL CTA ══ -->
-    <section class="section-final-cta padding-section-large" aria-labelledby="cta-h">
-      <div class="cta-mesh"  aria-hidden="true"></div>
-      <div class="cta-lines" aria-hidden="true"></div>
-      <div class="container-medium">
-        <div class="cta-content">
-          <p class="text-label reveal" data-delay="0">Ready to Start?</p>
-          <h2 class="cta-heading reveal" data-delay="60" id="cta-h">
-            Let's Build<br>Something <span>Bold.</span>
-          </h2>
-          <p class="cta-sub reveal" data-delay="120">
-            Get your free project estimate today. Our team is ready to bring your brand to life — on every road, every day.
-          </p>
-          <div class="cta-btns reveal" data-delay="180">
-            <a href="pages/contact.html" class="btn btn-primary btn-lg btn-magnetic">Get Free Estimate</a>
-            <a href="tel:+15559999999"   class="btn btn-outline btn-lg btn-magnetic">Call (555) PLW-WRAP</a>
-          </div>
-          <div class="review-row reveal" data-delay="240">
-            <div class="review-item">
-              <div class="stars-inline" aria-label="5 stars">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              </div>
-              <div class="review-num">5.0</div>
-              <div class="review-lbl">Google Rating</div>
-            </div>
-            <div style="width:1px;height:60px;background:rgba(255,255,255,0.08)" aria-hidden="true"></div>
-            <div class="review-item">
-              <div class="review-num" data-count="200" data-suffix="+">200+</div>
-              <div class="review-lbl">5-Star Reviews</div>
-            </div>
-            <div style="width:1px;height:60px;background:rgba(255,255,255,0.08)" aria-hidden="true"></div>
-            <div class="review-item">
-              <div class="review-num">10+</div>
-              <div class="review-lbl">Years in Business</div>
-            </div>
-            <div style="width:1px;height:60px;background:rgba(255,255,255,0.08)" aria-hidden="true"></div>
-            <div class="review-item">
-              <div class="review-num" data-count="2500" data-suffix="+">2,500+</div>
-              <div class="review-lbl">Projects Done</div>
-            </div>
-          </div>
-        </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="pages/faq.html">FAQs</a>
+        <a href="pages/careers.html">Careers</a>
+        <a href="#">Leave a Review</a>
       </div>
-    </section>
-
-  </main>
-
-  <!-- ══ FOOTER ══ -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container-large">
-      <div class="footer-main">
-        <div class="footer-brand">
-          <div class="footer-logo-text">
-            <div class="logo-top">PrintLab</div>
-            <div class="logo-bottom">Wraps ★</div>
-          </div>
-          <p class="footer-tagline">Premium vehicle wraps, signage, and branding solutions. Your brand — everywhere.</p>
-          <div class="footer-social">
-            <a href="#" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-            <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-            <a href="#" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-            <a href="#" class="social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg></a>
-          </div>
-        </div>
-        <div class="footer-col"><h4>Browse</h4><div class="footer-links"><a href="index.html" class="footer-link">Home</a><a href="pages/about.html" class="footer-link">About</a><a href="pages/contact.html" class="footer-link">Contact</a><a href="pages/our-work.html" class="footer-link">Our Work</a><a href="pages/services.html" class="footer-link">Services</a></div></div>
-        <div class="footer-col"><h4>Services</h4><div class="footer-links"><a href="pages/commercial-vehicle-wraps.html" class="footer-link">Commercial Vehicle Wraps</a><a href="pages/vehicle-wraps.html" class="footer-link">Vehicle Wraps</a><a href="pages/signage-prints.html" class="footer-link">Signage & Prints</a><a href="pages/buildings-facilities.html" class="footer-link">Buildings & Facilities</a><a href="pages/other-offerings.html" class="footer-link">Other Offerings</a></div></div>
-        <div class="footer-col"><h4>Resources</h4><div class="footer-links"><a href="pages/faq.html" class="footer-link">FAQs</a><a href="pages/careers.html" class="footer-link">Careers</a><a href="#" class="footer-link">Leave Us a Review</a></div></div>
-        <div class="footer-col"><h4>Contact</h4>
-          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z"/></svg><a href="tel:+15559999999">(555) PLW-WRAP</a></div>
-          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:info@printlabwraps.com">info@printlabwraps.com</a></div>
-          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>123 Wrap Drive, Your City, ST 00000</span></div>
-          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Mon–Fri: 8am–5pm</span></div>
-        </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+15559999999">(555) PLW-WRAP</a>
+        <a href="mailto:info@printlabwraps.com">info@printlabwraps.com</a>
+        <a href="#">123 Wrap Drive, Your City, ST</a>
+        <a href="#">Mon–Fri 8am–5pm</a>
       </div>
-      <div class="footer-bottom">
-        <p class="footer-copy">&copy; 2025 Print Lab Wraps. All rights reserved.</p>
-        <div class="footer-legal"><a href="#">Disclaimer</a><a href="#">Terms of Use</a><a href="#">Privacy Policy</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Print Lab Wraps. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Disclaimer</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Privacy Policy</a>
       </div>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
   <script>
-    /* ── Custom Cursor ── */
-    const cur = document.getElementById('cursor');
-    const fol = document.getElementById('cursor-follower');
-    let mx = 0, my = 0, fx = 0, fy = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    (function loop() {
-      fx += (mx - fx) * 0.12;
-      fy += (my - fy) * 0.12;
-      if (cur) { cur.style.left = mx + 'px'; cur.style.top = my + 'px'; }
-      if (fol) { fol.style.left = fx + 'px'; fol.style.top = fy + 'px'; }
-      requestAnimationFrame(loop);
-    })();
-
-    /* ── Hero Entrance Animation ── */
-    const delay = ms => new Promise(r => setTimeout(r, ms));
-    (async () => {
-      await delay(200);
-      // Eyebrow
-      const ey = document.getElementById('hero-eyebrow');
-      if (ey) { ey.style.transition = 'opacity 0.8s ease, transform 0.8s ease'; ey.style.opacity = 1; ey.style.transform = 'none'; }
-      await delay(250);
-      // Headline lines staggered
-      ['hl1','hl2','hl3'].forEach((id, i) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.style.transition = `transform ${0.9 + i*0.05}s cubic-bezier(0.16, 1, 0.3, 1)`;
-        el.style.transitionDelay = `${i * 120}ms`;
-        el.style.transform = 'translateY(0)';
-      });
-      await delay(600);
-      // Sub
-      const sub = document.getElementById('hero-sub');
-      if (sub) { sub.style.transition = 'opacity 0.9s ease, transform 0.9s ease'; sub.style.opacity = 1; sub.style.transform = 'none'; }
-      await delay(150);
-      // CTAs
-      const ctas = document.getElementById('hero-ctas');
-      if (ctas) { ctas.style.transition = 'opacity 0.8s ease, transform 0.8s ease'; ctas.style.opacity = 1; ctas.style.transform = 'none'; }
-      await delay(150);
-      // Trust
-      const trust = document.getElementById('trust-strip');
-      if (trust) { trust.style.transition = 'opacity 0.8s ease, transform 0.8s ease'; trust.style.opacity = 1; trust.style.transform = 'none'; }
-      // Scroll hint
-      const scroll = document.getElementById('hero-scroll');
-      if (scroll) { scroll.style.transition = 'opacity 1s ease'; scroll.style.opacity = 1; }
-    })();
-
-    /* ── Parallax hero on scroll ── */
-    const heroBg = document.querySelector('.hero-bg-photo');
+    /* ── Nav scroll state ── */
+    const nav = document.getElementById('site-nav');
     window.addEventListener('scroll', () => {
-      if (!heroBg) return;
-      const y = window.scrollY;
-      heroBg.style.transform = `scale(1.06) translateY(${y * 0.25}px)`;
+      nav.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
+
+    /* ── Mobile menu ── */
+    const ham = document.getElementById('hamburger');
+    const mob = document.getElementById('mobile-nav');
+    ham.addEventListener('click', () => {
+      const open = ham.classList.toggle('open');
+      mob.classList.toggle('open', open);
+      ham.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      ham.classList.remove('open');
+      mob.classList.remove('open');
+      ham.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }));
+
+    /* ── Scroll reveal ── */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* ── Counter animation ── */
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseInt(el.dataset.count);
+        const suffix = el.dataset.suffix || '';
+        const dur = 1800, step = target / (dur / 16);
+        let cur = 0;
+        const tick = () => {
+          cur = Math.min(cur + step, target);
+          el.textContent = (target >= 1000 ? Math.floor(cur).toLocaleString() : Math.floor(cur)) + suffix;
+          if (cur < target) requestAnimationFrame(tick);
+        };
+        tick();
+        cio.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+    /* ── FAQ accordion ── */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open);
+      });
+    });
   </script>
 </body>
 </html>
