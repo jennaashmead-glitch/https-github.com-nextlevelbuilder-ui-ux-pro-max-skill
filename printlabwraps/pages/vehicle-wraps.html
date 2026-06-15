@@ -1,17 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vehicle Wraps | Print Lab Wraps</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/global.css" />
+  <meta name="description" content="Color change wraps, chrome delete, paint protection film, and custom designs for cars, trucks, SUVs, motorcycles, and more. Get your free estimate today.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
   <style>
+    .split-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+    .split-img {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .split-img-inner {
+      aspect-ratio: 4/3;
+      background: var(--clr-dark-3);
+    }
+    .split-img-accent {
+      position: absolute;
+      bottom: -1rem;
+      right: -1rem;
+      width: 120px;
+      height: 120px;
+      background: var(--clr-red);
+      opacity: 0.12;
+      border-radius: 50%;
+      z-index: -1;
+    }
     .vehicle-types-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1px;
       background: rgba(255,255,255,0.05);
       border-radius: var(--radius-md);
@@ -24,54 +51,94 @@
       align-items: center;
       gap: 1rem;
       transition: background var(--t-fast);
-      cursor: pointer;
     }
     .vehicle-type-item:hover { background: var(--clr-dark-2); }
     .vehicle-type-icon {
-      width: 44px; height: 44px;
+      width: 44px;
+      height: 44px;
       border-radius: var(--radius-sm);
       background: rgba(227,24,55,0.1);
       border: 1px solid rgba(227,24,55,0.2);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
       color: var(--clr-red);
     }
     .vehicle-type-icon svg { width: 22px; height: 22px; }
-    .split-content {
+    /* Process steps */
+    .process-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 5vw, 5rem);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .process-step {
+      padding: 0 var(--sp-lg) var(--sp-xl);
+    }
+    .process-num {
+      width: 56px;
+      height: 56px;
+      background: var(--clr-red);
+      border-radius: 50%;
+      display: flex;
       align-items: center;
+      justify-content: center;
+      font-size: var(--fs-md);
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 0 6px rgba(227,24,55,0.15);
+      color: #fff;
     }
-    .split-img { position: relative; border-radius: var(--radius-md); overflow: hidden; }
-    .split-img-inner { aspect-ratio: 4/3; background: var(--clr-dark-3); }
-    .split-img-accent {
-      position: absolute; bottom: -1rem; right: -1rem;
-      width: 120px; height: 120px;
-      background: var(--clr-red); opacity: 0.12;
-      border-radius: 50%; z-index: -1;
+    /* Marquee */
+    .marquee-wrapper {
+      overflow: hidden;
+      width: 100%;
+      margin-bottom: 1rem;
     }
-    .gallery-row { margin-bottom: 1rem; }
+    .marquee-track {
+      display: flex;
+      gap: 1rem;
+      animation: marquee-scroll 30s linear infinite;
+      width: max-content;
+    }
+    .marquee-wrapper:nth-child(2) .marquee-track {
+      animation-direction: reverse;
+    }
+    .marquee-item {
+      width: 280px;
+      height: 160px;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+    }
+    @keyframes marquee-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
     .faq-banner {
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
       background: var(--clr-dark-3);
       border-radius: var(--radius-md);
-      padding: var(--pad-section-md); text-align: center;
+      padding: var(--pad-section-md);
+      text-align: center;
     }
     .faq-banner-bg {
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background: linear-gradient(135deg, rgba(227,24,55,0.08), rgba(0,0,0,0.9));
     }
     @media (max-width: 900px) {
-      .vehicle-types-grid { grid-template-columns: 1fr 1fr; }
       .split-content { grid-template-columns: 1fr; }
+      .vehicle-types-grid { grid-template-columns: 1fr 1fr; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 600px) {
-      .vehicle-types-grid { grid-template-columns: 1fr 1fr; }
+      .vehicle-types-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-<body class="page-wrapper">
+<body>
 
   <!-- HEADER -->
   <header class="site-header">
@@ -84,11 +151,11 @@
           </div>
         </a>
         <nav class="header-nav" aria-label="Main navigation">
-          <a href="services.html"  class="nav-link">Services</a>
-          <a href="about.html"     class="nav-link">About</a>
-          <a href="careers.html"   class="nav-link">Careers</a>
-          <a href="contact.html"   class="nav-link">Contact</a>
-          <a href="our-work.html"  class="nav-link">Our Work</a>
+          <a href="services.html" class="nav-link active">Services</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="careers.html" class="nav-link">Careers</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="our-work.html" class="nav-link">Our Work</a>
         </nav>
         <div class="header-ctas">
           <a href="tel:+15559999999" class="btn btn-outline btn-icon">
@@ -102,319 +169,317 @@
     </div>
   </header>
   <nav class="mobile-menu">
-    <a href="services.html"  class="mobile-nav-link">Services</a>
-    <a href="about.html"     class="mobile-nav-link">About</a>
-    <a href="careers.html"   class="mobile-nav-link">Careers</a>
-    <a href="contact.html"   class="mobile-nav-link">Contact</a>
-    <a href="our-work.html"  class="mobile-nav-link">Our Work</a>
+    <a href="services.html" class="mobile-nav-link">Services</a>
+    <a href="about.html" class="mobile-nav-link">About</a>
+    <a href="careers.html" class="mobile-nav-link">Careers</a>
+    <a href="contact.html" class="mobile-nav-link">Contact</a>
+    <a href="our-work.html" class="mobile-nav-link">Our Work</a>
     <div class="mobile-ctas">
       <a href="tel:+15559999999" class="btn btn-outline">Call Us Now</a>
       <a href="contact.html" class="btn btn-primary">Get Free Estimate</a>
     </div>
   </nav>
 
-  <!-- BLOCK 1: HERO -->
-  <section class="section-dark page-hero-spacer padding-section-large">
-    <div class="container-large">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="../index.html" class="breadcrumb-link">Home</a>
-        <span class="breadcrumb-sep" aria-hidden="true">›</span>
-        <a href="services.html" class="breadcrumb-link">Services</a>
-        <span class="breadcrumb-sep" aria-hidden="true">›</span>
-        <span class="breadcrumb-current" aria-current="page">Vehicle Wraps</span>
-      </nav>
-      <div class="hero-content reveal">
-        <p class="text-label">Personal &amp; Recreational</p>
-        <h1 class="heading-1">Color Change &amp; Custom Vehicle Wraps</h1>
-        <p class="text-body" style="max-width:600px;margin-top:1.25rem">
-          For Cars, Trucks, SUVs, Motorcycles &amp; More — Express Your Style with Premium Vinyl
-        </p>
-        <div class="hero-ctas" style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem">
-          <a href="contact.html" class="btn btn-primary btn-lg">Get My Custom Quote</a>
-          <a href="tel:+15559999999" class="btn btn-outline btn-lg">Call Us</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <main>
 
-  <!-- BLOCK 2: SPLIT — Image Left, Content Right -->
-  <section class="section-dark-2 padding-section-large">
-    <div class="container-large">
-      <div class="split-content">
-        <!-- Left: Image -->
-        <div class="split-img reveal-left">
-          <div class="split-img-inner img-placeholder" style="background:linear-gradient(135deg,#1a0505,#2d1010);aspect-ratio:4/3;" role="img" aria-label="Custom color change vehicle wrap example"></div>
-          <div class="split-img-accent" aria-hidden="true"></div>
+    <!-- BLOCK 1: HERO -->
+    <section class="section-dark page-hero-spacer padding-section-large">
+      <div class="container-large">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          <a href="services.html">Services</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Vehicle Wraps</span>
         </div>
-        <!-- Right: Content -->
-        <div class="reveal-right">
-          <p class="text-label">Express Your Style</p>
-          <h2 class="heading-2">Your Vehicle. <span class="text-red">Your Identity.</span></h2>
-          <p style="color:var(--clr-gray-300);margin:1.25rem 0;line-height:1.7">
-            A vehicle wrap is the ultimate form of personal expression. Whether you want a jaw-dropping color change, a sleek matte finish, chrome delete accents, or a fully custom graphic design — we bring your vision to life with precision-installed premium vinyl.
-          </p>
-          <ul class="checklist" style="list-style:none;padding:0;margin:0 0 2rem;display:flex;flex-direction:column;gap:0.75rem">
-            <li class="checklist-item" style="display:flex;align-items:flex-start;gap:0.75rem;color:var(--clr-gray-300)">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E31837" stroke-width="2.5" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Full color change wraps — matte, gloss, satin, metallic, chrome
-            </li>
-            <li class="checklist-item" style="display:flex;align-items:flex-start;gap:0.75rem;color:var(--clr-gray-300)">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E31837" stroke-width="2.5" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Chrome delete — blackout trim, handles, and accents
-            </li>
-            <li class="checklist-item" style="display:flex;align-items:flex-start;gap:0.75rem;color:var(--clr-gray-300)">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E31837" stroke-width="2.5" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Paint protection film (PPF) combos available
-            </li>
-            <li class="checklist-item" style="display:flex;align-items:flex-start;gap:0.75rem;color:var(--clr-gray-300)">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E31837" stroke-width="2.5" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Fully custom graphic designs and liveries
-            </li>
-            <li class="checklist-item" style="display:flex;align-items:flex-start;gap:0.75rem;color:var(--clr-gray-300)">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E31837" stroke-width="2.5" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Removable — restore your factory paint any time
-            </li>
-          </ul>
-          <a href="contact.html" class="btn btn-primary">Start Your Design</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BLOCK 3: VEHICLE TYPES GRID -->
-  <section class="section-dark padding-section-large">
-    <div class="container-large">
-      <div style="text-align:center;margin-bottom:3rem" class="reveal">
-        <p class="text-label" style="color:var(--clr-red)">What We Wrap</p>
-        <h2 class="heading-2">Personal Vehicles <span class="text-red">We Work On</span></h2>
-        <hr class="divider-full" style="margin-top:1.5rem" aria-hidden="true" />
-      </div>
-      <div class="vehicle-types-grid" data-stagger>
-        <!-- 1: Cars -->
-        <div class="vehicle-type-item">
-          <div class="vehicle-type-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 17H3a2 2 0 01-2-2V9a2 2 0 012-2h1l2-4h10l2 4h1a2 2 0 012 2v6a2 2 0 01-2 2h-2m-2 0a2 2 0 11-4 0 2 2 0 014 0zm-8 0a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-          </div>
-          <div>
-            <p style="font-weight:700;font-size:var(--fs-sm);color:#fff;margin:0 0 0.2rem">Cars</p>
-            <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);margin:0">Sedans, coupes, hatchbacks</p>
-          </div>
-        </div>
-        <!-- 2: Trucks -->
-        <div class="vehicle-type-item">
-          <div class="vehicle-type-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          </div>
-          <div>
-            <p style="font-weight:700;font-size:var(--fs-sm);color:#fff;margin:0 0 0.2rem">Trucks</p>
-            <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);margin:0">Full-size &amp; mid-size pickups</p>
-          </div>
-        </div>
-        <!-- 3: SUVs -->
-        <div class="vehicle-type-item">
-          <div class="vehicle-type-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M5 6V4h14v2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
-          </div>
-          <div>
-            <p style="font-weight:700;font-size:var(--fs-sm);color:#fff;margin:0 0 0.2rem">SUVs &amp; Crossovers</p>
-            <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);margin:0">Family-sized to luxury</p>
-          </div>
-        </div>
-        <!-- 4: Sports Cars -->
-        <div class="vehicle-type-item">
-          <div class="vehicle-type-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          </div>
-          <div>
-            <p style="font-weight:700;font-size:var(--fs-sm);color:#fff;margin:0 0 0.2rem">Sports Cars</p>
-            <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);margin:0">Supercars, muscle cars, exotics</p>
-          </div>
-        </div>
-        <!-- 5: Motorcycles -->
-        <div class="vehicle-type-item">
-          <div class="vehicle-type-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
-          </div>
-          <div>
-            <p style="font-weight:700;font-size:var(--fs-sm);color:#fff;margin:0 0 0.2rem">Motorcycles</p>
-            <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);margin:0">Street bikes, cruisers, sport</p>
-          </div>
-        </div>
-        <!-- 6: RVs -->
-        <div class="vehicle-type-item">
-          <div class="vehicle-type-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <div>
-            <p style="font-weight:700;font-size:var(--fs-sm);color:#fff;margin:0 0 0.2rem">RVs &amp; Campers</p>
-            <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);margin:0">Class A, B, C motorhomes</p>
-          </div>
-        </div>
-        <!-- 7: Boats -->
-        <div class="vehicle-type-item">
-          <div class="vehicle-type-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0020 0h-3"/></svg>
-          </div>
-          <div>
-            <p style="font-weight:700;font-size:var(--fs-sm);color:#fff;margin:0 0 0.2rem">Boats</p>
-            <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);margin:0">Fishing, bass, ski, pontoon</p>
-          </div>
-        </div>
-        <!-- 8: Custom / Exotic -->
-        <div class="vehicle-type-item">
-          <div class="vehicle-type-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-          </div>
-          <div>
-            <p style="font-weight:700;font-size:var(--fs-sm);color:#fff;margin:0 0 0.2rem">Custom / Exotic</p>
-            <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);margin:0">Ask us — we wrap anything</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BLOCK 4: SPLIT — Content Left, Image Right -->
-  <section class="section-dark-2 padding-section-large">
-    <div class="container-large">
-      <div class="split-content">
-        <!-- Left: Content -->
-        <div class="reveal-left">
-          <p class="text-label">Paint Protection</p>
-          <h2 class="heading-2">Protection Meets <span class="text-red">Performance</span></h2>
-          <p style="color:var(--clr-gray-300);margin:1.25rem 0 2rem;line-height:1.7">
-            Your wrap does more than turn heads — it shields your vehicle's factory paint from UV fading, rock chips, bird droppings, and everyday road wear. Our wraps use only 3M and Avery Dennison cast vinyl with UV-resistant laminate overlays, giving you both style and long-term protection.
-          </p>
-          <!-- 4 mini stat cards 2-col grid -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem">
-            <div style="background:var(--clr-dark-3);border-radius:var(--radius-sm);padding:1.25rem;border:1px solid rgba(255,255,255,0.05)">
-              <p style="font-size:1.5rem;font-weight:800;color:#E31837;margin:0 0 0.25rem;line-height:1">5–7 Years</p>
-              <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);margin:0">Typical wrap lifespan</p>
-            </div>
-            <div style="background:var(--clr-dark-3);border-radius:var(--radius-sm);padding:1.25rem;border:1px solid rgba(255,255,255,0.05)">
-              <p style="font-size:1.5rem;font-weight:800;color:#E31837;margin:0 0 0.25rem;line-height:1">3M &amp; Avery</p>
-              <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);margin:0">Premium vinyl brands only</p>
-            </div>
-            <div style="background:var(--clr-dark-3);border-radius:var(--radius-sm);padding:1.25rem;border:1px solid rgba(255,255,255,0.05)">
-              <p style="font-size:1.5rem;font-weight:800;color:#E31837;margin:0 0 0.25rem;line-height:1">UV Protected</p>
-              <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);margin:0">Laminate overlay included</p>
-            </div>
-            <div style="background:var(--clr-dark-3);border-radius:var(--radius-sm);padding:1.25rem;border:1px solid rgba(255,255,255,0.05)">
-              <p style="font-size:1.5rem;font-weight:800;color:#E31837;margin:0 0 0.25rem;line-height:1">Zero Damage</p>
-              <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);margin:0">Removable, paint-safe</p>
-            </div>
-          </div>
-          <a href="contact.html" class="btn btn-primary">Get Protected</a>
-        </div>
-        <!-- Right: Image -->
-        <div class="split-img reveal-right">
-          <div class="split-img-inner img-placeholder" style="background:linear-gradient(135deg,#0a0a1a,#1a1a3d);aspect-ratio:4/3;" role="img" aria-label="Vehicle wrap paint protection close-up"></div>
-          <div class="split-img-accent" aria-hidden="true"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BLOCK 5: PROCESS -->
-  <section class="section-dark padding-section-large">
-    <div class="container-large">
-      <div style="text-align:center;margin-bottom:3.5rem" class="reveal">
-        <p class="text-label">Our Process</p>
-        <h2 class="heading-2">We Make This <span class="text-red">Easy.</span></h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem" class="process-grid">
-        <!-- Step 01 -->
-        <div class="reveal" style="padding:2rem;background:var(--clr-dark-3);border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.05);position:relative">
-          <div style="font-size:3rem;font-weight:900;color:rgba(227,24,55,0.15);line-height:1;margin-bottom:1rem;font-family:var(--font-primary)">01</div>
-          <h3 class="heading-4" style="margin-bottom:0.75rem">Consultation</h3>
-          <p style="color:var(--clr-gray-400);font-size:var(--fs-sm);line-height:1.6;margin:0">We learn about your style, vehicle, and vision during a free no-pressure consultation.</p>
-        </div>
-        <!-- Step 02 -->
-        <div class="reveal" style="padding:2rem;background:var(--clr-dark-3);border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.05);position:relative">
-          <div style="font-size:3rem;font-weight:900;color:rgba(227,24,55,0.15);line-height:1;margin-bottom:1rem;font-family:var(--font-primary)">02</div>
-          <h3 class="heading-4" style="margin-bottom:0.75rem">Design</h3>
-          <p style="color:var(--clr-gray-400);font-size:var(--fs-sm);line-height:1.6;margin:0">Our designers create a digital mockup on your exact vehicle model so you can visualize the final result.</p>
-        </div>
-        <!-- Step 03 -->
-        <div class="reveal" style="padding:2rem;background:var(--clr-dark-3);border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.05);position:relative">
-          <div style="font-size:3rem;font-weight:900;color:rgba(227,24,55,0.15);line-height:1;margin-bottom:1rem;font-family:var(--font-primary)">03</div>
-          <h3 class="heading-4" style="margin-bottom:0.75rem">Production</h3>
-          <p style="color:var(--clr-gray-400);font-size:var(--fs-sm);line-height:1.6;margin:0">We print on premium cast vinyl with UV-laminate and precision-cut for a seamless fit.</p>
-        </div>
-        <!-- Step 04 -->
-        <div class="reveal" style="padding:2rem;background:var(--clr-dark-3);border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.05);position:relative">
-          <div style="font-size:3rem;font-weight:900;color:rgba(227,24,55,0.15);line-height:1;margin-bottom:1rem;font-family:var(--font-primary)">04</div>
-          <h3 class="heading-4" style="margin-bottom:0.75rem">Installation</h3>
-          <p style="color:var(--clr-gray-400);font-size:var(--fs-sm);line-height:1.6;margin:0">Our certified installers apply your wrap in our climate-controlled shop, typically in 1–2 days.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BLOCK 6: MARQUEE GALLERY -->
-  <section class="section-dark-2 padding-section-large">
-    <div class="container-large">
-      <div style="text-align:center;margin-bottom:3rem" class="reveal">
-        <p class="text-label">Our Wraps</p>
-        <h2 class="heading-2">See the <span class="text-red">Results</span></h2>
-      </div>
-    </div>
-    <!-- Row 1 -->
-    <div class="gallery-row" aria-hidden="true">
-      <div class="marquee-track">
-        <div class="marquee-inner">
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#1a0505,#2d0a0a)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#050a1a,#0a1030)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#0a1a05,#102d0a)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#1a0a05,#2d1a0a)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#0a051a,#1a0a2d)"></div>
-          <!-- Duplicate for seamless scroll -->
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#1a0505,#2d0a0a)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#050a1a,#0a1030)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#0a1a05,#102d0a)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#1a0a05,#2d1a0a)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#0a051a,#1a0a2d)"></div>
-        </div>
-      </div>
-    </div>
-    <!-- Row 2 (reverse) -->
-    <div class="gallery-row" aria-hidden="true">
-      <div class="marquee-track">
-        <div class="marquee-inner" style="animation-direction:reverse">
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#1a0a0a,#2d0505)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#0a0a1a,#050520)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#0a1a0a,#052005)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#1a1a0a,#2d2d05)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#0a0a0a,#1a0a1a)"></div>
-          <!-- Duplicate for seamless scroll -->
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#1a0a0a,#2d0505)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#0a0a1a,#050520)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#0a1a0a,#052005)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#1a1a0a,#2d2d05)"></div>
-          <div class="marquee-item img-placeholder" style="background:linear-gradient(135deg,#0a0a0a,#1a0a1a)"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BLOCK 7: FAQ CTA -->
-  <section class="section-dark padding-section-large">
-    <div class="container-medium">
-      <div class="faq-banner reveal">
-        <div class="faq-banner-bg" aria-hidden="true"></div>
-        <div style="position:relative;z-index:1">
-          <h2 class="heading-2" style="margin-bottom:1rem">Questions About Wraps?</h2>
-          <p style="color:var(--clr-gray-300);max-width:480px;margin:0 auto 2rem;line-height:1.7;font-size:var(--fs-md)">
-            Visit our FAQ page for answers to common questions, or reach out to our team directly.
-          </p>
-          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-            <a href="faq.html" class="btn btn-primary btn-lg">See FAQs</a>
+        <div style="text-align:center;max-width:820px;margin:0 auto var(--sp-2xl);">
+          <span class="text-label reveal">Personal &amp; Custom Vehicle Wraps</span>
+          <h1 class="heading-1 reveal" style="margin:1rem 0;">Color Change &amp; Custom<br><span class="text-red">Vehicle Wraps</span></h1>
+          <p class="reveal" style="font-size:var(--fs-lg);color:var(--clr-gray-400);max-width:600px;margin:0 auto 2.5rem;">For Cars, Trucks, SUVs, Motorcycles &amp; More — premium vinyl applied with precision. Your vision, realized on every panel.</p>
+          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="reveal">
+            <a href="contact.html" class="btn btn-primary btn-lg">Get Your Free Estimate</a>
             <a href="tel:+15559999999" class="btn btn-outline btn-lg">Call Us</a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- BLOCK 2: Express Your Style -->
+    <section class="section-dark-2 padding-section-large">
+      <div class="container-large">
+        <div class="split-content">
+          <div class="split-img reveal-left">
+            <div class="split-img-inner img-placeholder" style="background:linear-gradient(135deg,#1a0505,#2d1010);" role="img" aria-label="Satin grey color change wrap on a sports coupe"></div>
+            <div class="split-img-accent" aria-hidden="true"></div>
+          </div>
+          <div class="reveal-right">
+            <span class="text-label">Color Change &amp; Custom Design</span>
+            <h2 class="heading-2" style="margin:1rem 0;">Express Your <span class="text-red">Style</span></h2>
+            <p style="color:var(--clr-gray-400);line-height:1.75;margin-bottom:1.25rem;">Your vehicle is an extension of your personality — why settle for a factory color? Our color change wraps let you transform your car into exactly what you've imagined, with zero permanent commitment to your paint.</p>
+            <p style="color:var(--clr-gray-400);line-height:1.75;margin-bottom:1.75rem;">From full color change in matte, satin, gloss, or metallic finishes to chrome delete packages that blackout every badge and trim piece, to paint protection film that keeps your investment looking showroom-fresh — we do it all under one roof.</p>
+            <ul style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:var(--sp-xl);">
+              <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--clr-red)" stroke-width="2.5" width="20" height="20" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="color:var(--clr-gray-400);font-size:var(--fs-sm);">Thousands of color and finish options — matte, satin, gloss, chrome, brushed metal</span>
+              </li>
+              <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--clr-red)" stroke-width="2.5" width="20" height="20" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="color:var(--clr-gray-400);font-size:var(--fs-sm);">Chrome delete packages to blackout trim, badges, mirrors, and roof</span>
+              </li>
+              <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--clr-red)" stroke-width="2.5" width="20" height="20" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="color:var(--clr-gray-400);font-size:var(--fs-sm);">Paint protection film (PPF) for high-impact zones — hoods, bumpers, rockers</span>
+              </li>
+              <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--clr-red)" stroke-width="2.5" width="20" height="20" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="color:var(--clr-gray-400);font-size:var(--fs-sm);">Fully removable — return to factory paint or change your look whenever you want</span>
+              </li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary">Start Your Build</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 3: Vehicle Types -->
+    <section class="section-dark padding-section-large">
+      <div class="container-large">
+        <div style="margin-bottom:var(--sp-2xl);">
+          <span class="text-label reveal">What We Wrap</span>
+          <h2 class="heading-2 reveal" style="margin:0.75rem 0;">Every Vehicle Type, <span class="text-red">Covered</span></h2>
+          <hr class="divider-full" style="margin-top:1.5rem;" />
+        </div>
+        <div class="vehicle-types-grid">
+
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 01-2-2V9a2 2 0 012-2h11l4 4v6h-2M9 17a2 2 0 100 4 2 2 0 000-4zm8 0a2 2 0 100 4 2 2 0 000-4z"/></svg>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:var(--fs-sm);">Passenger Cars</p>
+              <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);">Sedans, coupes, hatchbacks</p>
+            </div>
+          </div>
+
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3m3 0h2l3 4v3h-2m-6 2a2 2 0 11-4 0 2 2 0 014 0zm6 0a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:var(--fs-sm);">Pickup Trucks</p>
+              <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);">F-150, Silverado, RAM, Tundra</p>
+            </div>
+          </div>
+
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:var(--fs-sm);">SUVs &amp; Crossovers</p>
+              <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);">Full-size, mid-size, compact</p>
+            </div>
+          </div>
+
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:var(--fs-sm);">Sports &amp; Exotic Cars</p>
+              <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);">Ferraris, Porsches, Lamborghinis</p>
+            </div>
+          </div>
+
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h2l2 4-4 2H9L7 8l4-2h4z"/><line x1="15" y1="6" x2="5.5" y2="14"/></svg>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:var(--fs-sm);">Motorcycles</p>
+              <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);">Sport, cruiser, touring bikes</p>
+            </div>
+          </div>
+
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:var(--fs-sm);">RVs &amp; Campers</p>
+              <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);">Class A, B, C motorhomes</p>
+            </div>
+          </div>
+
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:var(--fs-sm);">Boats &amp; Watercraft</p>
+              <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);">Hulls, pontoons, jet skis</p>
+            </div>
+          </div>
+
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:var(--fs-sm);">Custom Specialty</p>
+              <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);">Anything with a surface</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 4: Protection Meets Performance -->
+    <section class="section-dark-2 padding-section-large">
+      <div class="container-large">
+        <div class="split-content">
+          <div class="reveal-left">
+            <span class="text-label">Paint Protection Film</span>
+            <h2 class="heading-2" style="margin:1rem 0;">Protection Meets <span class="text-red">Performance</span></h2>
+            <p style="color:var(--clr-gray-400);line-height:1.75;margin-bottom:1.25rem;">Paint protection film (PPF) is the invisible armor your vehicle deserves. Applied to high-impact areas like the front bumper, hood, rocker panels, and door edges, PPF absorbs rock chips, road debris, and minor abrasions — without altering the look of your paint or wrap.</p>
+            <p style="color:var(--clr-gray-400);line-height:1.75;margin-bottom:1.75rem;">We frequently combine PPF with color change wraps for clients who want both maximum aesthetics and maximum protection. The result is a vehicle that looks incredible and stays that way far longer than paint alone. Ask us about full front-end protection packages.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:var(--sp-xl);">
+              <div style="padding:1.25rem;background:var(--clr-dark-3);border-radius:var(--radius-sm);border-left:3px solid var(--clr-red);">
+                <p style="font-weight:700;font-size:var(--fs-sm);margin-bottom:0.3rem;">Self-Healing Film</p>
+                <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);">Minor scratches disappear with heat</p>
+              </div>
+              <div style="padding:1.25rem;background:var(--clr-dark-3);border-radius:var(--radius-sm);border-left:3px solid var(--clr-red);">
+                <p style="font-weight:700;font-size:var(--fs-sm);margin-bottom:0.3rem;">UV Resistant</p>
+                <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);">Prevents paint fade and oxidation</p>
+              </div>
+              <div style="padding:1.25rem;background:var(--clr-dark-3);border-radius:var(--radius-sm);border-left:3px solid var(--clr-red);">
+                <p style="font-weight:700;font-size:var(--fs-sm);margin-bottom:0.3rem;">10-Year Warranty</p>
+                <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);">Manufacturer coverage on premium films</p>
+              </div>
+              <div style="padding:1.25rem;background:var(--clr-dark-3);border-radius:var(--radius-sm);border-left:3px solid var(--clr-red);">
+                <p style="font-weight:700;font-size:var(--fs-sm);margin-bottom:0.3rem;">Combo Packages</p>
+                <p style="font-size:var(--fs-xs);color:var(--clr-gray-400);">PPF + color change in one install</p>
+              </div>
+            </div>
+            <a href="contact.html" class="btn btn-primary">Get a PPF Quote</a>
+          </div>
+          <div class="split-img reveal-right">
+            <div class="split-img-inner img-placeholder" style="background:linear-gradient(135deg,#0a0a1a,#1a1a3d);" role="img" aria-label="Paint protection film being applied to a vehicle hood"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 5: Process -->
+    <section class="section-dark padding-section-large">
+      <div class="container-large">
+        <div style="text-align:center;margin-bottom:var(--sp-2xl);">
+          <span class="text-label reveal">Our Process</span>
+          <h2 class="heading-2 reveal" style="margin:0.75rem 0;">From Idea to Install — <span class="text-red">Four Steps</span></h2>
+        </div>
+        <div class="process-grid">
+          <div class="process-step reveal">
+            <div class="process-num">01</div>
+            <h3 class="heading-4" style="margin-bottom:0.5rem;">Consultation</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-gray-400);">We discuss your vehicle, your vision, and your budget. We'll recommend finishes, films, and package options that fit your goals.</p>
+          </div>
+          <div class="process-step reveal">
+            <div class="process-num">02</div>
+            <h3 class="heading-4" style="margin-bottom:0.5rem;">Design &amp; Mockup</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-gray-400);">For custom graphics or multi-panel designs, our team renders a digital preview on your exact vehicle before we print a single inch of vinyl.</p>
+          </div>
+          <div class="process-step reveal">
+            <div class="process-num">03</div>
+            <h3 class="heading-4" style="margin-bottom:0.5rem;">Precision Installation</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-gray-400);">Your vehicle is prepped, cleaned, and wrapped in our climate-controlled facility by certified installers — every panel, every curve, every edge.</p>
+          </div>
+          <div class="process-step reveal">
+            <div class="process-num">04</div>
+            <h3 class="heading-4" style="margin-bottom:0.5rem;">Quality Check &amp; Delivery</h3>
+            <p style="font-size:var(--fs-sm);color:var(--clr-gray-400);">We do a full quality walkthrough before you pick up your vehicle. We'll also walk you through care instructions to keep your wrap looking flawless.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 6: Marquee Gallery -->
+    <section class="section-dark-2 padding-section-large" style="overflow:hidden;">
+      <div style="margin-bottom:var(--sp-2xl);text-align:center;" class="reveal">
+        <span class="text-label">Gallery</span>
+        <h2 class="heading-2" style="margin-top:1rem;">A Taste of What We <span class="text-red">Create</span></h2>
+      </div>
+      <div class="marquee-wrapper" aria-hidden="true">
+        <div class="marquee-track">
+          <div class="marquee-item" style="background:linear-gradient(135deg,#1a0505,#2d0808);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#050520,#0d0d3d);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#0a1a05,#152b08);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#1a1505,#2d2208);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#1a0a0a,#3d1515);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#050a1a,#0d1a3d);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#05101a,#0a1e2d);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#0d0505,#261010);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#0a0505,#1f0f0f);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#1a0510,#2d0820);"></div>
+          <!-- Duplicate for seamless loop -->
+          <div class="marquee-item" style="background:linear-gradient(135deg,#1a0505,#2d0808);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#050520,#0d0d3d);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#0a1a05,#152b08);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#1a1505,#2d2208);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#1a0a0a,#3d1515);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#050a1a,#0d1a3d);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#05101a,#0a1e2d);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#0d0505,#261010);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#0a0505,#1f0f0f);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#1a0510,#2d0820);"></div>
+        </div>
+      </div>
+      <div class="marquee-wrapper" aria-hidden="true">
+        <div class="marquee-track">
+          <div class="marquee-item" style="background:linear-gradient(135deg,#050505,#1a0a05);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#050a05,#0d1f0d);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#0d0d0d,#2a0808);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#0a0a1a,#0d0d26);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#140808,#3d1010);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#081408,#0d2b0d);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#1a1010,#2d1a1a);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#05050a,#0d0d1a);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#0a0514,#1a0d2d);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#140a05,#2d1a0a);"></div>
+          <!-- Duplicate for seamless loop -->
+          <div class="marquee-item" style="background:linear-gradient(135deg,#050505,#1a0a05);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#050a05,#0d1f0d);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#0d0d0d,#2a0808);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#0a0a1a,#0d0d26);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#140808,#3d1010);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#081408,#0d2b0d);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#1a1010,#2d1a1a);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#05050a,#0d0d1a);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#0a0514,#1a0d2d);"></div>
+          <div class="marquee-item" style="background:linear-gradient(135deg,#140a05,#2d1a0a);"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 7: FAQ CTA Banner -->
+    <section class="section-dark padding-section-large">
+      <div class="container-large">
+        <div class="faq-banner reveal">
+          <div class="faq-banner-bg" aria-hidden="true"></div>
+          <div style="position:relative;z-index:1;">
+            <span class="text-label">Have Questions?</span>
+            <h2 class="heading-2" style="margin:1rem 0;">Get Answers Before You <span class="text-red">Commit</span></h2>
+            <p style="color:var(--clr-gray-400);font-size:var(--fs-lg);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;">Browse our frequently asked questions covering wrap care, pricing, materials, and timelines — or reach out directly.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;">
+              <a href="faq.html" class="btn btn-primary btn-lg">View FAQs</a>
+              <a href="contact.html" class="btn btn-outline btn-lg">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer class="site-footer">
