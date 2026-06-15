@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commercial Vehicle Wraps | Print Lab Wraps</title>
+  <meta name="description" content="Transform your commercial fleet with premium vehicle wraps from Print Lab Wraps. Full wraps, partial wraps, spot graphics for vans, trucks, trailers, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="../css/global.css" />
+  <style>
+    /* ── Page-specific ── */
+    .vehicle-types-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .vehicle-type-item {
+      background: var(--clr-dark-3);
+      padding: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: background var(--t-fast);
+    }
+    .vehicle-type-item:hover { background: var(--clr-dark-2); }
+    .vehicle-type-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--radius-sm);
+      background: rgba(227,24,55,0.1);
+      border: 1px solid rgba(227,24,55,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--clr-red);
+    }
+    .vehicle-type-icon svg { width: 22px; height: 22px; }
+    .split-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+    .split-img {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .split-img-inner {
+      aspect-ratio: 4/3;
+      background: var(--clr-dark-3);
+    }
+    .split-img-accent {
+      position: absolute;
+      bottom: -1rem;
+      right: -1rem;
+      width: 120px; height: 120px;
+      background: var(--clr-red);
+      opacity: 0.12;
+      border-radius: 50%;
+      z-index: -1;
+    }
+    .gallery-row { margin-bottom: 1rem; }
+    .faq-banner {
+      position: relative;
+      overflow: hidden;
+      background: var(--clr-dark-3);
+      border-radius: var(--radius-md);
+      padding: var(--pad-section-md);
+      text-align: center;
+    }
+    .faq-banner-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(227,24,55,0.08), rgba(0,0,0,0.9));
+    }
+    @media (max-width: 900px) {
+      .vehicle-types-grid { grid-template-columns: 1fr 1fr; }
+      .split-content { grid-template-columns: 1fr; }
+      .split-content.reverse { direction: initial; }
+    }
+    @media (max-width: 600px) {
+      .vehicle-types-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="page-wrapper">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container-large">
+      <div class="header-inner">
+        <a href="../index.html" class="header-logo" aria-label="Print Lab Wraps Home">
+          <div class="header-logo-text">
+            <span class="logo-top">PrintLab</span>
+            <span class="logo-bottom">Wraps ★</span>
+          </div>
+        </a>
+        <nav class="header-nav" aria-label="Main navigation">
+          <a href="services.html"  class="nav-link active">Services</a>
+          <a href="about.html"     class="nav-link">About</a>
+          <a href="careers.html"   class="nav-link">Careers</a>
+          <a href="contact.html"   class="nav-link">Contact</a>
+          <a href="our-work.html"  class="nav-link">Our Work</a>
+        </nav>
+        <div class="header-ctas">
+          <a href="tel:+15559999999" class="btn btn-outline btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z"/></svg>
+            Call Us
+          </a>
+          <a href="contact.html" class="btn btn-primary">Get Estimate</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-menu">
+    <a href="services.html"  class="mobile-nav-link">Services</a>
+    <a href="about.html"     class="mobile-nav-link">About</a>
+    <a href="careers.html"   class="mobile-nav-link">Careers</a>
+    <a href="contact.html"   class="mobile-nav-link">Contact</a>
+    <a href="our-work.html"  class="mobile-nav-link">Our Work</a>
+    <div class="mobile-ctas">
+      <a href="tel:+15559999999" class="btn btn-outline">Call Us Now</a>
+      <a href="contact.html" class="btn btn-primary">Get Free Estimate</a>
+    </div>
+  </nav>
+
+  <main class="main-wrapper">
+
+    <!-- BLOCK 1: Hero with Carousel -->
+    <section class="section-dark page-hero-spacer padding-section-large" aria-labelledby="cvw-heading">
+      <div class="container-large">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          <a href="services.html">Services</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Commercial Vehicle Wraps</span>
+        </div>
+        <div style="text-align:center;max-width:860px;margin:0 auto var(--sp-2xl)">
+          <p class="text-label reveal" data-delay="0">Commercial Vehicle Wraps</p>
+          <h1 class="heading-1 reveal" data-delay="80" id="cvw-heading" style="margin:1rem 0">
+            Full Wraps. Partial Wraps.<br><span class="text-red">Spot Graphics & More.</span>
+          </h1>
+          <p class="text-body reveal" data-delay="160" style="color:var(--clr-gray-400);margin:0 auto;text-align:center">
+            Turn your entire fleet into a mobile advertising machine. From single vans to hundred-vehicle fleets — we brand them all with precision and speed.
+          </p>
+        </div>
+
+        <!-- Vehicle Carousel -->
+        <div class="vehicle-carousel reveal" data-delay="200">
+          <div style="display:flex;align-items:center;gap:1rem;overflow:hidden;padding:1rem 0">
+            <div class="carousel-slide" aria-label="Cargo Van Wrap">
+              <div class="img-placeholder" style="aspect-ratio:4/3;background:linear-gradient(135deg,#1a0505,#2d0808)">
+                <span style="color:rgba(255,255,255,0.1);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em">Cargo Van</span>
+              </div>
+              <p style="text-align:center;padding:0.75rem;font-size:var(--fs-sm);font-weight:600">Cargo Van</p>
+            </div>
+            <div class="carousel-slide active" aria-label="Box Truck Wrap">
+              <div class="img-placeholder" style="aspect-ratio:4/3;background:linear-gradient(135deg,#0a0a1a,#1a1a2d);border:2px solid rgba(227,24,55,0.4)">
+                <span style="color:rgba(255,255,255,0.15);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em">Box Truck</span>
+              </div>
+              <p style="text-align:center;padding:0.75rem;font-size:var(--fs-sm);font-weight:600;color:var(--clr-red)">Box Truck</p>
+            </div>
+            <div class="carousel-slide" aria-label="Semi-Trailer Wrap">
+              <div class="img-placeholder" style="aspect-ratio:4/3;background:linear-gradient(135deg,#0a1a0a,#0d2d0d)">
+                <span style="color:rgba(255,255,255,0.1);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em">Semi-Trailer</span>
+              </div>
+              <p style="text-align:center;padding:0.75rem;font-size:var(--fs-sm);font-weight:600">Semi-Trailer</p>
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <button class="carousel-btn carousel-prev" aria-label="Previous">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="carousel-dots">
+              <button class="dot" aria-label="Slide 1"></button>
+              <button class="dot active" aria-label="Slide 2"></button>
+              <button class="dot" aria-label="Slide 3"></button>
+            </div>
+            <button class="carousel-btn carousel-next" aria-label="Next">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:var(--sp-xl)" class="reveal" data-delay="280">
+          <a href="contact.html" class="btn btn-primary btn-lg">Get Project Estimate</a>
+          <a href="tel:+15559999999" class="btn btn-outline btn-lg">Call Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 2: Image Left / Content Right -->
+    <section class="section-dark-2 padding-section-large">
+      <div class="container-large">
+        <div class="split-content">
+          <div class="split-img reveal-left" data-delay="0">
+            <div class="split-img-inner img-placeholder" style="background:linear-gradient(135deg,#1a0505,#2d1010)">
+              <span style="color:rgba(255,255,255,0.08);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em">Bold Statement Image</span>
+            </div>
+            <div class="split-img-accent" aria-hidden="true"></div>
+          </div>
+          <div class="reveal-right" data-delay="100">
+            <p class="text-label">Commercial Branding</p>
+            <h2 class="heading-2" style="margin:1rem 0">
+              Make a <span class="text-red">Bold Statement</span> on Every Road
+            </h2>
+            <p class="text-body" style="color:var(--clr-gray-400);margin-bottom:var(--sp-lg)">
+              Transform your vehicle into a mobile billboard that works 24/7. Commercial vehicle wraps are proven to generate more impressions per dollar than any other form of advertising — reaching thousands of potential customers daily without recurring costs.
+            </p>
+            <ul style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:var(--sp-xl)">
+              <li style="display:flex;gap:0.75rem;align-items:flex-start">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--clr-red)" stroke-width="2.5" width="20" height="20" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="color:var(--clr-gray-400);font-size:var(--fs-sm)">Full fleet consistency — every vehicle branded identically</span>
+              </li>
+              <li style="display:flex;gap:0.75rem;align-items:flex-start">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--clr-red)" stroke-width="2.5" width="20" height="20" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="color:var(--clr-gray-400);font-size:var(--fs-sm)">Premium 3M and Avery Dennison cast vinyl only</span>
+              </li>
+              <li style="display:flex;gap:0.75rem;align-items:flex-start">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--clr-red)" stroke-width="2.5" width="20" height="20" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="color:var(--clr-gray-400);font-size:var(--fs-sm)">5–7 year lifespan with UV-resistant laminate</span>
+              </li>
+              <li style="display:flex;gap:0.75rem;align-items:flex-start">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--clr-red)" stroke-width="2.5" width="20" height="20" style="flex-shrink:0;margin-top:2px" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="color:var(--clr-gray-400);font-size:var(--fs-sm)">Removable without damaging original paint</span>
+              </li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary">Get a Free Quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 3: Vehicle Types -->
+    <section class="section-dark padding-section-large" aria-labelledby="types-heading">
+      <div class="container-large">
+        <div style="margin-bottom:var(--sp-2xl)">
+          <p class="text-label reveal" data-delay="0" style="color:var(--clr-red)">Our Expertise</p>
+          <h2 class="heading-2 reveal" data-delay="80" id="types-heading" style="margin:0.75rem 0">
+            Commercial Vehicles <span class="text-red">We Wrap</span>
+          </h2>
+          <hr class="divider-full" style="margin-top:1.5rem" />
+        </div>
+        <div class="vehicle-types-grid" data-stagger>
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div><p style="font-weight:700;font-size:var(--fs-sm)">Cargo Vans</p><p class="text-xs" style="color:var(--clr-gray-400)">Transit, Sprinter, ProMaster</p></div>
+          </div>
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="22" height="12" rx="1"/><line x1="5" y1="6" x2="5" y2="18"/><circle cx="6" cy="20" r="2"/><circle cx="18" cy="20" r="2"/></svg>
+            </div>
+            <div><p style="font-weight:700;font-size:var(--fs-sm)">Box Trucks</p><p class="text-xs" style="color:var(--clr-gray-400)">16ft, 20ft, 24ft box bodies</p></div>
+          </div>
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h22v13H1zM7 16v4M17 16v4M1 9h22"/></svg>
+            </div>
+            <div><p style="font-weight:700;font-size:var(--fs-sm)">Semi Trucks & Trailers</p><p class="text-xs" style="color:var(--clr-gray-400)">53ft trailer full wraps</p></div>
+          </div>
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3m3 0h2l3 4v3h-2m-6 2a2 2 0 11-4 0 2 2 0 014 0zm6 0a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <div><p style="font-weight:700;font-size:var(--fs-sm)">Pickup Trucks</p><p class="text-xs" style="color:var(--clr-gray-400)">F-150, Silverado, RAM, Tacoma</p></div>
+          </div>
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+            </div>
+            <div><p style="font-weight:700;font-size:var(--fs-sm)">Service Vehicles</p><p class="text-xs" style="color:var(--clr-gray-400)">Utility trucks, service vans</p></div>
+          </div>
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div><p style="font-weight:700;font-size:var(--fs-sm)">Fleet Programs</p><p class="text-xs" style="color:var(--clr-gray-400)">10+ vehicle fleet discounts</p></div>
+          </div>
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+            </div>
+            <div><p style="font-weight:700;font-size:var(--fs-sm)">Refrigerated Trucks</p><p class="text-xs" style="color:var(--clr-gray-400)">Reefer trailers, ice cream trucks</p></div>
+          </div>
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </div>
+            <div><p style="font-weight:700;font-size:var(--fs-sm)">Custom / Specialty</p><p class="text-xs" style="color:var(--clr-gray-400)">Any commercial vehicle</p></div>
+          </div>
+          <div class="vehicle-type-item reveal">
+            <div class="vehicle-type-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+            </div>
+            <div><p style="font-weight:700;font-size:var(--fs-sm)">Flatbed Trailers</p><p class="text-xs" style="color:var(--clr-gray-400)">Side panels & cab wraps</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 4: Image Right / Content Left -->
+    <section class="section-dark-2 padding-section-large">
+      <div class="container-large">
+        <div class="split-content">
+          <div class="reveal-left" data-delay="0">
+            <p class="text-label">Custom Vinyl</p>
+            <h2 class="heading-2" style="margin:1rem 0">
+              Showcase Your Brand<br><span class="text-red">Everywhere You Go</span>
+            </h2>
+            <p class="text-body" style="color:var(--clr-gray-400);margin-bottom:var(--sp-lg)">
+              Whether you need a complete color change, a branded partial wrap, or precision-placed spot graphics — our team delivers results that represent your business with the professionalism it deserves.
+            </p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:var(--sp-xl)">
+              <div style="padding:1.25rem;background:var(--clr-dark-3);border-radius:var(--radius-sm);border-left:3px solid var(--clr-red)">
+                <p style="font-weight:700;font-size:var(--fs-sm);margin-bottom:0.3rem">Full Wrap</p>
+                <p class="text-xs" style="color:var(--clr-gray-400)">100% vehicle coverage</p>
+              </div>
+              <div style="padding:1.25rem;background:var(--clr-dark-3);border-radius:var(--radius-sm);border-left:3px solid var(--clr-red)">
+                <p style="font-weight:700;font-size:var(--fs-sm);margin-bottom:0.3rem">Partial Wrap</p>
+                <p class="text-xs" style="color:var(--clr-gray-400)">Strategic coverage, lower cost</p>
+              </div>
+              <div style="padding:1.25rem;background:var(--clr-dark-3);border-radius:var(--radius-sm);border-left:3px solid var(--clr-red)">
+                <p style="font-weight:700;font-size:var(--fs-sm);margin-bottom:0.3rem">Spot Graphics</p>
+                <p class="text-xs" style="color:var(--clr-gray-400)">Logo & decal placement</p>
+              </div>
+              <div style="padding:1.25rem;background:var(--clr-dark-3);border-radius:var(--radius-sm);border-left:3px solid var(--clr-red)">
+                <p style="font-weight:700;font-size:var(--fs-sm);margin-bottom:0.3rem">Fleet Program</p>
+                <p class="text-xs" style="color:var(--clr-gray-400)">Volume pricing available</p>
+              </div>
+            </div>
+            <a href="contact.html" class="btn btn-primary">Start Your Project</a>
+          </div>
+          <div class="split-img reveal-right" data-delay="100">
+            <div class="split-img-inner img-placeholder" style="background:linear-gradient(135deg,#0a0a1a,#1a1a3d)">
+              <span style="color:rgba(255,255,255,0.08);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em">Showcase Brand Image</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 5: Process (Reusable Component) -->
+    <section class="section-dark padding-section-large">
+      <div class="container-large">
+        <div style="text-align:center;margin-bottom:var(--sp-2xl)">
+          <p class="text-label reveal" data-delay="0">Our Process</p>
+          <h2 class="heading-2 reveal" data-delay="80" style="margin:0.75rem 0">
+            We Make This <span class="text-red">Easy.</span>
+          </h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative" data-stagger>
+          <div style="padding:0 var(--sp-lg) var(--sp-xl);position:relative" class="reveal">
+            <div style="width:56px;height:56px;background:var(--clr-red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-md);font-weight:900;margin-bottom:1.5rem;box-shadow:0 0 0 6px rgba(227,24,55,0.15)">01</div>
+            <h3 class="heading-4" style="margin-bottom:0.5rem">Discovery</h3>
+            <p class="text-sm" style="color:var(--clr-gray-400)">We consult with you to understand your brand goals, vehicles, and timeline.</p>
+          </div>
+          <div style="padding:0 var(--sp-lg) var(--sp-xl)" class="reveal">
+            <div style="width:56px;height:56px;background:var(--clr-red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-md);font-weight:900;margin-bottom:1.5rem;box-shadow:0 0 0 6px rgba(227,24,55,0.15)">02</div>
+            <h3 class="heading-4" style="margin-bottom:0.5rem">Design</h3>
+            <p class="text-sm" style="color:var(--clr-gray-400)">Our design team creates detailed mockups to your vehicle's exact dimensions.</p>
+          </div>
+          <div style="padding:0 var(--sp-lg) var(--sp-xl)" class="reveal">
+            <div style="width:56px;height:56px;background:var(--clr-red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-md);font-weight:900;margin-bottom:1.5rem;box-shadow:0 0 0 6px rgba(227,24,55,0.15)">03</div>
+            <h3 class="heading-4" style="margin-bottom:0.5rem">Production</h3>
+            <p class="text-sm" style="color:var(--clr-gray-400)">Printed on premium cast vinyl with UV-resistant laminate for lasting vibrancy.</p>
+          </div>
+          <div style="padding:0 var(--sp-lg) var(--sp-xl)" class="reveal">
+            <div style="width:56px;height:56px;background:var(--clr-red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--fs-md);font-weight:900;margin-bottom:1.5rem;box-shadow:0 0 0 6px rgba(227,24,55,0.15)">04</div>
+            <h3 class="heading-4" style="margin-bottom:0.5rem">Installation</h3>
+            <p class="text-sm" style="color:var(--clr-gray-400)">Certified installers apply every wrap in our climate-controlled facility.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 6: Gallery Marquee -->
+    <section class="section-dark-2 padding-section-large" aria-label="Commercial wrap gallery">
+      <div style="margin-bottom:var(--sp-xl);padding:0 clamp(1rem,5vw,2.5rem)">
+        <p class="text-label reveal" data-delay="0">Our Commercial Wraps</p>
+        <h2 class="heading-2 reveal" data-delay="80" style="margin-top:0.75rem">See the <span class="text-red">Results</span></h2>
+      </div>
+      <!-- Row 1 -->
+      <div class="marquee-wrapper gallery-row">
+        <div class="marquee-track" aria-hidden="true">
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#1a0505,#2d0a0a)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#050a1a,#0a1030)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#0a1a05,#102d0a)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#1a0a05,#2d1a0a)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#0a051a,#1a0a2d)"></div></div>
+          <!-- Duplicate for infinite scroll -->
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#1a0505,#2d0a0a)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#050a1a,#0a1030)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#0a1a05,#102d0a)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#1a0a05,#2d1a0a)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#0a051a,#1a0a2d)"></div></div>
+        </div>
+      </div>
+      <!-- Row 2 (reverse) -->
+      <div class="marquee-wrapper gallery-row">
+        <div class="marquee-track" style="animation-direction:reverse" aria-hidden="true">
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(225deg,#1a0a0a,#2d0505)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(225deg,#0a0a1a,#050520)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(225deg,#0a1a0a,#052005)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(225deg,#1a1a0a,#2d2d05)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(225deg,#0a0a0a,#1a0a1a)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(225deg,#1a0a0a,#2d0505)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(225deg,#0a0a1a,#050520)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(225deg,#0a1a0a,#052005)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(225deg,#1a1a0a,#2d2d05)"></div></div>
+          <div class="marquee-item"><div class="img-placeholder" style="width:100%;height:100%;background:linear-gradient(225deg,#0a0a0a,#1a0a1a)"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 7: FAQ CTA Banner -->
+    <section class="section-dark padding-section-large">
+      <div class="container-medium">
+        <div class="faq-banner reveal">
+          <div class="faq-banner-bg" aria-hidden="true"></div>
+          <div style="position:relative;z-index:1;text-align:center">
+            <h2 class="heading-2" style="margin-bottom:0.75rem">Questions?</h2>
+            <p class="text-body" style="color:var(--clr-gray-400);margin:0 auto 2rem;text-align:center">
+              Here are some of our Frequently Asked Questions
+            </p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+              <a href="faq.html" class="btn btn-primary btn-lg">Get Answers</a>
+              <a href="contact.html" class="btn btn-outline btn-lg">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container-large">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-logo-text"><div class="logo-top">PrintLab</div><div class="logo-bottom">Wraps ★</div></div>
+          <p class="footer-tagline">Premium vehicle wraps, signage, and branding solutions. Your brand — everywhere.</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Browse</h4><div class="footer-links"><a href="../index.html" class="footer-link">Home</a><a href="about.html" class="footer-link">About</a><a href="contact.html" class="footer-link">Contact</a><a href="our-work.html" class="footer-link">Our Work</a></div></div>
+        <div class="footer-col"><h4>Services</h4><div class="footer-links"><a href="commercial-vehicle-wraps.html" class="footer-link">Commercial Wraps</a><a href="vehicle-wraps.html" class="footer-link">Vehicle Wraps</a><a href="signage-prints.html" class="footer-link">Signage & Prints</a><a href="buildings-facilities.html" class="footer-link">Buildings</a></div></div>
+        <div class="footer-col"><h4>Resources</h4><div class="footer-links"><a href="faq.html" class="footer-link">FAQs</a><a href="careers.html" class="footer-link">Careers</a></div></div>
+        <div class="footer-col"><h4>Contact</h4>
+          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z"/></svg><a href="tel:+15559999999">(555) PLW-WRAP</a></div>
+          <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:info@printlabwraps.com">info@printlabwraps.com</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Print Lab Wraps. All rights reserved.</p>
+        <div class="footer-legal"><a href="#">Terms</a><a href="#">Privacy</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
