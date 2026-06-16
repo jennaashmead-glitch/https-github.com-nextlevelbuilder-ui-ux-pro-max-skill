@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>Print Lab Wraps — Homepage Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --red: #E31837;
+  --black: #000;
+  --white: #fff;
+  --g100: #f5f5f7;
+  --g500: #86868b;
+  --g700: #3d3d3f;
+  --g900: #1d1d1f;
+  --ff: 'Montserrat', -apple-system, sans-serif;
+}
+body { font-family: var(--ff); width: 1440px; background: #fff; overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+  width: 960px; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(0,0,0,0.72); backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 980px; padding: 0 24px; height: 52px;
+}
+.nav-logo { color: #fff; font-weight: 800; font-size: 1rem; text-decoration: none; letter-spacing: -0.02em; }
+.nav-logo span { color: var(--red); }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { color: rgba(255,255,255,0.75); font-size: 0.78rem; font-weight: 500; text-decoration: none; }
+.nav-cta {
+  background: var(--red); color: #fff; border-radius: 980px;
+  padding: 8px 20px; font-size: 0.78rem; font-weight: 700; text-decoration: none;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative; height: 100vh; min-height: 700px; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.hero-img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.65);
+}
+.hero-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+}
+.hero-body {
+  position: relative; padding: 0 80px 80px;
+}
+.hero-eyebrow {
+  color: var(--red); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; margin-bottom: 20px;
+}
+.hero-title {
+  color: #fff; font-size: 5.5rem; font-weight: 900; line-height: 1.0;
+  letter-spacing: -0.04em; margin-bottom: 32px;
+}
+.hero-title em { font-style: italic; color: var(--red); }
+.hero-sub { color: rgba(255,255,255,0.7); font-size: 1.05rem; font-weight: 400; margin-bottom: 40px; max-width: 480px; }
+.hero-actions { display: flex; gap: 12px; }
+.btn-pill { border-radius: 980px; padding: 14px 32px; font-size: 0.85rem; font-weight: 700; text-decoration: none; display: inline-block; }
+.btn-red { background: var(--red); color: #fff; }
+.btn-ghost { background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.22); color: #fff; }
+.hero-scroll {
+  position: absolute; bottom: 28px; right: 80px; color: rgba(255,255,255,0.4);
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px;
+}
+.hero-scroll::after { content: '↓'; font-size: 1rem; }
+
+/* ── STATS ── */
+.stats { background: var(--g900); display: grid; grid-template-columns: repeat(4,1fr); }
+.stat { padding: 52px 40px; border-right: 1px solid rgba(255,255,255,0.06); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 3rem; font-weight: 900; color: #fff; letter-spacing: -0.03em; }
+.stat-num span { color: var(--red); }
+.stat-label { color: var(--g500); font-size: 0.78rem; font-weight: 500; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* ── MARQUEE ── */
+.marquee-strip { background: var(--red); padding: 14px 0; overflow: hidden; white-space: nowrap; }
+.marquee-track { display: inline-flex; gap: 48px; animation: marquee 18s linear infinite; }
+.marquee-item { font-size: 0.75rem; font-weight: 700; color: #fff; letter-spacing: 0.15em; text-transform: uppercase; }
+.marquee-sep { color: rgba(255,255,255,0.4); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── COMMERCIAL (TESLA STYLE) ── */
+.commercial { position: relative; height: 85vh; min-height: 600px; overflow: hidden; }
+.commercial-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55); }
+.commercial-content {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; padding: 40px;
+}
+.commercial-tag { color: var(--red); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; }
+.commercial-title { color: #fff; font-size: 4rem; font-weight: 900; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 20px; }
+.commercial-sub { color: rgba(255,255,255,0.65); font-size: 1rem; max-width: 520px; margin-bottom: 36px; }
+.commercial-btns { display: flex; gap: 12px; justify-content: center; }
+.btn-outline { border-radius: 980px; padding: 12px 28px; font-size: 0.82rem; font-weight: 600; text-decoration: none; display: inline-block; border: 1.5px solid rgba(255,255,255,0.35); color: #fff; }
+
+/* ── SERVICES ── */
+.services { background: var(--g100); padding: 96px 80px; }
+.section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+.services-head { font-size: 2.6rem; font-weight: 900; color: var(--g900); letter-spacing: -0.03em; margin-bottom: 56px; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.svc-card {
+  background: #fff; padding: 40px 36px;
+  position: relative; overflow: hidden;
+}
+.svc-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--red); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.svc-num { font-size: 0.68rem; font-weight: 700; color: var(--red); letter-spacing: 0.15em; margin-bottom: 20px; }
+.svc-icon { font-size: 2rem; margin-bottom: 16px; }
+.svc-name { font-size: 1.15rem; font-weight: 800; color: var(--g900); margin-bottom: 10px; }
+.svc-desc { font-size: 0.82rem; color: var(--g500); line-height: 1.6; margin-bottom: 20px; }
+.svc-link { font-size: 0.78rem; font-weight: 700; color: var(--red); text-decoration: none; }
+
+/* ── SPLIT ── */
+.split { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+.split-img { overflow: hidden; }
+.split-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.split-copy { padding: 80px 72px; display: flex; flex-direction: column; justify-content: center; background: #fff; }
+.split-copy.dark { background: var(--g900); }
+.split-copy.dark .split-head, .split-copy.dark .split-sub { color: rgba(255,255,255,0.85); }
+.split-copy.dark .split-head { color: #fff; }
+.split-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+.split-head { font-size: 2.2rem; font-weight: 900; color: var(--g900); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; }
+.split-sub { font-size: 0.9rem; color: var(--g500); line-height: 1.7; margin-bottom: 28px; }
+.split-copy .btn-pill { align-self: flex-start; }
+
+/* ── PORTFOLIO ── */
+.portfolio { padding: 96px 80px; background: #fff; }
+.port-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; }
+.port-head { font-size: 2.6rem; font-weight: 900; color: var(--g900); letter-spacing: -0.03em; }
+.port-link { font-size: 0.82rem; font-weight: 700; color: var(--red); }
+.port-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 340px 340px;
+  gap: 4px;
+}
+.port-cell { overflow: hidden; position: relative; }
+.port-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.port-cell:nth-child(1) { grid-column: 1 / 6;  grid-row: 1 / 3; }
+.port-cell:nth-child(2) { grid-column: 6 / 9;  grid-row: 1 / 2; }
+.port-cell:nth-child(3) { grid-column: 9 / 13; grid-row: 1 / 2; }
+.port-cell:nth-child(4) { grid-column: 6 / 10; grid-row: 2 / 3; }
+.port-cell:nth-child(5) { grid-column: 10 / 13;grid-row: 2 / 3; }
+.port-overlay {
+  position: absolute; inset: 0; background: rgba(0,0,0,0);
+  display: flex; align-items: flex-end; padding: 20px;
+  transition: background 0.3s;
+}
+.port-tag {
+  background: rgba(227,24,55,0.92); color: #fff; border-radius: 6px;
+  padding: 4px 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em;
+  opacity: 0;
+}
+
+/* ── PROCESS ── */
+.process { background: var(--g900); padding: 96px 80px; }
+.process-head { font-size: 2.4rem; font-weight: 900; color: #fff; letter-spacing: -0.03em; text-align: center; margin-bottom: 64px; }
+.process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; }
+.process-steps::before {
+  content: ''; position: absolute; top: 24px; left: 12.5%; right: 12.5%; height: 1px;
+  background: rgba(255,255,255,0.12);
+}
+.proc-step { text-align: center; padding: 0 24px; }
+.proc-num {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--red); color: #fff; font-size: 0.9rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
+}
+.proc-name { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.proc-desc { font-size: 0.78rem; color: var(--g500); line-height: 1.65; }
+
+/* ── TESTIMONIAL ── */
+.testimonial { padding: 120px 80px; background: #fff; text-align: center; }
+.quote-mark { font-size: 5rem; color: var(--red); line-height: 0.7; margin-bottom: 28px; font-family: Georgia, serif; }
+.quote-text { font-size: 1.7rem; font-weight: 700; color: var(--g900); letter-spacing: -0.02em; line-height: 1.4; max-width: 760px; margin: 0 auto 32px; }
+.quote-author { font-size: 0.82rem; color: var(--g500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; }
+
+/* ── CTA ── */
+.cta-section { position: relative; height: 480px; overflow: hidden; }
+.cta-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.45); }
+.cta-body {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+}
+.cta-title { font-size: 3.2rem; font-weight: 900; color: #fff; letter-spacing: -0.04em; margin-bottom: 28px; }
+.cta-title em { color: var(--red); font-style: italic; }
+.cta-btns { display: flex; gap: 14px; }
+
+/* ── FOOTER ── */
+footer { background: var(--g900); padding: 72px 80px 36px; color: rgba(255,255,255,0.55); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+.footer-brand .logo { font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 14px; }
+.footer-brand .logo span { color: var(--red); }
+.footer-brand p { font-size: 0.8rem; line-height: 1.7; margin-bottom: 20px; }
+.social-row { display: flex; gap: 10px; }
+.soc { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: rgba(255,255,255,0.6); }
+.footer-col h5 { font-size: 0.72rem; font-weight: 700; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; font-size: 0.8rem; }
+.footer-bar { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; display: flex; justify-content: space-between; font-size: 0.72rem; }
+
+/* ── POSTER FRAME ── */
+.poster-outer {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  padding: 60px 60px 80px;
+  position: relative;
+}
+.poster-badge {
+  text-align: center; margin-bottom: 28px;
+  font-family: var(--ff); font-size: 0.72rem; font-weight: 700;
+  color: rgba(255,255,255,0.35); letter-spacing: 0.25em; text-transform: uppercase;
+}
+.poster-frame {
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08),
+    0 40px 100px rgba(0,0,0,0.8),
+    0 0 60px rgba(227,24,55,0.08);
+  border-radius: 4px; overflow: hidden;
+  transform-origin: top center;
+}
+.poster-footer {
+  text-align: center; margin-top: 36px;
+  font-family: var(--ff); font-size: 0.8rem; color: rgba(255,255,255,0.25);
+  font-weight: 500;
+}
+</style>
+</head>
+<body>
+<div class="poster-outer" style="width:1560px;">
+  <div class="poster-badge">Print Lab Wraps · Homepage Design · 2024</div>
+  <div class="poster-frame" style="width:1440px; transform: scale(1); transform-origin: top left;">
+
+    <!-- NAV -->
+    <nav>
+      <a href="#" class="nav-logo">PrintLab<span>Wraps ★</span></a>
+      <div class="nav-links">
+        <a href="#">Services</a>
+        <a href="#">Vehicle Wraps</a>
+        <a href="#">Commercial</a>
+        <a href="#">Our Work</a>
+        <a href="#">About</a>
+        <a href="#">FAQ</a>
+      </div>
+      <a href="#" class="nav-cta">Get Estimate</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1800&q=85&auto=format&fit=crop" alt="Fleet wraps">
+      <div class="hero-scrim"></div>
+      <div class="hero-body">
+        <p class="hero-eyebrow">Houston's Premier Wrap Studio</p>
+        <h1 class="hero-title">Make Your<br><em>Brand Move.</em></h1>
+        <p class="hero-sub">Custom vehicle wraps, fleet graphics, and signage that turn heads and drive results.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn-pill btn-red">Get a Free Estimate</a>
+          <a href="#" class="btn-pill btn-ghost">Call (555) PLW-WRAP</a>
+        </div>
+      </div>
+      <div class="hero-scroll">Scroll</div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat"><div class="stat-num">2,500<span>+</span></div><div class="stat-label">Vehicles Wrapped</div></div>
+      <div class="stat"><div class="stat-num">15<span>+</span></div><div class="stat-label">Years Experience</div></div>
+      <div class="stat"><div class="stat-num">98<span>%</span></div><div class="stat-label">Client Satisfaction</div></div>
+      <div class="stat"><div class="stat-num">500<span>+</span></div><div class="stat-label">Fleet Partners</div></div>
+    </div>
+
+    <!-- MARQUEE -->
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <span class="marquee-item">Vehicle Wraps</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">Fleet Graphics</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">Commercial Signage</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">Building Wraps</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">Window Graphics</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">Color Change Wraps</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">Trade Show Displays</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">Vehicle Wraps</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">Fleet Graphics</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">Commercial Signage</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">Building Wraps</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">Window Graphics</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">Color Change Wraps</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">Trade Show Displays</span><span class="marquee-sep">★</span>
+      </div>
+    </div>
+
+    <!-- COMMERCIAL -->
+    <section class="commercial">
+      <img class="commercial-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1800&q=85&auto=format&fit=crop" alt="Commercial fleet">
+      <div class="commercial-content">
+        <p class="commercial-tag">Commercial Fleet Solutions</p>
+        <h2 class="commercial-title">Your Fleet Is Your<br>Biggest Billboard</h2>
+        <p class="commercial-sub">From single vans to 500-truck fleets, we deliver consistent, high-impact branding that works 24/7 across every mile.</p>
+        <div class="commercial-btns">
+          <a href="#" class="btn-pill btn-red">Fleet Pricing</a>
+          <a href="#" class="btn-outline">See Fleet Work</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services">
+      <p class="section-label">What We Do</p>
+      <h2 class="services-head">Every Surface.<br>Every Brand.</h2>
+      <div class="services-grid">
+        <div class="svc-card">
+          <div class="svc-num">01</div>
+          <div class="svc-icon">🚛</div>
+          <div class="svc-name">Commercial Fleet Wraps</div>
+          <div class="svc-desc">Branded graphics for vans, trucks, and fleets of any size. Consistent messaging across every vehicle.</div>
+          <a href="#" class="svc-link">Explore →</a>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">02</div>
+          <div class="svc-icon">🚗</div>
+          <div class="svc-name">Personal Vehicle Wraps</div>
+          <div class="svc-desc">Full wraps, partial wraps, and color-change vinyl for cars, trucks, and SUVs.</div>
+          <a href="#" class="svc-link">Explore →</a>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">03</div>
+          <div class="svc-icon">🪟</div>
+          <div class="svc-name">Signage & Prints</div>
+          <div class="svc-desc">Banners, window graphics, wall murals, and large-format print for every business need.</div>
+          <a href="#" class="svc-link">Explore →</a>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">04</div>
+          <div class="svc-icon">🏢</div>
+          <div class="svc-name">Buildings & Facilities</div>
+          <div class="svc-desc">Transform your space with architectural wraps, floor graphics, and wayfinding systems.</div>
+          <a href="#" class="svc-link">Explore →</a>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">05</div>
+          <div class="svc-icon">⛵</div>
+          <div class="svc-name">Marine & Specialty</div>
+          <div class="svc-desc">Boats, golf carts, trailers, ATVs — if it moves, we can wrap it.</div>
+          <a href="#" class="svc-link">Explore →</a>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">06</div>
+          <div class="svc-icon">🎨</div>
+          <div class="svc-name">Design Services</div>
+          <div class="svc-desc">In-house designers who specialize in wrap-ready artwork, brand identity, and layout.</div>
+          <a href="#" class="svc-link">Explore →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPLIT 1 -->
+    <section class="split">
+      <div class="split-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=85&auto=format&fit=crop" alt="Van wrap">
+      </div>
+      <div class="split-copy">
+        <p class="split-tag">3M Certified Installation</p>
+        <h2 class="split-head">Precision. From Design<br>to Delivery.</h2>
+        <p class="split-sub">Our certified installers use only 3M and Avery Dennison materials. Every wrap is precision-cut, bubble-free, and built to last 5–7 years.</p>
+        <a href="#" class="btn-pill btn-red">Our Process</a>
+      </div>
+    </section>
+
+    <!-- SPLIT 2 (reversed) -->
+    <section class="split">
+      <div class="split-copy dark">
+        <p class="split-tag">Real Results</p>
+        <h2 class="split-head" style="color:#fff;">Turn Miles Into<br>Marketing.</h2>
+        <p class="split-sub">A single wrapped vehicle generates up to 70,000 impressions per day. The average fleet wrap costs less than a dollar per thousand views.</p>
+        <a href="#" class="btn-pill btn-red">See Case Studies</a>
+      </div>
+      <div class="split-img">
+        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=900&q=85&auto=format&fit=crop" alt="Fleet">
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="portfolio">
+      <div class="port-header">
+        <div>
+          <p class="section-label">Our Work</p>
+          <h2 class="port-head">Brands That Move.</h2>
+        </div>
+        <a href="#" class="port-link">View All Projects →</a>
+      </div>
+      <div class="port-grid">
+        <div class="port-cell"><img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=900&q=80&auto=format&fit=crop" alt=""></div>
+        <div class="port-cell"><img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=80&auto=format&fit=crop" alt=""></div>
+        <div class="port-cell"><img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=600&q=80&auto=format&fit=crop" alt=""></div>
+        <div class="port-cell"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80&auto=format&fit=crop" alt=""></div>
+        <div class="port-cell"><img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=500&q=80&auto=format&fit=crop" alt=""></div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process">
+      <h2 class="process-head">Simple Process. Stunning Results.</h2>
+      <div class="process-steps">
+        <div class="proc-step">
+          <div class="proc-num">1</div>
+          <div class="proc-name">Consult & Quote</div>
+          <div class="proc-desc">We review your vehicles, goals, and budget. Free estimates, no pressure.</div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-num">2</div>
+          <div class="proc-name">Design</div>
+          <div class="proc-desc">Our designers create wrap-ready artwork tailored to your brand.</div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-num">3</div>
+          <div class="proc-name">Print & Cut</div>
+          <div class="proc-desc">Printed on premium 3M material, precision-cut for a perfect fit.</div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-num">4</div>
+          <div class="proc-name">Install & Deliver</div>
+          <div class="proc-desc">Bubble-free installation, typically in 1–2 days. Drive away branded.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="testimonial">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">Print Lab Wraps transformed our 40-truck fleet in under two weeks. The quality is exceptional and the calls started coming in before we even finished the last vehicle.</p>
+      <p class="quote-author">— Marcus T., Regional Director · Apex Logistics</p>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <img class="cta-img" src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1800&q=85&auto=format&fit=crop" alt="">
+      <div class="cta-body">
+        <h2 class="cta-title">Ready to <em>Stand Out?</em></h2>
+        <div class="cta-btns">
+          <a href="#" class="btn-pill btn-red">Get a Free Estimate</a>
+          <a href="#" class="btn-outline">Call Us Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">PrintLab<span>Wraps ★</span></div>
+          <p>Houston's most trusted vehicle wrap and signage studio. 3M Certified. 15+ years. Delivering brands that move.</p>
+          <div class="social-row">
+            <div class="soc">ig</div>
+            <div class="soc">fb</div>
+            <div class="soc">in</div>
+            <div class="soc">yt</div>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li>Commercial Wraps</li>
+            <li>Vehicle Wraps</li>
+            <li>Signage & Prints</li>
+            <li>Buildings</li>
+            <li>Marine & Specialty</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li>About Us</li>
+            <li>Our Work</li>
+            <li>Careers</li>
+            <li>Blog</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Support</h5>
+          <ul>
+            <li>FAQ</li>
+            <li>Contact</li>
+            <li>Get Estimate</li>
+            <li>Warranty</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li>Houston, TX</li>
+            <li>(555) PLW-WRAP</li>
+            <li>hello@printlabwraps.com</li>
+            <li>Mon–Fri 8am–6pm</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <span>© 2024 Print Lab Wraps LLC. All rights reserved.</span>
+        <span>Privacy · Terms · Sitemap</span>
+      </div>
+    </footer>
+
+  </div><!-- /poster-frame -->
+  <div class="poster-footer">Confidential — Client Preview · Print Lab Wraps Homepage · printlabwraps.com</div>
+</div>
+</body>
+</html>
