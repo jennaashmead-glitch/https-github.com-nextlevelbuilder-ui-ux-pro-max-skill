@@ -9,8 +9,11 @@
 </head>
 <body>
   <div class="page-wrapper">
-    <!-- ============ HEADER ============ -->
-    <header class="nav_component padding-global">
+    <!-- ============ STICKY HEADER ============
+         Hidden at page top (the hero card carries its own nav row, matching
+         the reference). Slides in once the user scrolls past the hero so
+         navigation + Call/Estimate stay persistent everywhere else. -->
+    <header class="nav_component padding-global" data-sticky-header>
       <a href="/" class="nav_logo" aria-label="Print Lab Wraps — Home">
         <!-- PLACEHOLDER: export the white-on-transparent horizontal lockup from the brand guidelines as
              images/logo-horizontal-white.svg, then replace the span below with:
@@ -48,6 +51,36 @@
 
             <!-- ===== glow zone (red radiant top) ===== -->
             <div class="hero_glow-zone">
+
+              <!-- in-card nav row, mirrors the reference layout exactly -->
+              <div class="hero_nav">
+                <span class="hero_nav-logo">PRINTLAB WRAPS</span>
+                <ul class="hero_nav-links">
+                  <li><a href="/services">Services</a></li>
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/our-work">Our Work</a></li>
+                  <li><a href="/contact">Contact</a></li>
+                </ul>
+                <div class="hero_nav-icons">
+                  <a href="tel:+10000000000" aria-label="Call us">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  </a>
+                  <button class="hero_nav-hamburger" aria-label="Open menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- decorative side accents, purely visual (matches reference dot/circle marks) -->
+              <div class="hero_accent hero_accent--left" aria-hidden="true">
+                <span></span><span></span><span></span>
+                <i></i>
+              </div>
+              <div class="hero_accent hero_accent--right" aria-hidden="true">
+                <span></span><span></span><span></span>
+                <i></i>
+              </div>
+
               <div class="hero_headline-panel" data-reveal>
                 <h1 class="heading-style-h1 heading-style-h1--on-glow">Turn Every Surface<br />Into a Marketing&nbsp;Machine</h1>
               </div>
@@ -55,12 +88,12 @@
               <div class="hero_vehicle hero_vehicle--placeholder" data-reveal>
                 <!--
                   PLACEHOLDER SLOT.
-                  Drop the real top-down/3-quarter vehicle cutout (transparent PNG/WebP)
+                  Drop the real 3-quarter/side vehicle cutout (transparent PNG/WebP)
                   at site/images/hero-vehicle.png, then replace this div with:
-                  <img src="images/hero-vehicle.png" alt="Matte-wrapped truck with custom
-                  Print Lab Wraps graphics" loading="eager" />
+                  <img class="hero_vehicle-img" src="images/hero-vehicle.png" alt="Matte
+                  -wrapped truck with custom Print Lab Wraps graphics" loading="eager" />
                 -->
-                <span class="hero_vehicle-placeholder-label">Vehicle cutout placeholder<br />(transparent PNG, top/3-quarter view)</span>
+                <span class="hero_vehicle-placeholder-label">Vehicle image placeholder<br />(transparent cutout, side or 3-quarter view)</span>
               </div>
 
               <p class="hero_subheading text-size-large" data-reveal>Drive your brand forward with wraps that turn heads and drive results.</p>
@@ -85,28 +118,33 @@
             <div class="hero_arc-zone">
               <div class="services-arc_line" aria-hidden="true"></div>
               <ul class="services-arc_list" data-reveal>
-                <li class="services-arc_item">
+                <li class="services-arc_item services-arc_item--1">
                   <span class="services-arc_number">01</span>
+                  <span class="services-arc_dot" aria-hidden="true"></span>
                   <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 17h2l1-5h11l2 5h2M5 12l1.5-4.5A2 2 0 0 1 8.4 6h7.2a2 2 0 0 1 1.9 1.5L19 12M7 17a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm13 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
                   <span class="services-arc_label">Commercial<br />Vehicle Wraps</span>
                 </li>
-                <li class="services-arc_item">
+                <li class="services-arc_item services-arc_item--2">
                   <span class="services-arc_number">02</span>
+                  <span class="services-arc_dot" aria-hidden="true"></span>
                   <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 17h14l-1.5-7.5a2 2 0 0 0-2-1.5h-7a2 2 0 0 0-2 1.5L5 17zM7 17a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm13 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
                   <span class="services-arc_label">Vehicle Wraps</span>
                 </li>
-                <li class="services-arc_item">
+                <li class="services-arc_item services-arc_item--3">
                   <span class="services-arc_number">03</span>
+                  <span class="services-arc_dot" aria-hidden="true"></span>
                   <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="12" rx="1"/><path d="M8 21h8M12 17v4"/></svg>
                   <span class="services-arc_label">Signage &amp; Prints</span>
                 </li>
-                <li class="services-arc_item">
+                <li class="services-arc_item services-arc_item--4">
                   <span class="services-arc_number">04</span>
+                  <span class="services-arc_dot" aria-hidden="true"></span>
                   <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
                   <span class="services-arc_label">Buildings &amp;<br />Facilities</span>
                 </li>
-                <li class="services-arc_item">
+                <li class="services-arc_item services-arc_item--5">
                   <span class="services-arc_number">05</span>
+                  <span class="services-arc_dot" aria-hidden="true"></span>
                   <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
                   <span class="services-arc_label">Other Offerings</span>
                 </li>
