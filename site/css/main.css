@@ -417,8 +417,11 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   height: clamp(9rem, 18vw, 13rem);
   margin-bottom: -2px; /* seamless seam, no gap */
-  --band-h: clamp(9rem, 18vw, 13rem);
-  --arc-r: clamp(16rem, 30vw, 28rem);
+  /* shared radius pair (true circle in concept, stretched to the band's actual aspect
+     ratio) — every item uses the SAME --rx/--ry so spacing/angle stay mathematically
+     consistent with the arc drawn in the SVG above */
+  --rx: clamp(15rem, 32vw, 28.5rem);
+  --ry: clamp(4.5rem, 9vw, 7.75rem);
 }
 
 .hero_wheel-band_bg {
@@ -455,29 +458,39 @@ a { color: inherit; text-decoration: none; }
 
 .services-arc_item {
   position: absolute;
+  width: 8rem;
+  text-align: center;
+  /* evenly spaced by true angle around the same circle the SVG band traces: --sin/--cos
+     are sin(angle)/cos(angle) for that item's angle, sharing the band's --rx/--ry radius,
+     so x/y position and --tilt rotation all stay mathematically tied to one angle */
+  left: calc(50% + var(--rx) * var(--sin));
+  top: calc(var(--ry) * var(--cos));
+  transform: translateX(-50%) rotate(var(--tilt));
+  transform-origin: 50% 0;
+}
+
+.services-arc_link {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
-  width: 8rem;
-  text-align: center;
   cursor: pointer;
-  /* places each item inside the wheel band, embedded along its curve: --sin positions it
-     horizontally, --topfrac (0 at the rising edges, 1 at the dipped center) tracks the
-     band's own curvature so items sit centered in the rim's thickness; --tilt gives each
-     item a slight rotation to read like a spoke radiating off the rim */
-  left: calc(50% + var(--arc-r) * var(--sin));
-  top: calc(var(--band-h) * (0.22 + 0.46 * var(--topfrac)));
-  transform: translateX(-50%) rotate(var(--tilt));
-  transform-origin: 50% 0;
   transition: transform 0.2s ease;
 }
 
-.services-arc_item:hover {
-  transform: translateX(-50%) rotate(var(--tilt)) translateY(-4px);
+.services-arc_link:hover,
+.services-arc_link:focus-visible {
+  transform: translateY(-4px);
 }
 
-.services-arc_item:hover .services-arc_icon { color: var(--color-red); }
+.services-arc_link:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: 4px;
+  border-radius: 0.25rem;
+}
+
+.services-arc_link:hover .services-arc_icon,
+.services-arc_link:focus-visible .services-arc_icon { color: var(--color-red); }
 
 .services-arc_number {
   font-size: 0.6875rem;

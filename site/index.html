@@ -108,11 +108,12 @@
               </div>
             </div>
 
-            <!-- ===== wheel band: thick circular rim (not just a line) wrapping up toward the
-                 header on both sides and dipping around the vehicle in the center — the 5
-                 numbered services sit embedded in the band itself, like spokes on a wheel rim. -->
+            <!-- ===== wheel band: a true half-circle rim (equal-radius arc, not a flattened
+                 bezier) wrapping up toward the header at both ends and dipping around the
+                 vehicle at its lowest point — the 5 services are evenly spaced by angle along
+                 it, rotated to match their position on the circle, and are real links. -->
             <div class="hero_wheel-band">
-              <svg class="hero_wheel-band_bg" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
+              <svg class="hero_wheel-band_bg" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
                 <defs>
                   <linearGradient id="bandGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#333333" />
@@ -121,45 +122,55 @@
                   </linearGradient>
                 </defs>
                 <path class="hero_wheel-band_fill" fill="url(#bandGrad)"
-                  d="M0,20 C360,20 360,150 720,150 C1080,150 1080,20 1440,20 L1440,110 C1080,110 1080,240 720,240 C360,240 360,110 0,110 Z" />
-                <path class="hero_wheel-band_edge-top" fill="none" d="M0,20 C360,20 360,150 720,150 C1080,150 1080,20 1440,20" />
-                <path class="hero_wheel-band_edge-bottom" fill="none" d="M0,110 C360,110 360,240 720,240 C1080,240 1080,110 1440,110" />
-                <line class="hero_wheel-band_divider" x1="288" y1="72" x2="288" y2="162" />
-                <line class="hero_wheel-band_divider" x1="576" y1="124" x2="576" y2="214" />
-                <line class="hero_wheel-band_divider" x1="864" y1="124" x2="864" y2="214" />
-                <line class="hero_wheel-band_divider" x1="1152" y1="72" x2="1152" y2="162" />
+                  d="M20,0 A700,190 0 0 0 1420,0 L1188,0 A455,124 0 0 1 252,0 Z" />
+                <path class="hero_wheel-band_edge-top" fill="none" d="M20,0 A700,190 0 0 0 1420,0" />
+                <path class="hero_wheel-band_edge-bottom" fill="none" d="M252,0 A455,124 0 0 0 1188,0" />
+                <line class="hero_wheel-band_divider" x1="252" y1="141" x2="416" y2="92" />
+                <line class="hero_wheel-band_divider" x1="551" y1="184" x2="610" y2="120" />
+                <line class="hero_wheel-band_divider" x1="889" y1="184" x2="830" y2="120" />
+                <line class="hero_wheel-band_divider" x1="1188" y1="141" x2="1024" y2="92" />
               </svg>
 
               <ul class="services-arc_list" data-reveal>
-                <li class="services-arc_item" style="--sin: -0.5299; --topfrac: 0; --tilt: -12deg;">
-                  <span class="services-arc_number">01</span>
-                  <span class="services-arc_dot" aria-hidden="true"></span>
-                  <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 17h2l1-5h11l2 5h2M5 12l1.5-4.5A2 2 0 0 1 8.4 6h7.2a2 2 0 0 1 1.9 1.5L19 12M7 17a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm13 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
-                  <span class="services-arc_label">Commercial<br />Vehicle Wraps</span>
+                <li class="services-arc_item" style="--sin: -0.8290; --cos: 0.5592; --tilt: -56deg;">
+                  <a class="services-arc_link" href="/services/commercial-vehicle-wraps">
+                    <span class="services-arc_number">01</span>
+                    <span class="services-arc_dot" aria-hidden="true"></span>
+                    <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 17h2l1-5h11l2 5h2M5 12l1.5-4.5A2 2 0 0 1 8.4 6h7.2a2 2 0 0 1 1.9 1.5L19 12M7 17a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm13 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
+                    <span class="services-arc_label">Commercial<br />Vehicle Wraps</span>
+                  </a>
                 </li>
-                <li class="services-arc_item" style="--sin: -0.2756; --topfrac: 0.6; --tilt: -6deg;">
-                  <span class="services-arc_number">02</span>
-                  <span class="services-arc_dot" aria-hidden="true"></span>
-                  <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 17h14l-1.5-7.5a2 2 0 0 0-2-1.5h-7a2 2 0 0 0-2 1.5L5 17zM7 17a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm13 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
-                  <span class="services-arc_label">Vehicle Wraps</span>
+                <li class="services-arc_item" style="--sin: -0.4695; --cos: 0.8829; --tilt: -28deg;">
+                  <a class="services-arc_link" href="/services/vehicle-wraps">
+                    <span class="services-arc_number">02</span>
+                    <span class="services-arc_dot" aria-hidden="true"></span>
+                    <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 17h14l-1.5-7.5a2 2 0 0 0-2-1.5h-7a2 2 0 0 0-2 1.5L5 17zM7 17a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm13 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
+                    <span class="services-arc_label">Vehicle Wraps</span>
+                  </a>
                 </li>
-                <li class="services-arc_item" style="--sin: 0; --topfrac: 1; --tilt: 0deg;">
-                  <span class="services-arc_number">03</span>
-                  <span class="services-arc_dot" aria-hidden="true"></span>
-                  <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="12" rx="1"/><path d="M8 21h8M12 17v4"/></svg>
-                  <span class="services-arc_label">Signage &amp; Prints</span>
+                <li class="services-arc_item" style="--sin: 0; --cos: 1; --tilt: 0deg;">
+                  <a class="services-arc_link" href="/services/signage-prints">
+                    <span class="services-arc_number">03</span>
+                    <span class="services-arc_dot" aria-hidden="true"></span>
+                    <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="12" rx="1"/><path d="M8 21h8M12 17v4"/></svg>
+                    <span class="services-arc_label">Signage &amp; Prints</span>
+                  </a>
                 </li>
-                <li class="services-arc_item" style="--sin: 0.2756; --topfrac: 0.6; --tilt: 6deg;">
-                  <span class="services-arc_number">04</span>
-                  <span class="services-arc_dot" aria-hidden="true"></span>
-                  <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
-                  <span class="services-arc_label">Buildings &amp;<br />Facilities</span>
+                <li class="services-arc_item" style="--sin: 0.4695; --cos: 0.8829; --tilt: 28deg;">
+                  <a class="services-arc_link" href="/services/buildings-facilities">
+                    <span class="services-arc_number">04</span>
+                    <span class="services-arc_dot" aria-hidden="true"></span>
+                    <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+                    <span class="services-arc_label">Buildings &amp;<br />Facilities</span>
+                  </a>
                 </li>
-                <li class="services-arc_item" style="--sin: 0.5299; --topfrac: 0; --tilt: 12deg;">
-                  <span class="services-arc_number">05</span>
-                  <span class="services-arc_dot" aria-hidden="true"></span>
-                  <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-                  <span class="services-arc_label">Other Offerings</span>
+                <li class="services-arc_item" style="--sin: 0.8290; --cos: 0.5592; --tilt: 56deg;">
+                  <a class="services-arc_link" href="/services/other-offerings">
+                    <span class="services-arc_number">05</span>
+                    <span class="services-arc_dot" aria-hidden="true"></span>
+                    <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                    <span class="services-arc_label">Other Offerings</span>
+                  </a>
                 </li>
               </ul>
             </div>
