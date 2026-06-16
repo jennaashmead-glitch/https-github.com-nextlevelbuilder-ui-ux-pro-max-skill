@@ -291,6 +291,23 @@ a { color: inherit; text-decoration: none; }
   .hero_button-group { flex-direction: column; width: 100%; }
 }
 
+/* ---------- scoop divider (true concave curve between zones) ---------- */
+.hero_scoop {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: clamp(2.5rem, 6vw, 4.5rem);
+  margin-bottom: -2px; /* seamless seam, no gap */
+}
+
+.hero_scoop svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 /* ---------- arc zone ---------- */
 .hero_arc-zone {
   position: relative;
@@ -363,5 +380,7 @@ a { color: inherit; text-decoration: none; }
   .services-arc_item:nth-child(5) { grid-column: span 2; }
 }
 
-/* ---------- reveal-on-scroll hook (GSAP targets) ---------- */
-[data-reveal] { opacity: 0; transform: translateY(20px); }
+/* ---------- reveal-on-scroll hook (GSAP targets) ----------
+   No default opacity:0 here on purpose: content must stay visible
+   if JS fails to load. animations.js sets the pre-animation state
+   itself, only once GSAP is confirmed loaded. */
