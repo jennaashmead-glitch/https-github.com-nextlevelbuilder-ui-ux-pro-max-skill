@@ -333,9 +333,26 @@ a { color: inherit; text-decoration: none; }
   .hero_accent { display: none; }
 }
 
+.hero_logo-mark {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.hero_logo-mark-fallback {
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
 .hero_headline-panel {
   max-width: 46rem;
-  padding: clamp(1.25rem, 3vw, 2rem) clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 1rem;
   background: rgba(255, 255, 255, 0.06);
@@ -345,6 +362,7 @@ a { color: inherit; text-decoration: none; }
 .heading-style-h1--on-glow {
   color: var(--color-white);
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
 }
 
 .hero_vehicle {
@@ -352,9 +370,9 @@ a { color: inherit; text-decoration: none; }
   z-index: 2;
   width: 100%;
   max-width: 40rem;
-  /* tucks up under the headline panel so it overlaps it, like the reference */
-  margin-top: clamp(-1.25rem, -2.5vw, -2rem);
-  margin-bottom: 0;
+  /* tucks up under the logo mark so it overlaps it slightly, like the reference */
+  margin-top: clamp(-0.75rem, -1.5vw, -1.25rem);
+  margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
 }
 
 .hero_vehicle-img {
@@ -457,7 +475,7 @@ a { color: inherit; text-decoration: none; }
      shared --arc-r radius reproduce the same curvature as the scoop dome above it —
      center item sits highest, edge items drop down and out toward the sides */
   left: calc(50% + var(--arc-r) * var(--sin));
-  top: calc(var(--arc-r) * (1 - var(--cos)));
+  top: calc(var(--arc-r) * var(--cos) * 0.22);
   transform: translateX(-50%);
   transition: transform 0.2s ease;
 }
