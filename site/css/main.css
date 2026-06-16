@@ -247,7 +247,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 0 clamp(2.5rem, 6vw, 4rem);
+  padding: 0.75rem 0 clamp(1.25rem, 3vw, 2rem);
 }
 
 .hero_nav-logo {
@@ -351,9 +351,10 @@ a { color: inherit; text-decoration: none; }
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 46rem;
-  margin-top: clamp(1.5rem, 4vw, 2.5rem);
-  margin-bottom: clamp(-0.5rem, -1.5vw, -1.5rem); /* bottom edge tucks toward the seam */
+  max-width: 40rem;
+  /* tucks up under the headline panel so it overlaps it, like the reference */
+  margin-top: clamp(-1.25rem, -2.5vw, -2rem);
+  margin-bottom: 0;
 }
 
 .hero_vehicle-img {
@@ -384,25 +385,25 @@ a { color: inherit; text-decoration: none; }
   position: relative;
   z-index: 2;
   max-width: 32rem;
-  margin-top: clamp(3.5rem, 7vw, 5rem);
+  margin-top: 0;
 }
 
 .hero_button-group {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.25rem;
 }
 
 @media (max-width: 478px) {
   .hero_button-group { flex-direction: column; width: 100%; }
 }
 
-/* ---------- scoop divider (true concave curve between zones) ---------- */
+/* ---------- scoop divider (true concave curve between zones, deep dome) ---------- */
 .hero_scoop {
   position: relative;
   display: block;
   width: 100%;
-  height: clamp(2.5rem, 6vw, 4.5rem);
+  height: clamp(4.5rem, 11vw, 8rem);
   margin-bottom: -2px; /* seamless seam, no gap */
 }
 
@@ -414,68 +415,60 @@ a { color: inherit; text-decoration: none; }
   display: block;
 }
 
-/* ---------- arc zone ---------- */
+.hero_scoop-glow-blur {
+  stroke: var(--color-red);
+  stroke-width: 10;
+  opacity: 0.55;
+  filter: blur(10px);
+}
+
+.hero_scoop-glow-line {
+  stroke: var(--color-red);
+  stroke-width: 2.5;
+}
+
+/* ---------- arc zone: items sit on the same circular arc as the scoop curve ---------- */
 .hero_arc-zone {
   position: relative;
   background: var(--color-black-soft);
-  padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 5vw, 3.5rem);
-}
-
-.services-arc_line {
-  position: absolute;
-  top: 0;
-  left: 5%;
-  right: 5%;
-  height: 2px;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    var(--color-red) 15%,
-    var(--color-red) 85%,
-    transparent 100%
-  );
-  box-shadow: 0 0 12px 2px rgba(238, 30, 39, 0.6);
+  padding: 0 clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 5vw, 3.5rem);
 }
 
 .services-arc_list {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
+  position: relative;
+  height: clamp(7rem, 12vw, 9.5rem);
   list-style: none;
   margin: 0;
   padding: 0;
+  --arc-r: clamp(16rem, 30vw, 28rem);
 }
 
 .services-arc_item {
-  position: relative;
+  position: absolute;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
+  width: 9rem;
   text-align: center;
   cursor: pointer;
-  padding-top: 1.5rem; /* room for the number + dot sitting on the line above */
+  /* places each item on a shallow circular arc: --sin/--cos (set per item) plus the
+     shared --arc-r radius reproduce the same curvature as the scoop dome above it —
+     center item sits highest, edge items drop down and out toward the sides */
+  left: calc(50% + var(--arc-r) * var(--sin));
+  top: calc(var(--arc-r) * (1 - var(--cos)));
+  transform: translateX(-50%);
   transition: transform 0.2s ease;
 }
 
-.services-arc_item:hover { transform: translateY(-4px); }
+.services-arc_item:hover {
+  transform: translateX(-50%) translateY(-4px);
+}
 
 .services-arc_item:hover .services-arc_icon { color: var(--color-red); }
 
-/* alternating tilt, echoes text following the curve in the reference */
-.services-arc_item--1 { transform: rotate(-6deg); }
-.services-arc_item--2 { transform: rotate(-3deg); }
-.services-arc_item--4 { transform: rotate(3deg); }
-.services-arc_item--5 { transform: rotate(6deg); }
-
-.services-arc_item--1:hover { transform: rotate(-6deg) translateY(-4px); }
-.services-arc_item--2:hover { transform: rotate(-3deg) translateY(-4px); }
-.services-arc_item--4:hover { transform: rotate(3deg) translateY(-4px); }
-.services-arc_item--5:hover { transform: rotate(6deg) translateY(-4px); }
-
 .services-arc_number {
-  position: absolute;
-  top: -1.4rem;
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -483,32 +476,40 @@ a { color: inherit; text-decoration: none; }
 }
 
 .services-arc_dot {
-  position: absolute;
-  top: -0.25rem;
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
   background: var(--color-white);
   box-shadow: 0 0 8px 1px rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.25rem;
 }
 
 .services-arc_icon {
-  width: 1.75rem;
-  height: 1.75rem;
-  color: var(--color-white);
+  width: 1.5rem;
+  height: 1.5rem;
+  color: rgba(255, 255, 255, 0.45);
   transition: color 0.2s ease;
 }
 
 .services-arc_label {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--color-white-muted);
 }
 
 @media (max-width: 767px) {
-  .services-arc_list { grid-template-columns: repeat(2, 1fr); gap: 2rem 1rem; }
-  .services-arc_item:nth-child(5) { grid-column: span 2; }
+  .services-arc_list {
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1rem;
+  }
+  .services-arc_item {
+    position: static;
+    width: auto;
+    transform: none !important;
+  }
 }
 
 /* ---------- reveal-on-scroll hook (GSAP targets) ----------

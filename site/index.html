@@ -107,42 +107,45 @@
               </div>
             </div>
 
-            <!-- ===== scoop divider: true concave curve between glow zone and arc zone ===== -->
+            <!-- ===== scoop divider: true concave curve between glow zone and arc zone =====
+                 single SVG draws the dark dome fill AND a glowing stroke tracing its exact
+                 top edge, so the "line" is the curve itself, not a straight bar. -->
             <div class="hero_scoop" aria-hidden="true">
-              <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-                <path d="M0,100 L0,70 C360,70 360,0 720,0 C1080,0 1080,70 1440,70 L1440,100 Z" fill="#0D0D0D" />
+              <svg viewBox="0 0 1440 180" preserveAspectRatio="none">
+                <path class="hero_scoop-fill" d="M0,180 L0,120 C360,120 360,0 720,0 C1080,0 1080,120 1440,120 L1440,180 Z" fill="#0D0D0D" />
+                <path class="hero_scoop-glow-blur" d="M0,120 C360,120 360,0 720,0 C1080,0 1080,120 1440,120" fill="none" />
+                <path class="hero_scoop-glow-line" d="M0,120 C360,120 360,0 720,0 C1080,0 1080,120 1440,120" fill="none" />
               </svg>
             </div>
 
-            <!-- ===== arc zone (dark, numbered services along glow line) ===== -->
+            <!-- ===== arc zone: numbered services positioned on the same circular arc as the curve above ===== -->
             <div class="hero_arc-zone">
-              <div class="services-arc_line" aria-hidden="true"></div>
               <ul class="services-arc_list" data-reveal>
-                <li class="services-arc_item services-arc_item--1">
+                <li class="services-arc_item" style="--sin: -0.5299; --cos: 0.848;">
                   <span class="services-arc_number">01</span>
                   <span class="services-arc_dot" aria-hidden="true"></span>
                   <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 17h2l1-5h11l2 5h2M5 12l1.5-4.5A2 2 0 0 1 8.4 6h7.2a2 2 0 0 1 1.9 1.5L19 12M7 17a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm13 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
                   <span class="services-arc_label">Commercial<br />Vehicle Wraps</span>
                 </li>
-                <li class="services-arc_item services-arc_item--2">
+                <li class="services-arc_item" style="--sin: -0.2756; --cos: 0.9613;">
                   <span class="services-arc_number">02</span>
                   <span class="services-arc_dot" aria-hidden="true"></span>
                   <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 17h14l-1.5-7.5a2 2 0 0 0-2-1.5h-7a2 2 0 0 0-2 1.5L5 17zM7 17a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm13 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
                   <span class="services-arc_label">Vehicle Wraps</span>
                 </li>
-                <li class="services-arc_item services-arc_item--3">
+                <li class="services-arc_item" style="--sin: 0; --cos: 1;">
                   <span class="services-arc_number">03</span>
                   <span class="services-arc_dot" aria-hidden="true"></span>
                   <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="12" rx="1"/><path d="M8 21h8M12 17v4"/></svg>
                   <span class="services-arc_label">Signage &amp; Prints</span>
                 </li>
-                <li class="services-arc_item services-arc_item--4">
+                <li class="services-arc_item" style="--sin: 0.2756; --cos: 0.9613;">
                   <span class="services-arc_number">04</span>
                   <span class="services-arc_dot" aria-hidden="true"></span>
                   <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
                   <span class="services-arc_label">Buildings &amp;<br />Facilities</span>
                 </li>
-                <li class="services-arc_item services-arc_item--5">
+                <li class="services-arc_item" style="--sin: 0.5299; --cos: 0.848;">
                   <span class="services-arc_number">05</span>
                   <span class="services-arc_dot" aria-hidden="true"></span>
                   <svg class="services-arc_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
