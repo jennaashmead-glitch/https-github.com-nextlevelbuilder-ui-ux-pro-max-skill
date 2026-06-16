@@ -408,16 +408,20 @@ a { color: inherit; text-decoration: none; }
   .hero_button-group { flex-direction: column; width: 100%; }
 }
 
-/* ---------- scoop divider (true concave curve between zones, deep dome) ---------- */
-.hero_scoop {
+/* ---------- wheel band: thick circular rim, not a thin line — wraps up toward the
+   header at the edges and dips low around the vehicle at center, like a wheel rim
+   cross-section. The 5 numbered services sit embedded in the band as spoke segments. ---------- */
+.hero_wheel-band {
   position: relative;
   display: block;
   width: 100%;
-  height: clamp(4.5rem, 11vw, 8rem);
+  height: clamp(9rem, 18vw, 13rem);
   margin-bottom: -2px; /* seamless seam, no gap */
+  --band-h: clamp(9rem, 18vw, 13rem);
+  --arc-r: clamp(16rem, 30vw, 28rem);
 }
 
-.hero_scoop svg {
+.hero_wheel-band_bg {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -425,55 +429,52 @@ a { color: inherit; text-decoration: none; }
   display: block;
 }
 
-.hero_scoop-glow-blur {
+.hero_wheel-band_edge-top {
   stroke: var(--color-red);
-  stroke-width: 10;
-  opacity: 0.55;
-  filter: blur(10px);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 6px rgba(238, 30, 39, 0.8));
 }
 
-.hero_scoop-glow-line {
-  stroke: var(--color-red);
-  stroke-width: 2.5;
+.hero_wheel-band_edge-bottom {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1.5;
 }
 
-/* ---------- arc zone: items sit on the same circular arc as the scoop curve ---------- */
-.hero_arc-zone {
-  position: relative;
-  background: var(--color-black-soft);
-  padding: 0 clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 5vw, 3.5rem);
+.hero_wheel-band_divider {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 2;
 }
 
 .services-arc_list {
-  position: relative;
-  height: clamp(7rem, 12vw, 9.5rem);
+  position: absolute;
+  inset: 0;
   list-style: none;
   margin: 0;
-  padding: 0;
-  --arc-r: clamp(16rem, 30vw, 28rem);
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
 }
 
 .services-arc_item {
   position: absolute;
-  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
-  width: 9rem;
+  width: 8rem;
   text-align: center;
   cursor: pointer;
-  /* places each item on a shallow circular arc: --sin/--cos (set per item) plus the
-     shared --arc-r radius reproduce the same curvature as the scoop dome above it —
-     center item sits highest, edge items drop down and out toward the sides */
+  /* places each item inside the wheel band, embedded along its curve: --sin positions it
+     horizontally, --topfrac (0 at the rising edges, 1 at the dipped center) tracks the
+     band's own curvature so items sit centered in the rim's thickness; --tilt gives each
+     item a slight rotation to read like a spoke radiating off the rim */
   left: calc(50% + var(--arc-r) * var(--sin));
-  top: calc(var(--arc-r) * var(--cos) * 0.22);
-  transform: translateX(-50%);
+  top: calc(var(--band-h) * (0.22 + 0.46 * var(--topfrac)));
+  transform: translateX(-50%) rotate(var(--tilt));
+  transform-origin: 50% 0;
   transition: transform 0.2s ease;
 }
 
 .services-arc_item:hover {
-  transform: translateX(-50%) translateY(-4px);
+  transform: translateX(-50%) rotate(var(--tilt)) translateY(-4px);
 }
 
 .services-arc_item:hover .services-arc_icon { color: var(--color-red); }
@@ -497,7 +498,7 @@ a { color: inherit; text-decoration: none; }
 .services-arc_icon {
   width: 1.5rem;
   height: 1.5rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.55);
   transition: color 0.2s ease;
 }
 
@@ -509,11 +510,16 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 767px) {
+  .hero_wheel-band { height: auto; }
+  .hero_wheel-band_bg { display: none; }
   .services-arc_list {
+    position: static;
     height: auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem 1rem;
+    padding: 2rem clamp(1.5rem, 4vw, 3rem);
+    background: var(--color-black-soft);
   }
   .services-arc_item {
     position: static;
